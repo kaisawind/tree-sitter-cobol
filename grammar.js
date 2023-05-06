@@ -615,6 +615,507 @@ module.exports = grammar({
   rules: {
     source_file: $ => 'hello',
 
+    // accept $.statement
+    acceptStatement: $ => seq(
+      ACCEPT, $.identifier, optional(choice(
+        $.acceptFromDateStatement,
+        $.acceptFromEscapeKeyStatement,
+        $.acceptFromMnemonicStatement,
+        $.acceptMessageCountStatement
+      )), optional($.onExceptionClause), optional($.notOnExceptionClause), optional(END_ACCEPT),
+    ),
+    acceptFromDateStatement: $ => seq(
+      FROM, choice(
+        seq(DATE, optional(YYYYMMDD)),
+        seq(DAY, optional(YYYYDDD)),
+        DAY_OF_WEEK,
+        TIME,
+        TIMER,
+        seq(TODAYS_DATE, optional(MMDDYYYY)),
+        TODAYS_NAME,
+        YEAR,
+        YYYYMMDD,
+        YYYYDDD
+      ),
+    ),
+    acceptFromMnemonicStatement: $ => seq(FROM, $.mnemonicName),
+    acceptFromEscapeKeyStatement: $ => seq(FROM, ESCAPE, KEY),
+    acceptMessageCountStatement: $ => seq(optional(MESSAGE), COUNT),
+
+    // add $.statement
+    addStatement: $ => seq(
+      ADD, choice(
+        $.addToStatement,
+        $.addToGivingStatement,
+        $.addCorrespondingStatement
+      ), optional($.onSizeErrorPhrase), optional($.notOnSizeErrorPhrase), optional(END_ADD),
+    ),
+    addToStatement: $ => seq(repeat1($.addFrom), TO, repeat1($.addTo)),
+    addToGivingStatement: $ => seq(
+      repeat1($.addFrom), optional(seq(TO, repeat1($.addToGiving))), GIVING, repeat1($.addGiving),
+    ),
+    addCorrespondingStatement: $ => seq(choice(CORRESPONDING, CORR), $.identifier, TO, $.addTo),
+    addFrom: $ => choice($.identifier, $.literal),
+    addTo: $ => seq($.identifier, optional(ROUNDED)),
+    addToGiving: $ => choice($.identifier, $.literal),
+    addGiving: $ => seq($.identifier, optional(ROUNDED)),
+
+    // altered go to $.statement
+    alteredGoTo: $ => seq(GO, optional(TO), DOT_FS),
+
+    // alter $.statement
+    alterStatement: $ => seq(ALTER, repeat1($.alterProceedTo)),
+    alterProceedTo: $ => seq($.procedureName, TO, optional(seq(PROCEED, TO)), $.procedureName),
+
+    // call $.statement
+    callStatement: $ => seq(
+      CALL, choice($.identifier, $.literal), optional($.callUsingPhrase), optional($.callGivingPhrase), optional(onOverflowPhrase),
+      optional($.onExceptionClause), optional($.notOnExceptionClause), optional(END_CALL),
+    ),
+    callUsingPhrase: $ => seq(USING, repeat1($.callUsingParameter)),
+    callUsingParameter: $ => seq(
+      $.callByReferencePhrase,
+      $.callByValuePhrase,
+      $.callByContentPhrase,
+    ),
+    callByReferencePhrase: $ => seq(optional(seq(optional(BY), REFERENCE)), repeat1($.callByReference)),
+    callByReference: $ => seq(
+      choice(
+        choice(
+          seq(optional(choice(seq(ADDRESS, OF), INTEGER, STRING)), $.identifier),
+          $.literal,
+          $.fileName,
+        ),
+        OMITTED,
+      ),
+    ),
+    callByValuePhrase: $ => seq(optional(BY), VALUE, repeat1($.callByValue)),
+    callByValue: $ => seq(optional(seq(choice(seq(ADDRESS, OF), LENGTH), optional(OF))), choice($.identifier, $.literal)),
+    callByContentPhrase: $ => seq(optional(BY), CONTENT, repeat1($.callByContent)),
+    callByContent: $ => choice(
+      seq(optional(seq(choice(seq(ADDRESS, OF), LENGTH), optional(OF))), $.identifier),
+      $.literal,
+      OMITTED,
+    ),
+    callGivingPhrase: $ => seq(choice(GIVING, RETURNING), $.identifier),
+
+    // cancel $.statement
+    cancelStatement: $ => seq(CANCEL, repeat1($.cancelCall)),
+    cancelCall: $ => choice(
+      seq(libraryName, choice(BYTITLE, BYFUNCTION)),
+      $.identifier,
+      $.literal,
+    ),
+
+    // close $.statement
+    closeStatement: $ => seq(CLOSE, repeat1($.closeFile)),
+    closeFile: $ => seq(
+      $.fileName, optional(choice(
+        $.closeReelUnitStatement,
+        $.closeRelativeStatement,
+        $.closePortFileIOStatement
+      ))),
+    closeReelUnitStatement: $ => seq(choice(REEL, UNIT), optional(seq(optional(FOR), REMOVAL)), optional(seq(
+      optional(WITH), choice(seq(NO, REWIND), LOCK)
+    ))),
+    closeRelativeStatement: $ => seq(optional(WITH), choice(seq(NO, REWIND), LOCK)),
+    closePortFileIOStatement: $ => seq(choice(seq(optional(WITH), NO, WAIT), seq(WITH, WAIT)), optional(seq(
+      USING, repeat1($.closePortFileIOUsing)
+    ))),
+    closePortFileIOUsing: $ => choice(
+      $.closePortFileIOUsingCloseDisposition,
+      $.closePortFileIOUsingAssociatedData,
+      $.closePortFileIOUsingAssociatedDataLength,
+    ),
+    closePortFileIOUsingCloseDisposition: $ => seq(
+      CLOSE_DISPOSITION, optional(OF), choice(ABORT, ORDERLY)),
+    closePortFileIOUsingAssociatedData: $ => seq(
+      ASSOCIATED_DATA, choice($.identifier, $.integer$.literal)),
+    closePortFileIOUsingAssociatedDataLength: $ => seq(
+      ASSOCIATED_DATA_LENGTH, optional(OF), choice($.identifier, $.integer$.literal)),
+
+    // compute $.statement
+    computeStatement: $ => seq(
+      COMPUTE, repeat1($.computeStore), choice(EQUALCHAR, EQUAL), $.arithmeticExpression, optional($.onSizeErrorPhrase),
+      optional($.notOnSizeErrorPhrase), optional(END_COMPUTE)),
+    computeStore: $ => seq($.identifier, optional(ROUNDED)),
+
+    // continue $.statement
+    continueStatement: $ => seq(CONTINUE),
+
+    // delete $.statement
+    deleteStatement: $ => seq(
+      DELETE, $.fileName, optional(RECORD), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase), optional(END_DELETE)),
+
+    // disable $.statement
+    disableStatement: $ => seq(
+      DISABLE, choice(seq(INPUT, optional(TERMINAL)), seq(I_O, TERMINAL), OUTPUT), $.cdName, optional(WITH), KEY, choice(
+        $.identifier,
+        $.literal
+      )),
+
+    // display $.statement
+    displayStatement: $ => seq(
+      DISPLAY, repeat1($.displayOperand), optional($.displayAt), optional($.displayUpon), optional($.displayWith), optional($.onExceptionClause)
+      , optional($.notOnExceptionClause), optional(END_DISPLAY)),
+    displayOperand: $ => choice($.identifier, $.literal),
+    displayAt: $ => seq(AT, choice($.identifier, $.literal)),
+    displayUpon: $ => seq(UPON, choice($.mnemonicName, $.environmentName)),
+    displayWith: $ => seq(optional(WITH), NO, ADVANCING),
+
+    // divide $.statement
+    divideStatement: $ => seq(
+      DIVIDE, choice($.identifier, $.literal), choice(
+        $.divideIntoStatement,
+        $.divideIntoGivingStatement,
+        $.divideByGivingStatement
+      ), optional($.divideRemainder), optional($.onSizeErrorPhrase), optional($.notOnSizeErrorPhrase), optional(END_DIVIDE)),
+    divideIntoStatement: $ => seq(INTO, repeat1($.divideInto)),
+    divideIntoGivingStatement: $ => seq(
+      INTO, choice($.identifier, $.literal), optional($.divideGivingPhrase)),
+    divideByGivingStatement: $ => seq(
+      BY, choice($.identifier, $.literal), optional($.divideGivingPhrase)),
+    divideGivingPhrase: $ => seq(GIVING, repeat1($.divideGiving)),
+    divideInto: $ => seq($.identifier, optional(ROUNDED)),
+    divideGiving: $ => seq($.identifier, optional(ROUNDED)),
+    divideRemainder: $ => seq(REMAINDER, $.identifier),
+
+    // enable $.statement
+    enableStatement: $ => seq(
+      ENABLE, choice(seq(INPUT, optional(TERMINAL)), seq(I_O, TERMINAL), OUTPUT), $.cdName, optional(WITH), KEY, choice(
+        $.literal,
+        $.identifier
+      )),
+
+    // entry $.statement
+    entryStatement: $ => seq(ENTRY, $.literal, optional(seq(USING, repeat1($.identifier)))),
+
+    // evaluate $.statement
+    evaluateStatement: $ => seq(
+      EVALUATE, $.evaluateSelect, repeat($.evaluateAlsoSelect), repeat($.evaluateWhenPhrase), optional($.evaluateWhenOther), optional(END_EVALUATE)
+    ),
+    evaluateSelect: $ => choice(
+      $.identifier,
+      $.literal,
+      $.arithmeticExpression,
+      $.condition),
+    evaluateAlsoSelect: $ => seq(ALSO, $.evaluateSelect),
+    evaluateWhenPhrase: $ => seq(repeat1($.evaluateWhen), repeat($.statement)),
+    evaluateWhen: $ => seq(WHEN, $.evaluateCondition, repeat($.evaluateAlsoCondition)),
+    evaluateCondition: $ => choice(
+      ANY,
+      seq(optional(NOT), $.evaluateValue, optional($.evaluateThrough)),
+      $.condition,
+      boolean$.literal),
+    evaluateThrough: $ => seq(choice(THROUGH, THRU), $.evaluateValue),
+    evaluateAlsoCondition: $ => seq(ALSO, $.evaluateCondition),
+    evaluateWhenOther: $ => seq(WHEN, OTHER, repeat($.statement)),
+    evaluateValue: $ => choice($.identifier, $.literal, $.arithmeticExpression),
+
+    // exec cics $.statement
+    execCicsStatement: $ => repeat1(EXECCICSLINE),
+
+    // exec sql $.statement
+    execSqlStatement: $ => repeat1(EXECSQLLINE),
+
+    // exec sql ims $.statement
+    execSqlImsStatement: $ => repeat1(EXECSQLIMSLINE),
+
+    // exhibit $.statement
+    exhibitStatement: $ => seq(EXHIBIT, optional(NAMED), optional(CHANGED), repeat1($.exhibitOperand)),
+    exhibitOperand: $ => seq($.identifier | $.literal),
+
+    // exit $.statement
+    exitStatement: $ => seq(EXIT, optional(PROGRAM)),
+
+    // generate $.statement
+    generateStatement: $ => seq(GENERATE, $.reportName),
+
+    // goback $.statement
+    gobackStatement: $ => seq(GOBACK),
+
+    // goto $.statement
+    goToStatement: $ => seq(
+      GO, optional(TO), choice($.goToStatementSimple, $.goToDependingOnStatement),
+    ),
+    goToStatementSimple: $ => $.procedureName,
+    goToDependingOnStatement: $ => seq(
+      MORE_LABELS,
+      repeat1($.procedureName), optional(seq((DEPENDING, optional(ON), $.identifier)))
+    ),
+
+    // if $.statement
+    ifStatement: $ => seq(IF, $.condition, $.ifThen, optional($.ifElse), optional(END_IF)),
+    ifThen: $ => seq(optional(THEN), choice(seq(NEXT, SENTENCE), repeat($.statement))),
+    ifElse: $ => seq(ELSE, choice(seq(NEXT, SENTENCE), repeat($.statement))),
+
+    // initialize $.statement
+    initializeStatement: $ => seq(
+      INITIALIZE, repeat1($.identifier), optional($.initializeReplacingPhrase)),
+    initializeReplacingPhrase: $ => seq(REPLACING, repeat1($.initializeReplacingBy)),
+    initializeReplacingBy: $ => seq(choice(
+      ALPHABETIC,
+      ALPHANUMERIC,
+      ALPHANUMERIC_EDITED,
+      NATIONAL,
+      NATIONAL_EDITED,
+      NUMERIC,
+      NUMERIC_EDITED,
+      DBCS,
+      EGCS
+    ), optional(DATA), BY, choice($.identifier, $.literal)),
+
+    // initiate $.statement
+    initiateStatement: $ => seq(INITIATE, repeat1($.reportName)),
+
+    // inspect $.statement
+    inspectStatement: $ => seq(
+      INSPECT, $.identifier, choice(
+        $.inspectTallyingPhrase,
+        $.inspectReplacingPhrase,
+        $.inspectTallyingReplacingPhrase,
+        $.inspectConvertingPhrase
+      )),
+    inspectTallyingPhrase: $ => seq(TALLYING, repeat1($.inspectFor)),
+    inspectReplacingPhrase: $ => seq(
+      REPLACING, repeat1(choice(
+        $.inspectReplacingCharacters,
+        $.inspectReplacingAllLeadings
+      ))),
+    inspectTallyingReplacingPhrase: $ => seq(
+      TALLYING, repeat1($.inspectFor), repeat1($.inspectReplacingPhrase)),
+    inspectConvertingPhrase: $ => seq(
+      CONVERTING, choice($.identifier, $.literal), $.inspectTo, repeat($.inspectBeforeAfter)),
+    inspectFor: $ => seq(
+      $.identifier, FOR, repeat1(choice($.inspectCharacters, $.inspectAllLeadings))),
+    inspectCharacters: $ => seq(choice(CHARACTER, CHARACTERS), repeat($.inspectBeforeAfter)),
+    inspectReplacingCharacters: $ => seq(choice(CHARACTER, CHARACTERS), $.inspectBy, repeat($.inspectBeforeAfter)),
+    inspectAllLeadings: $ => seq(choice(ALL, LEADING), repeat1($.inspectAllLeading)),
+    inspectReplacingAllLeadings: $ => seq(choice(ALL, LEADING, FIRST), repeat1($.inspectReplacingAllLeading)),
+    inspectAllLeading: $ => seq(choice($.identifier, $.literal), repeat($.inspectBeforeAfter)),
+    inspectReplacingAllLeading: $ => seq(choice($.identifier, $.literal), $.inspectBy, repeat($.inspectBeforeAfter)),
+    inspectBy: $ => seq(BY, choice($.identifier, $.literal)),
+    inspectTo: $ => seq(TO, choice($.identifier, $.literal)),
+    inspectBeforeAfter: $ => seq(choice(BEFORE, AFTER), optional(INITIAL), choice(
+      $.identifier,
+      $.literal
+    )),
+
+    // merge $.statement
+    mergeStatement: $ => seq(
+      MERGE, $.fileName, repeat1($.mergeOnKeyClause), optional($.mergeCollatingSequencePhrase), repeat($.mergeUsing),
+      optional($.mergeOutputProcedurePhrase), repeat($.mergeGivingPhrase)),
+    mergeOnKeyClause: $ => seq(
+      optional(ON), choice(ASCENDING, DESCENDING), optional(KEY), repeat1($.qualifiedDataName)),
+    mergeCollatingSequencePhrase: $ => seq(
+      optional(COLLATING), SEQUENCE, optional(IS), repeat1($.alphabetName), optional($.mergeCollatingAlphanumeric), optional($.mergeCollatingNational)),
+    mergeCollatingAlphanumeric: $ => seq(optional(FOR), ALPHANUMERIC, IS, $.alphabetName),
+    mergeCollatingNational: $ => seq(optional(FOR), NATIONAL, optional(IS), $.alphabetName),
+    mergeUsing: $ => seq(USING, repeat1($.fileName)),
+    mergeOutputProcedurePhrase: $ => seq(
+      OUTPUT, PROCEDURE, optional(IS), $.procedureName, optional($.mergeOutputThrough)),
+    mergeOutputThrough: $ => seq(choice(THROUGH, THRU), $.procedureName),
+    mergeGivingPhrase: $ => seq(GIVING, repeat1($.mergeGiving)),
+    mergeGiving: $ => seq(
+      $.fileName, optional(choice(
+        LOCK,
+        SAVE,
+        seq(NO, REWIND),
+        CRUNCH,
+        RELEASE,
+        seq(WITH, REMOVE, CRUNCH),
+      ))),
+
+    // move $.statement
+    moveStatement: $ => seq(
+      MOVE, optional(ALL), choice($.moveToStatement, $.moveCorrespondingToStatement)),
+    moveToStatement: $ => seq($.moveToSendingArea, TO, repeat1($.identifier)),
+    moveToSendingArea: $ => choice($.identifier, $.literal),
+    moveCorrespondingToStatement: $ => seq(choice(CORRESPONDING, CORR), $.moveCorrespondingToSendingArea, TO, repeat1($.identifier)),
+    moveCorrespondingToSendingArea: $ => $.identifier,
+
+    // multiply $.statement
+    multiplyStatement: $ => seq(
+      MULTIPLY, choice($.identifier, $.literal), BY, choice(
+        $.multiplyRegular,
+        $.multiplyGiving
+      ), optional($.onSizeErrorPhrase), optional($.notOnSizeErrorPhrase), optional(END_MULTIPLY)),
+    multiplyRegular: $ => repeat1($.multiplyRegularOperand),
+    multiplyRegularOperand: $ => seq($.identifier, optional(ROUNDED)),
+    multiplyGiving: $ => seq(
+      $.multiplyGivingOperand, GIVING, repeat1($.multiplyGivingResult)),
+    multiplyGivingOperand: $ => choice($.identifier, $.literal),
+    multiplyGivingResult: $ => seq($.identifier, optional(ROUNDED)),
+
+    // next sentence
+    nextSentenceStatement: $ => seq(NEXT, SENTENCE),
+
+    // open $.statement
+    openStatement: $ => seq(
+      OPEN, repeat1(choice(
+        $.openInputStatement,
+        $.openOutputStatement,
+        $.openIOStatement,
+        $.openExtendStatement
+      ))),
+    openInputStatement: $ => seq(INPUT, repeat1($.openInput)),
+    openInput: $ => seq($.fileName, optional(choice(REVERSED, seq(optional(WITH), NO, REWIND)))),
+    openOutputStatement: $ => seq(OUTPUT, repeat1($.openOutput)),
+    openOutput: $ => seq($.fileName, optional(seq(optional(WITH), NO, REWIND))),
+    openIOStatement: $ => seq(I_O, repeat1($.fileName)),
+    openExtendStatement: $ => seq(EXTEND, repeat1($.fileName)),
+
+    // perform $.statement
+    performStatement: $ => seq(
+      PERFORM, choice($.performInlineStatement, $.performProcedureStatement)),
+    performInlineStatement: $ => seq(optional($.performType), repeat($.statement), END_PERFORM),
+    performProcedureStatement: $ => seq(
+      $.procedureName, optional(seq(choice(THROUGH, THRU), $.procedureName)), optional($.performType)),
+    performType: $ => choice($.performTimes, $.performUntil, $.performVarying),
+    performTimes: $ => seq(choice($.identifier, $.integer$.literal), TIMES),
+    performUntil: $ => seq(optional($.performTestClause), UNTIL, $.condition),
+    performVarying: $ => choice(
+      seq($.performTestClause, $.performVaryingClause),
+      seq($.performVaryingClause, optional($.performTestClause))),
+    performVaryingClause: $ => seq(
+      VARYING, $.performVaryingPhrase, repeat($.performAfter)),
+    performVaryingPhrase: $ => seq(choice($.identifier, $.literal), $.performFrom, $.performBy, $.performUntil),
+    performAfter: $ => seq(AFTER, $.performVaryingPhrase),
+    performFrom: $ => seq(FROM, choice($.identifier, $.literal, $.arithmeticExpression)),
+    performBy: $ => seq(BY, choice($.identifier, $.literal, $.arithmeticExpression)),
+    performTestClause: $ => seq(optional(WITH), TEST, choice(BEFORE, AFTER)),
+
+    // purge $.statement
+    purgeStatement: $ => seq(PURGE, repeat1($.cdName)),
+
+    // read $.statement
+    readStatement: $ => seq(
+      READ, $.fileName, optional(NEXT), optional(RECORD), optional($.readInto), optional($.readWith), optional($.readKey), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase),
+      optional($.atEndPhrase), optional($.notAtEndPhrase), optional(END_READ)),
+    readInto: $ => seq(INTO, $.identifier),
+    readWith: $ => seq(optional(WITH), choice(seq(choice(KEPT, NO), LOCK), WAIT)),
+    readKey: $ => seq(KEY, optional(IS), $.qualifiedDataName),
+
+    // receive $.statement
+    receiveStatement: $ => seq(
+      RECEIVE, choice($.receiveFromStatement, $.receiveIntoStatement), optional($.onExceptionClause), optional($.notOnExceptionClause), optional(END_RECEIVE)),
+    receiveFromStatement: $ => seq(
+      $.dataName, FROM, $.receiveFrom, repeat(choice(
+        $.receiveBefore,
+        $.receiveWith,
+        $.receiveThread,
+        $.receiveSize,
+        $.receiveStatus
+      ))),
+    receiveFrom: $ => choice(seq(THREAD, $.dataName), seq(LAST, THREAD), seq(ANY, THREAD)),
+    receiveIntoStatement: $ => seq(
+      $.cdName, choice(MESSAGE, SEGMENT), optional(INTO), $.identifier, optional($.receiveNoData), optional($.receiveWithData)),
+    receiveNoData: $ => seq(NO, DATA, repeat($.statement)),
+    receiveWithData: $ => seq(WITH, DATA, repeat($.statement)),
+    receiveBefore: $ => seq(BEFORE, optional(TIME), choice($.numericliteral, $.identifier)),
+    receiveWith: $ => seq(optional(WITH), NO, WAIT),
+    receiveThread: $ => seq(THREAD, optional(IN), $.dataName),
+    receiveSize: $ => seq(SIZE, optional(IN), choice($.numericliteral, $.identifier)),
+    receiveStatus: $ => seq(STATUS, optional(IN), $.identifier),
+
+    // release $.statement
+    releaseStatement: $ => seq(RELEASE, recordName, optional(seq(FROM, $.qualifiedDataName))),
+
+    // return $.statement
+    returnStatement: $ => seq(
+      RETURN, $.fileName, optional(RECORD), optional($.returnInto), $.atEndPhrase, optional($.notAtEndPhrase), optional(END_RETURN)),
+    returnInto: $ => seq(INTO, $.qualifiedDataName),
+
+    // rewrite $.statement
+    rewriteStatement: $ => seq(
+      REWRITE, recordName, optional($.rewriteFrom), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase), optional(END_REWRITE)),
+    rewriteFrom: $ => seq(FROM, $.identifier),
+
+    // search $.statement
+    searchStatement: $ => seq(
+      SEARCH, optional(ALL), $.qualifiedDataName, optional($.searchVarying), optional($.atEndPhrase), repeat1($.searchWhen), optional(END_SEARCH)),
+    searchVarying: $ => seq(VARYING, $.qualifiedDataName),
+    searchWhen: $ => seq(WHEN, $.condition, choice(seq(NEXT, SENTENCE), repeat($.statement))),
+
+    // send $.statement
+    sendStatement: $ => seq(
+      SEND, choice($.sendStatementSync, $.sendStatementAsync), optional($.onExceptionClause), optional($.notOnExceptionClause)),
+    sendStatementSync: $ => seq(choice($.identifier, $.literal), optional($.sendFromPhrase), optional($.sendWithPhrase), optional($.sendReplacingPhrase), optional($.sendAdvancingPhrase)),
+    sendStatementAsync: $ => seq(TO, choice(TOP, BOTTOM), $.identifier),
+    sendFromPhrase: $ => seq(FROM, $.identifier),
+    sendWithPhrase: $ => seq(WITH, choice(EGI, EMI, ESI, $.identifier)),
+    sendReplacingPhrase: $ => seq(REPLACING, optional(LINE)),
+    sendAdvancingPhrase: $ => seq(choice(BEFORE, AFTER), optional(ADVANCING), choice(
+      $.sendAdvancingPage,
+      $.sendAdvancingLines,
+      $.sendAdvancingMnemonic
+    )),
+    sendAdvancingPage: $ => PAGE,
+    sendAdvancingLines: $ => seq(choice($.identifier, $.literal), optional(choice(LINE, LINES))),
+    sendAdvancingMnemonic: $ => $.mnemonicName,
+
+    // set $.statement
+    setStatement: $ => seq(SET, choice(repeat1($.setToStatement), $.setUpDownByStatement)),
+    setToStatement: $ => seq(repeat1($.setTo), TO, repeat1($.setToValue)),
+    setUpDownByStatement: $ => seq(repeat1($.setTo), choice(seq(UP, BY), seq(DOWN, BY)), $.setByValue),
+    setTo: $ => $.identifier,
+    setToValue: $ => choice(
+      ON,
+      OFF,
+      seq(ENTRY, choice($.identifier, $.literal)),
+      $.identifier,
+      $.literal),
+    setByValue: $ => choice($.identifier, $.literal),
+
+    // sort $.statement
+    sortStatement: $ => seq(
+      SORT, $.fileName, repeat1($.sortOnKeyClause), optional($.sortDuplicatesPhrase), optional($.sortCollatingSequencePhrase)
+      , optional($.sortInputProcedurePhrase), repeat($.sortUsing), optional($.sortOutputProcedurePhrase), repeat($.sortGivingPhrase)),
+    sortOnKeyClause: $ => seq(
+      optional(ON), choice(ASCENDING, DESCENDING), optional(KEY), repeat1($.qualifiedDataName)),
+    sortDuplicatesPhrase: $ => seq(optional(WITH), DUPLICATES, optional(IN), optional(ORDER)),
+    sortCollatingSequencePhrase: $ => seq(
+      optional(COLLATING), SEQUENCE, optional(IS), repeat1($.alphabetName), optional($.sortCollatingAlphanumeric), optional($.sortCollatingNational)),
+    sortCollatingAlphanumeric: $ => seq(optional(FOR), ALPHANUMERIC, IS, $.alphabetName),
+    sortCollatingNational: $ => seq(optional(FOR), NATIONAL, optional(IS), $.alphabetName),
+    sortInputProcedurePhrase: $ => seq(
+      INPUT, PROCEDURE, optional(IS), $.procedureName, optional($.sortInputThrough)),
+    sortInputThrough: $ => seq(choice(THROUGH, THRU), $.procedureName),
+    sortUsing: $ => seq(USING, repeat1($.fileName)),
+    sortOutputProcedurePhrase: $ => seq(
+      OUTPUT, PROCEDURE, optional(IS), $.procedureName, optional($.sortOutputThrough)),
+    sortOutputThrough: $ => seq(choice(THROUGH, THRU), $.procedureName),
+    sortGivingPhrase: $ => seq(GIVING, repeat1($.sortGiving)),
+    sortGiving: $ => seq(
+      $.fileName, optional(choice(
+        LOCK,
+        SAVE,
+        seq(NO, REWIND),
+        CRUNCH,
+        RELEASE,
+        seq(WITH, REMOVE, CRUNCH)
+      ))),
+
+    // start $.statement
+    startStatement: $ => seq(
+      START, $.fileName, optional($.startKey), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase), optional(END_START)),
+    startKey: $ => seq(
+      KEY, optional(IS), choice(
+        seq(EQUAL, optional(TO)),
+        EQUALCHAR,
+        seq(GREATER, optional(THAN)),
+        MORETHANCHAR,
+        seq(NOT, LESS, optional(THAN)),
+        seq(NOT, LESSTHANCHAR),
+        seq(GREATER, optional(THAN), OR, EQUAL, optional(TO)),
+        MORETHANOREQUAL,
+      ), $.qualifiedDataName),
+
+    // stop $.statement
+    stopStatement: $ => seq(STOP, choice(RUN, $.literal, $.stopStatementGiving)),
+    stopStatementGiving: $ => seq(
+      RUN, choice(GIVING, RETURNING), choice($.identifier, $.integer$.literal)),
+
     // string statement
     stringStatement: $ => seq(
       STRING, repeat1($.stringSendingPhrase), $.stringIntoPhrase, optional($.stringWithPointerPhrase), optional($.onOverflowPhrase),
