@@ -584,11 +584,157 @@ const
   ZERO = seq(Z, E, R, O),
   ZERO_FILL = seq(Z, E, R, O, MINUSCHAR, F, I, L, L),
   ZEROS = seq(Z, E, R, O, S),
-  ZEROES = seq(Z, E, R, O, E, S)
+  ZEROES = seq(Z, E, R, O, E, S),
+
+  // literals
+  HEXNUMBER = choice(seq(X, '"', /[0-9A-F]+/, '"'), seq(X, '\'', /[0-9A-F]+/, '\'')),
+  NULLTERMINATED = choice(seq(Z, '"', /(~["\n\r] | '""' | '\'')*/, '"'), seq(Z, '\'', /(~['\n\r] | '\'\'' | '"')*/, '\'')),
+  STRINGLITERAL = choice(seq('"', /(~["\n\r] | '""' | '\'')*/, '"'), seq('\'', /(~['\n\r] | '\'\'' | '"')*/, '\'')),
+  DBCSLITERAL = choice(seq(choice(G, N), '"', /(~["\n\r] | '""' | '\'')*/, '"'), seq(choice(G, N), '\'', /(~['\n\r] | '\'\'' | '"')*/, '\'')),
+  INTEGERLITERAL = seq(optional(choice(PLUSCHAR, MINUSCHAR)), /[0-9]+/),
+  NUMERICLITERAL = seq(optional(choice(PLUSCHAR, MINUSCHAR)), /[0-9]*/, choice(DOT, COMMACHAR), /[0-9]+/, optional(seq(E, optional(choice(PLUSCHAR, MINUSCHAR)), /[0-9]+/))),
+  IDENTIFIER = seq(/[a-zA-Z0-9]+/, repeat(seq(/[-_]+/, /[a-zA-Z0-9]+/))),
+  NONNUMERICLITERAL = choice(STRINGLITERAL, DBCSLITERAL, HEXNUMBER, NULLTERMINATED),
+
+  LEVEL_NUMBER_66 = '66',
+  LEVEL_NUMBER_77 = '77',
+  LEVEL_NUMBER_88 = '88',
+
+  // whitespace, line breaks, comments, ...;\n
+  NEWLINE = seq(optional('\r'), '\n'),
+  WS = /[ \t\f;]+/,
+  EXECCICSLINE = seq(EXECCICSTAG, WS, /~('\n' | '\r' | '}')*/, /('\n' | '\r' | '}')/),
+  EXECSQLIMSLINE = seq(EXECSQLIMSTAG, WS, /~('\n' | '\r' | '}')*/, /('\n' | '\r' | '}')/),
+  EXECSQLLINE = seq(EXECSQLTAG, WS, /~('\n' | '\r' | '}')*/, /('\n' | '\r' | '}')/),
+  COMMENTENTRYLINE = seq(COMMENTENTRYTAG, WS, /~('\n' | '\r')*/),
+  COMMENTLINE = seq(COMMENTTAG, WS, /~('\n' | '\r')*/),
+  SEPARATOR = ', '
 
 module.exports = grammar({
   name: "cobol",
   rules: {
     source_file: $ => 'hello',
+
+    // arithmetic expression ----------------------------------
+
+    arithmeticExpression: $ => seq($.multDivs, repeat($.plusMinus)),
+    plusMinus: $ => seq(choice(PLUSCHAR, MINUSCHAR), $.multDivs),
+    multDivs: $ => seq($.powers, repeat($.multDiv)),
+    multDiv: $ => seq(choice(ASTERISKCHAR, SLASHCHAR), $.powers),
+    powers: $ => seq(optional(choice(PLUSCHAR, MINUSCHAR)), $.basis, $.power),
+    power: $ => seq(DOUBLEASTERISKCHAR, $.basis),
+    basis: $ => choice(
+      seq(LPARENCHAR, $.arithmeticExpression, RPARENCHAR),
+      $.identifier,
+      $.literal,
+    ),
+
+    // condition ----------------------------------
+
+    // relation ----------------------------------
+
+    // identifier ----------------------------------
+    identifier: $ => choice($.qualifiedDataName, $.tableCall, $.functionCall, $.specialRegister),
+    tableCall: $ => seq(
+      $.qualifiedDataName,
+      repeat(
+        seq(LPARENCHAR, $.subscript, repeat(seq(optional(COMMACHAR), $.subscript)), RPARENCHAR),
+      ),
+      optional($.referenceModifier),
+    ),
+    functionCall: $ => seq(
+      FUNCTION,
+      $.functionName,
+      repeat(
+        seq(LPARENCHAR, $.argument, repeat(seq(optional(COMMACHAR), $.argument)), RPARENCHAR),
+      ),
+      optional($.referenceModifier),
+    ),
+    referenceModifier: $ => seq(LPARENCHAR, $.characterPosition, COLONCHAR, optional($.length), RPARENCHAR),
+    characterPosition: $ => $.arithmeticExpression,
+    length: $ => $.arithmeticExpression,
+    subscript: $ => choice(
+      ALL,
+      $.integerLiteral,
+      seq($.qualifiedDataName, optional($.integerLiteral)),
+      seq($.indexName, optional($.integerLiteral)),
+      $.arithmeticExpression
+    ),
+    argument: $ => choice(
+      $.literal,
+      $.identifier,
+      seq($.qualifiedDataName, optional($.integerLiteral)),
+      seq($.indexName, optional($.integerLiteral)),
+      $.arithmeticExpression,
+    ),
+    // qualified data name ----------------------------------
+    qualifiedDataName: $ => choice(
+      $.qualifiedDataNameFormat1,
+      $.qualifiedDataNameFormat2,
+      $.qualifiedDataNameFormat3,
+      $.qualifiedDataNameFormat4
+    ),
+    qualifiedDataNameFormat1: $ => seq(
+      choice($.dataName, $.conditionName),
+      optional(
+        choice(
+          seq(repeat1($.qualifiedInData), optional($.inFile)),
+          $.inFile
+        ),
+      ),
+    ),
+    qualifiedDataNameFormat2: $ => seq($.paragraphName, $.inSection),
+    qualifiedDataNameFormat3: $ => seq($.textName, $.inLibrary),
+    qualifiedDataNameFormat4: $ => seq(LINAGE_COUNTER, $.inFile),
+    qualifiedInData: $ => choice($.inData, $.inTable),
+    // in ----------------------------------
+    inData: $ => seq(choice(IN, OF), $.dataName),
+    inFile: $ => seq(choice(IN, OF), $.fileName),
+    inMnemonic: $ => seq(choice(IN, OF), $.mnemonicName),
+    inSection: $ => seq(choice(IN, OF), $.sectionName),
+    inLibrary: $ => seq(choice(IN, OF), $.libraryName),
+    inTable: $ => seq(choice(IN, OF), $.tableCall),
+    // names ----------------------------------
+    alphabetName: $ => $.cobolWord,
+    assignmentName: $ => $.systemName,
+    basisName: $ => $.programName,
+    cdName: $ => $.cobolWord,
+    className: $ => $.cobolWord,
+    computerName: $ => $.systemName,
+    conditionName: $ => $.cobolWord,
+    dataName: $ => $.cobolWord,
+    dataDescName: $ => choice(FILLER, CURSOR, $.dataName),
+    environmentName: $ => $.systemName,
+    fileName: $ => $.cobolWord,
+    functionName: $ => choice(INTEGER, LENGTH, RANDOM, SUM, WHEN_COMPILED, $.cobolWord),
+    indexName: $ => $.cobolWord,
+    languageName: $ => $.systemName,
+    libraryName: $ => $.cobolWord,
+    localName: $ => $.cobolWord,
+    mnemonicName: $ => $.cobolWord,
+    paragraphName: $ => choice($.cobolWord, $.integerLiteral),
+    procedureName: $ => choice(seq($.paragraphName, optional($.inSection)), $.sectionName),
+    programName: $ => choice(NONNUMERICLITERAL, $.cobolWord),
+    recordName: $ => $.qualifiedDataName,
+    reportName: $ => $.qualifiedDataName,
+    routineName: $ => $.cobolWord,
+    screenName: $ => $.cobolWord,
+    sectionName: $ => choice($.cobolWord, $.integerLiteral),
+    systemName: $ => $.cobolWord,
+    symbolicCharacter: $ => $.cobolWord,
+    textName: $ => $.cobolWord,
+    // literal ----------------------------------
+    cobolWord: $ => choice(IDENTIFIER, ABORT, AS, ASCII, ASSOCIATED_DATA, ASSOCIATED_DATA_LENGTH, ATTRIBUTE, AUTO, AUTO_SKIP, BACKGROUND_COLOR, BACKGROUND_COLOUR, BEEP, BELL, BINARY, BIT, BLINK, BLOB, BOUNDS, CAPABLE, CCSVERSION, CHANGED, CHANNEL, CLOB, CLOSE_DISPOSITION, COBOL, COMMITMENT, CONTROL_POINT, CONVENTION, CRUNCH, CURSOR, DBCLOB, DEFAULT, DEFAULT_DISPLAY, DEFINITION, DFHRESP, DFHVALUE, DISK, DONTCARE, DOUBLE, EBCDIC, EMPTY_CHECK, ENTER, ENTRY_PROCEDURE, EOL, EOS, ERASE, ESCAPE, EVENT, EXCLUSIVE, EXPORT, EXTENDED, FOREGROUND_COLOR, FOREGROUND_COLOUR, FULL, FUNCTIONNAME, FUNCTION_POINTER, GRID, HIGHLIGHT, IMPLICIT, IMPORT, INTEGER, KEPT, KEYBOARD, LANGUAGE, LB, LD, LEFTLINE, LENGTH_CHECK, LIBACCESS, LIBPARAMETER, LIBRARY, LIST, LOCAL, LONG_DATE, LONG_TIME, LOWER, LOWLIGHT, MMDDYYYY, NAMED, NATIONAL, NATIONAL_EDITED, NETWORK, NO_ECHO, NUMERIC_DATE, NUMERIC_TIME, ODT, ORDERLY, OVERLINE, OWN, PASSWORD, PORT, PRINTER, PRIVATE, PROCESS, PROGRAM, PROMPT, READER, REAL, RECEIVED, RECURSIVE, REF, REMOTE, REMOVE, REQUIRED, REVERSE_VIDEO, SAVE, SECURE, SHARED, SHAREDBYALL, SHAREDBYRUNUNIT, SHARING, SHORT_DATE, SQL, SYMBOL, TASK, THREAD, THREAD_LOCAL, TIMER, TODAYS_DATE, TODAYS_NAME, TRUNCATED, TYPEDEF, UNDERLINE, VIRTUAL, WAIT, YEAR, YYYYMMDD, YYYYDDD, ZERO_FILL),
+    booleanLiteral: $ => choice(TRUE, FALSE),
+    integerLiteral: $ => choice(INTEGERLITERAL, LEVEL_NUMBER_66, LEVEL_NUMBER_77, LEVEL_NUMBER_88),
+    numericLiteral: $ => choice(NUMERICLITERAL, ZERO, $.integerLiteral),
+    literal: $ => choice(NONNUMERICLITERAL, $.figurativeConstant, $.numericLiteral, $.booleanLiteral, $.cicsDfhRespLiteral, $.cicsDfhValueLiteral),
+    cicsDfhRespLiteral: $ => seq(DFHRESP, LPARENCHAR, choice($.cobolWord, $.literal), RPARENCHAR),
+    cicsDfhValueLiteral: $ => seq(DFHVALUE, LPARENCHAR, choice($.cobolWord, $.literal), RPARENCHAR),
+    // keywords ----------------------------------
+    figurativeConstant: $ => choice(seq(ALL, $.literal), HIGH_VALUE, HIGH_VALUES, LOW_VALUE, LOW_VALUES, NULL, NULLS, QUOTE, QUOTES, SPACE, SPACES, ZERO, ZEROS, ZEROES),
+    specialRegister: $ => choice(seq(ADDRESS, OF, $.identifier), DATE, DAY, DAY_OF_WEEK, DEBUG_CONTENTS, DEBUG_ITEM, DEBUG_LINE, DEBUG_NAME, DEBUG_SUB_1, DEBUG_SUB_2, DEBUG_SUB_3, seq(LENGTH, optional(OF), $.identifier), LINAGE_COUNTER, LINE_COUNTER, PAGE_COUNTER, RETURN_CODE, SHIFT_IN, SHIFT_OUT, SORT_CONTROL, SORT_CORE_SIZE, SORT_FILE_SIZE, SORT_MESSAGE, SORT_MODE_SIZE, SORT_RETURN, TALLY, TIME, WHEN_COMPILED),
+    // comment entry
+    commentEntry: $ => repeat1(COMMENTENTRYLINE),
   }
 })
