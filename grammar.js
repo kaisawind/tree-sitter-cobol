@@ -615,8 +615,118 @@ module.exports = grammar({
   rules: {
     source_file: $ => 'hello',
 
-    // arithmetic expression ----------------------------------
+    // string statement
+    stringStatement: $ => seq(
+      STRING, repeat1($.stringSendingPhrase), $.stringIntoPhrase, optional($.stringWithPointerPhrase), optional($.onOverflowPhrase),
+      optional($.notOnOverflowPhrase), optional(END_STRING),
+    ),
+    stringSendingPhrase: $ => seq(
+      $.stringSending, repeat(seq(optional(COMMACHAR), $.stringSending)), choice(
+        $.stringDelimitedByPhrase,
+        $.stringForPhrase
+      ),
+    ),
+    stringSending: $ => choice($.identifier, $.literal),
+    stringDelimitedByPhrase: $ => seq(
+      DELIMITED, optional(BY), choice(SIZE, $.identifier, $.literal),
+    ),
+    stringForPhrase: $ => seq(FOR, choice($.identifier, $.literal)),
+    stringIntoPhrase: $ => seq(INTO, $.identifier),
+    stringWithPointerPhrase: $ => seq(optional(WITH), POINTER, $.qualifiedDataName),
 
+    // subtract statement
+    subtractStatement: $ => seq(
+      SUBTRACT, choice(
+        $.subtractFromStatement,
+        $.subtractFromGivingStatement,
+        $.subtractCorrespondingStatement
+      ), optional($.onSizeErrorPhrase), optional($.notOnSizeErrorPhrase), optional(END_SUBTRACT),
+    ),
+    subtractFromStatement: $ => seq(
+      repeat1($.subtractSubtrahend), FROM, repeat1($.subtractMinuend),
+    ),
+    subtractFromGivingStatement: $ => seq(
+      repeat1($.subtractSubtrahend), FROM, $.subtractMinuendGiving, GIVING, repeat1($.subtractGiving),
+    ),
+    subtractCorrespondingStatement: $ => seq(
+      choice(CORRESPONDING, CORR), $.qualifiedDataName, FROM, $.subtractMinuendCorresponding,
+    ),
+    subtractSubtrahend: $ => choice($.identifier, $.literal),
+    subtractMinuend: $ => seq($.identifier, optional(ROUNDED)),
+    subtractMinuendGiving: $ => choice($.identifier, $.literal),
+    subtractGiving: $ => seq($.identifier, optional(ROUNDED)),
+    subtractMinuendCorresponding: $ => seq($.qualifiedDataName, optional(ROUNDED)),
+
+    // terminate statement
+    terminateStatement: $ => seq(TERMINATE, $.reportName),
+
+    // unstring statement
+    unstringStatement: $ => seq(
+      UNSTRING, $.unstringSendingPhrase, $.unstringIntoPhrase, optional($.unstringWithPointerPhrase),
+      optional($.unstringTallyingPhrase), optional($.onOverflowPhrase), optional($.notOnOverflowPhrase), optional(END_UNSTRING),
+    ),
+    unstringSendingPhrase: $ => seq(
+      $.identifier, optional(seq($.unstringDelimitedByPhrase, repeat($.unstringOrAllPhrase))),
+    ),
+    unstringDelimitedByPhrase: $ => seq(
+      DELIMITED, optional(BY), optional(ALL), choice($.identifier, $.literal),
+    ),
+    unstringOrAllPhrase: $ => seq(OR, optional(ALL), choice($.identifier, $.literal)),
+    unstringIntoPhrase: $ => seq(INTO, repeat1($.unstringInto)),
+    unstringInto: $ => seq($.identifier, optional($.unstringDelimiterIn), optional($.unstringCountIn)),
+    unstringDelimiterIn: $ => seq(DELIMITER, optional(IN), $.identifier),
+    unstringCountIn: $ => seq(COUNT, optional(IN), $.identifier),
+    unstringWithPointerPhrase: $ => seq(optional(WITH), POINTER, $.qualifiedDataName),
+    unstringTallyingPhrase: $ => seq(TALLYING, optional(IN), $.qualifiedDataName),
+
+    // use statement
+    useStatement: $ => seq(USE, choice($.useAfterClause, $.useDebugClause)),
+    useAfterClause: $ => seq(
+      optional(GLOBAL), AFTER, optional(STANDARD), choice(EXCEPTION, ERROR), PROCEDURE, optional(ON), $.useAfterOn,
+    ),
+    useAfterOn: $ => choice(INPUT, OUTPUT, I_O, EXTEND, repeat1($.fileName)),
+    useDebugClause: $ => seq(optional(FOR), DEBUGGING, optional(ON), repeat1($.useDebugOn)),
+    useDebugOn: $ => choice(
+      seq(ALL, PROCEDURES),
+      seq(ALL, optional(REFERENCES), optional(OF), $.identifier),
+      $.procedureName,
+      $.fileName,
+    ),
+
+    // write statement
+    writeStatement: $ => seq(
+      WRITE, $.recordName, optional($.writeFromPhrase), optional($.writeAdvancingPhrase), optional($.writeAtEndOfPagePhrase),
+      optional($.writeNotAtEndOfPagePhrase), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase), optional(END_WRITE),
+    ),
+    writeFromPhrase: $ => seq(FROM, choice($.identifier, $.literal)),
+    writeAdvancingPhrase: $ => seq(choice(BEFORE, AFTER), optional(ADVANCING), choice(
+      $.writeAdvancingPage,
+      $.writeAdvancingLines,
+      $.writeAdvancingMnemonic
+    )),
+    writeAdvancingPage: $ => PAGE,
+    writeAdvancingLines: $ => seq(choice($.identifier, $.literal), optional(choice(LINE, LINES))),
+    writeAdvancingMnemonic: $ => $.mnemonicName,
+    writeAtEndOfPagePhrase: $ => seq(optional(AT), choice(END_OF_PAGE, EOP), repeat($.statement)),
+    writeNotAtEndOfPagePhrase: $ => seq(
+      NOT, optional(AT), choice(END_OF_PAGE, EOP), repeat($.statement),
+    ),
+
+    // statement phrases ----------------------------------
+    atEndPhrase: $ => seq(optional(AT), END, repeat($.statement)),
+    notAtEndPhrase: $ => seq(NOT, optional(AT), END, repeat($.statement)),
+    invalidKeyPhrase: $ => seq(INVALID, optional(KEY), repeat($.statement)),
+    notInvalidKeyPhrase: $ => seq(NOT, INVALID, optional(KEY), repeat($.statement)),
+    onOverflowPhrase: $ => seq(optional(ON), OVERFLOW, repeat($.statement)),
+    notOnOverflowPhrase: $ => seq(NOT, optional(ON), OVERFLOW, repeat($.statement)),
+    onSizeErrorPhrase: $ => seq(optional(ON), SIZE, ERROR, repeat($.statement)),
+    notOnSizeErrorPhrase: $ => seq(NOT, optional(ON), SIZE, ERROR, repeat($.statement)),
+
+    // statement clauses ----------------------------------
+    onExceptionClause: $ => seq(optional(ON), EXCEPTION, repeat($.statement)),
+    notOnExceptionClause: $ => seq(NOT, optional(ON), EXCEPTION, repeat($.statement)),
+
+    // arithmetic expression ----------------------------------
     arithmeticExpression: $ => seq($.multDivs, repeat($.plusMinus)),
     plusMinus: $ => seq(choice(PLUSCHAR, MINUSCHAR), $.multDivs),
     multDivs: $ => seq($.powers, repeat($.multDiv)),
@@ -628,10 +738,79 @@ module.exports = grammar({
       $.identifier,
       $.literal,
     ),
-
     // condition ----------------------------------
+    condition: $ => seq($.combinableCondition, repeat($.andOrCondition)),
+    andOrCondition: $ => seq(choice(AND, OR), choice($.combinableCondition, repeat1($.abbreviation))),
+    combinableCondition: $ => seq(optional(NOT), $.simpleCondition),
+    simpleCondition: $ => choice(
+      seq(LPARENCHAR, $.condition, RPARENCHAR),
+      $.relationCondition,
+      $.classCondition,
+      $.conditionNameReference
+    ),
+    classCondition: $ => seq(
+      $.identifier, optional(IS), optional(NOT), choice(
+        NUMERIC,
+        ALPHABETIC,
+        ALPHABETIC_LOWER,
+        ALPHABETIC_UPPER,
+        DBCS,
+        KANJI,
+        $.className
+      )
+    ),
+    conditionNameReference: $ => seq(
+      $.conditionName, choice(
+        seq(repeat($.inData), optional($.inFile), repeat($.conditionNameSubscriptReference)),
+        repeat($.inMnemonic),
+      )
+    ),
+    conditionNameSubscriptReference: $ => seq(
+      LPARENCHAR, $.subscript, repeat((optional(COMMACHAR), $.subscript)), RPARENCHAR,
+    ),
 
     // relation ----------------------------------
+    relationCondition: $ => choice(
+      $.relationSignCondition,
+      $.relationArithmeticComparison,
+      $.relationCombinedComparison,
+    ),
+
+    relationSignCondition: $ =>
+      seq($.arithmeticExpression, optional(IS), ptional(NOT), choice(POSITIVE, NEGATIVE, ZERO)),
+
+    relationArithmeticComparison: $ =>
+      seq($.arithmeticExpression, $.relationalOperator, $.arithmeticExpression),
+
+    relationCombinedComparison: $ =>
+      seq($.arithmeticExpression, $.relationalOperator, LPARENCHAR, $.relationCombinedCondition, RPARENCHAR),
+
+    relationCombinedCondition: $ =>
+      seq($.arithmeticExpression, repeat1(seq(choice(AND, OR), $.arithmeticExpression))),
+
+    relationalOperator: $ => seq(
+      optional(choice(IS, ARE)),
+      choice(
+        seq(optional(NOT), choice(
+          seq(GREATER, optional(THAN)),
+          MORETHANCHAR,
+          seq(LESS, optional(THAN)),
+          LESSTHANCHAR,
+          seq(EQUAL, optional(TO)),
+          EQUALCHAR,
+        )),
+        NOTEQUALCHAR,
+        seq(GREATER, optional(THAN), OR, EQUAL, optional(TO)),
+        MORETHANOREQUAL,
+        seq(LESS, optional(THAN), OR, EQUAL, optional(TO)),
+        LESSTHANOREQUAL,
+      ),
+    ),
+    abbreviation: $ =>
+      seq(optional(NOT), optional($.relationalOperator), choice(
+        $.arithmeticExpression,
+        seq(LPARENCHAR, $.arithmeticExpression, $.abbreviation, RPARENCHAR),
+      )),
 
     // identifier ----------------------------------
     identifier: $ => choice($.qualifiedDataName, $.tableCall, $.functionCall, $.specialRegister),
