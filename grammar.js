@@ -55,546 +55,548 @@ const
   RPARENCHAR = ')',
   SLASHCHAR = '/',
   // keywords
-  ABORT = seq(A, B, O, R, T),
-  ACCEPT = seq(A, C, C, E, P, T),
-  ACCESS = seq(A, C, C, E, S, S),
-  ADD = seq(A, D, D),
-  ADDRESS = seq(A, D, D, R, E, S, S),
-  ADVANCING = seq(A, D, V, A, N, C, I, N, G),
-  AFTER = seq(A, F, T, E, R),
-  ALIGNED = seq(A, L, I, G, N, E, D),
-  ALL = seq(A, L, L),
-  ALPHABET = seq(A, L, P, H, A, B, E, T),
-  ALPHABETIC = seq(A, L, P, H, A, B, E, T, I, C),
-  ALPHABETIC_LOWER = seq(A, L, P, H, A, B, E, T, I, C, MINUSCHAR, L, O, W, E, R),
-  ALPHABETIC_UPPER = seq(A, L, P, H, A, B, E, T, I, C, MINUSCHAR, U, P, P, E, R),
-  ALPHANUMERIC = seq(A, L, P, H, A, N, U, M, E, R, I, C),
-  ALPHANUMERIC_EDITED = seq(A, L, P, H, A, N, U, M, E, R, I, C, MINUSCHAR, E, D, I, T, E, D),
-  ALSO = seq(A, L, S, O),
-  ALTER = seq(A, L, T, E, R),
-  ALTERNATE = seq(A, L, T, E, R, N, A, T, E),
-  AND = seq(A, N, D),
-  ANY = seq(A, N, Y),
-  ARE = seq(A, R, E),
-  AREA = seq(A, R, E, A),
-  AREAS = seq(A, R, E, A, S),
-  AS = seq(A, S),
-  ASCENDING = seq(A, S, C, E, N, D, I, N, G),
-  ASCII = seq(A, S, C, I, I),
-  ASSIGN = seq(A, S, S, I, G, N),
-  ASSOCIATED_DATA = seq(A, S, S, O, C, I, A, T, E, D, MINUSCHAR, D, A, T, A),
-  ASSOCIATED_DATA_LENGTH = seq(A, S, S, O, C, I, A, T, E, D, MINUSCHAR, D, A, T, A, MINUSCHAR, L, E, N, G, T, H),
-  AT = seq(A, T),
-  ATTRIBUTE = seq(A, T, T, R, I, B, U, T, E),
-  AUTHOR = seq(A, U, T, H, O, R),
-  AUTO = seq(A, U, T, O),
-  AUTO_SKIP = seq(A, U, T, O, MINUSCHAR, S, K, I, P),
-  BACKGROUND_COLOR = seq(B, A, C, K, G, R, O, U, N, D, MINUSCHAR, C, O, L, O, R),
-  BACKGROUND_COLOUR = seq(B, A, C, K, G, R, O, U, N, D, MINUSCHAR, C, O, L, O, U, R),
-  BASIS = seq(B, A, S, I, S),
-  BEEP = seq(B, E, E, P),
-  BEFORE = seq(B, E, F, O, R, E),
-  BEGINNING = seq(B, E, G, I, N, N, I, N, G),
-  BELL = seq(B, E, L, L),
-  BINARY = seq(B, I, N, A, R, Y),
-  BIT = seq(B, I, T),
-  BLANK = seq(B, L, A, N, K),
-  BLINK = seq(B, L, I, N, K),
-  BLOB = seq(B, L, O, B),
-  BLOCK = seq(B, L, O, C, K),
-  BOUNDS = seq(B, O, U, N, D, S),
-  BOTTOM = seq(B, O, T, T, O, M),
-  BY = seq(B, Y),
-  BYFUNCTION = seq(B, Y, F, U, N, C, T, I, O, N),
-  BYTITLE = seq(B, Y, T, I, T, L, E),
-  CALL = seq(C, A, L, L),
-  CANCEL = seq(C, A, N, C, E, L),
-  CAPABLE = seq(C, A, P, A, B, L, E),
-  CCSVERSION = seq(C, C, S, V, E, R, S, I, O, N),
-  CD = seq(C, D),
-  CF = seq(C, F),
-  CH = seq(C, H),
-  CHAINING = seq(C, H, A, I, N, I, N, G),
-  CHANGED = seq(C, H, A, N, G, E, D),
-  CHANNEL = seq(C, H, A, N, N, E, L),
-  CHARACTER = seq(C, H, A, R, A, C, T, E, R),
-  CHARACTERS = seq(C, H, A, R, A, C, T, E, R, S),
-  CLASS = seq(C, L, A, S, S),
-  CLASS_ID = seq(C, L, A, S, S, MINUSCHAR, I, D),
-  CLOB = seq(C, L, O, B),
-  CLOCK_UNITS = seq(C, L, O, C, K, MINUSCHAR, U, N, I, T, S),
-  CLOSE = seq(C, L, O, S, E),
-  CLOSE_DISPOSITION = seq(C, L, O, S, E, MINUSCHAR, D, I, S, P, O, S, I, T, I, O, N),
-  COBOL = seq(C, O, B, O, L),
-  CODE = seq(C, O, D, E),
-  CODE_SET = seq(C, O, D, E, MINUSCHAR, S, E, T),
-  COLLATING = seq(C, O, L, L, A, T, I, N, G),
-  COL = seq(C, O, L),
-  COLUMN = seq(C, O, L, U, M, N),
-  COM_REG = seq(C, O, M, MINUSCHAR, R, E, G),
-  COMMA = seq(C, O, M, M, A),
-  COMMITMENT = seq(C, O, M, M, I, T, M, E, N, T),
-  COMMON = seq(C, O, M, M, O, N),
-  COMMUNICATION = seq(C, O, M, M, U, N, I, C, A, T, I, O, N),
-  COMP = seq(C, O, M, P),
-  COMP_1 = seq(C, O, M, P, MINUSCHAR, '1'),
-  COMP_2 = seq(C, O, M, P, MINUSCHAR, '2'),
-  COMP_3 = seq(C, O, M, P, MINUSCHAR, '3'),
-  COMP_4 = seq(C, O, M, P, MINUSCHAR, '4'),
-  COMP_5 = seq(C, O, M, P, MINUSCHAR, '5'),
-  COMPUTATIONAL = seq(C, O, M, P, U, T, A, T, I, O, N, A, L),
-  COMPUTATIONAL_1 = seq(C, O, M, P, U, T, A, T, I, O, N, A, L, MINUSCHAR, '1'),
-  COMPUTATIONAL_2 = seq(C, O, M, P, U, T, A, T, I, O, N, A, L, MINUSCHAR, '2'),
-  COMPUTATIONAL_3 = seq(C, O, M, P, U, T, A, T, I, O, N, A, L, MINUSCHAR, '3'),
-  COMPUTATIONAL_4 = seq(C, O, M, P, U, T, A, T, I, O, N, A, L, MINUSCHAR, '4'),
-  COMPUTATIONAL_5 = seq(C, O, M, P, U, T, A, T, I, O, N, A, L, MINUSCHAR, '5'),
-  COMPUTE = seq(C, O, M, P, U, T, E),
-  CONFIGURATION = seq(C, O, N, F, I, G, U, R, A, T, I, O, N),
-  CONTAINS = seq(C, O, N, T, A, I, N, S),
-  CONTENT = seq(C, O, N, T, E, N, T),
-  CONTINUE = seq(C, O, N, T, I, N, U, E),
-  CONTROL = seq(C, O, N, T, R, O, L),
-  CONTROL_POINT = seq(C, O, N, T, R, O, L, MINUSCHAR, P, O, I, N, T),
-  CONTROLS = seq(C, O, N, T, R, O, L, S),
-  CONVENTION = seq(C, O, N, V, E, N, T, I, O, N),
-  CONVERTING = seq(C, O, N, V, E, R, T, I, N, G),
-  COPY = seq(C, O, P, Y),
-  CORR = seq(C, O, R, R),
-  CORRESPONDING = seq(C, O, R, R, E, S, P, O, N, D, I, N, G),
-  COUNT = seq(C, O, U, N, T),
-  CRUNCH = seq(C, R, U, N, C, H),
-  CURRENCY = seq(C, U, R, R, E, N, C, Y),
-  CURSOR = seq(C, U, R, S, O, R),
-  DATA = seq(D, A, T, A),
-  DATA_BASE = seq(D, A, T, A, MINUSCHAR, B, A, S, E),
-  DATE = seq(D, A, T, E),
-  DATE_COMPILED = seq(D, A, T, E, MINUSCHAR, C, O, M, P, I, L, E, D),
-  DATE_WRITTEN = seq(D, A, T, E, MINUSCHAR, W, R, I, T, T, E, N),
-  DAY = seq(D, A, Y),
-  DAY_OF_WEEK = seq(D, A, Y, MINUSCHAR, O, F, MINUSCHAR, W, E, E, K),
-  DBCS = seq(D, B, C, S),
-  DBCLOB = seq(D, B, C, L, O, B),
-  DE = seq(D, E),
-  DEBUG_CONTENTS = seq(D, E, B, U, G, MINUSCHAR, C, O, N, T, E, N, T, S),
-  DEBUG_ITEM = seq(D, E, B, U, G, MINUSCHAR, I, T, E, M),
-  DEBUG_LINE = seq(D, E, B, U, G, MINUSCHAR, L, I, N, E),
-  DEBUG_NAME = seq(D, E, B, U, G, MINUSCHAR, N, A, M, E),
-  DEBUG_SUB_1 = seq(D, E, B, U, G, MINUSCHAR, S, U, B, MINUSCHAR, '1'),
-  DEBUG_SUB_2 = seq(D, E, B, U, G, MINUSCHAR, S, U, B, MINUSCHAR, '2'),
-  DEBUG_SUB_3 = seq(D, E, B, U, G, MINUSCHAR, S, U, B, MINUSCHAR, '3'),
-  DEBUGGING = seq(D, E, B, U, G, G, I, N, G),
-  DECIMAL_POINT = seq(D, E, C, I, M, A, L, MINUSCHAR, P, O, I, N, T),
-  DECLARATIVES = seq(D, E, C, L, A, R, A, T, I, V, E, S),
-  DEFAULT = seq(D, E, F, A, U, L, T),
-  DEFAULT_DISPLAY = seq(D, E, F, A, U, L, T, MINUSCHAR, D, I, S, P, L, A, Y),
-  DEFINITION = seq(D, E, F, I, N, I, T, I, O, N),
-  DELETE = seq(D, E, L, E, T, E),
-  DELIMITED = seq(D, E, L, I, M, I, T, E, D),
-  DELIMITER = seq(D, E, L, I, M, I, T, E, R),
-  DEPENDING = seq(D, E, P, E, N, D, I, N, G),
-  DESCENDING = seq(D, E, S, C, E, N, D, I, N, G),
-  DESTINATION = seq(D, E, S, T, I, N, A, T, I, O, N),
-  DETAIL = seq(D, E, T, A, I, L),
-  DFHRESP = seq(D, F, H, R, E, S, P),
-  DFHVALUE = seq(D, F, H, V, A, L, U, E),
-  DISABLE = seq(D, I, S, A, B, L, E),
-  DISK = seq(D, I, S, K),
-  DISPLAY = seq(D, I, S, P, L, A, Y),
-  DISPLAY_1 = seq(D, I, S, P, L, A, Y, MINUSCHAR, '1'),
-  DIVIDE = seq(D, I, V, I, D, E),
-  DIVISION = seq(D, I, V, I, S, I, O, N),
-  DONTCARE = seq(D, O, N, T, C, A, R, E),
-  DOUBLE = seq(D, O, U, B, L, E),
-  DOWN = seq(D, O, W, N),
-  DUPLICATES = seq(D, U, P, L, I, C, A, T, E, S),
-  DYNAMIC = seq(D, Y, N, A, M, I, C),
-  EBCDIC = seq(E, B, C, D, I, C),
-  EGCS = seq(E, G, C, S),// E X T E N S I O N
-  EGI = seq(E, G, I),
-  ELSE = seq(E, L, S, E),
-  EMI = seq(E, M, I),
-  EMPTY_CHECK = seq(E, M, P, T, Y, MINUSCHAR, C, H, E, C, K),
-  ENABLE = seq(E, N, A, B, L, E),
-  END = seq(E, N, D),
-  END_ACCEPT = seq(E, N, D, MINUSCHAR, A, C, C, E, P, T),
-  END_ADD = seq(E, N, D, MINUSCHAR, A, D, D),
-  END_CALL = seq(E, N, D, MINUSCHAR, C, A, L, L),
-  END_COMPUTE = seq(E, N, D, MINUSCHAR, C, O, M, P, U, T, E),
-  END_DELETE = seq(E, N, D, MINUSCHAR, D, E, L, E, T, E),
-  END_DISPLAY = seq(E, N, D, MINUSCHAR, D, I, S, P, L, A, Y),
-  END_DIVIDE = seq(E, N, D, MINUSCHAR, D, I, V, I, D, E),
-  END_EVALUATE = seq(E, N, D, MINUSCHAR, E, V, A, L, U, A, T, E),
-  END_IF = seq(E, N, D, MINUSCHAR, I, F),
-  END_MULTIPLY = seq(E, N, D, MINUSCHAR, M, U, L, T, I, P, L, Y),
-  END_OF_PAGE = seq(E, N, D, MINUSCHAR, O, F, MINUSCHAR, P, A, G, E),
-  END_PERFORM = seq(E, N, D, MINUSCHAR, P, E, R, F, O, R, M),
-  END_READ = seq(E, N, D, MINUSCHAR, R, E, A, D),
-  END_RECEIVE = seq(E, N, D, MINUSCHAR, R, E, C, E, I, V, E),
-  END_REMARKS = seq(E, N, D, MINUSCHAR, R, E, M, A, R, K, S),
-  END_RETURN = seq(E, N, D, MINUSCHAR, R, E, T, U, R, N),
-  END_REWRITE = seq(E, N, D, MINUSCHAR, R, E, W, R, I, T, E),
-  END_SEARCH = seq(E, N, D, MINUSCHAR, S, E, A, R, C, H),
-  END_START = seq(E, N, D, MINUSCHAR, S, T, A, R, T),
-  END_STRING = seq(E, N, D, MINUSCHAR, S, T, R, I, N, G),
-  END_SUBTRACT = seq(E, N, D, MINUSCHAR, S, U, B, T, R, A, C, T),
-  END_UNSTRING = seq(E, N, D, MINUSCHAR, U, N, S, T, R, I, N, G),
-  END_WRITE = seq(E, N, D, MINUSCHAR, W, R, I, T, E),
-  ENDING = seq(E, N, D, I, N, F),
-  ENTER = seq(E, N, T, E, R),
-  ENTRY = seq(E, N, T, R, Y),
-  ENTRY_PROCEDURE = seq(E, N, T, R, Y, MINUSCHAR, P, R, O, C, E, D, U, R, E),
-  ENVIRONMENT = seq(E, N, V, I, R, O, N, M, E, N, T),
-  EOP = seq(E, O, P),
-  EQUAL = seq(E, Q, U, A, L),
-  ERASE = seq(E, R, A, S, E),
-  ERROR = seq(E, R, R, O, R),
-  EOL = seq(E, O, L),
-  EOS = seq(E, O, S),
-  ESCAPE = seq(E, S, C, A, P, E),
-  ESI = seq(E, S, I),
-  EVALUATE = seq(E, V, A, L, U, A, T, E),
-  EVENT = seq(E, V, E, N, T),
-  EVERY = seq(E, V, E, R, Y),
-  EXCEPTION = seq(E, X, C, E, P, T, I, O, N),
-  EXCLUSIVE = seq(E, X, C, L, U, S, I, V, E),
-  EXHIBIT = seq(E, X, H, I, B, I, T),
-  EXIT = seq(E, X, I, T),
-  EXPORT = seq(E, X, P, O, R, T),
-  EXTEND = seq(E, X, T, E, N, D),
-  EXTENDED = seq(E, X, T, E, N, D, E, D),
-  EXTERNAL = seq(E, X, T, E, R, N, A, L),
-  FALSE = seq(F, A, L, S, E),
-  FD = seq(F, D),
-  FILE = seq(F, I, L, E),
-  FILE_CONTROL = seq(F, I, L, E, MINUSCHAR, C, O, N, T, R, O, L),
-  FILLER = seq(F, I, L, L, E, R),
-  FINAL = seq(F, I, N, A, L),
-  FIRST = seq(F, I, R, S, T),
-  FOOTING = seq(F, O, O, T, I, N, G),
-  FOR = seq(F, O, R),
-  FOREGROUND_COLOR = seq(F, O, R, E, G, R, O, U, N, D, MINUSCHAR, C, O, L, O, R),
-  FOREGROUND_COLOUR = seq(F, O, R, E, G, R, O, U, N, D, MINUSCHAR, C, O, L, O, U, R),
-  FROM = seq(F, R, O, M),
-  FULL = seq(F, U, L, L),
-  FUNCTION = seq(F, U, N, C, T, I, O, N),
-  FUNCTIONNAME = seq(F, U, N, C, T, I, O, N, N, A, M, E),
-  FUNCTION_POINTER = seq(F, U, N, C, T, I, O, N, MINUSCHAR, P, O, I, N, T, E, R),
-  GENERATE = seq(G, E, N, E, R, A, T, E),
-  GOBACK = seq(G, O, B, A, C, K),
-  GIVING = seq(G, I, V, I, N, G),
-  GLOBAL = seq(G, L, O, B, A, L),
-  GO = seq(G, O),
-  GREATER = seq(G, R, E, A, T, E, R),
-  GRID = seq(G, R, I, D),
-  GROUP = seq(G, R, O, U, P),
-  HEADING = seq(H, E, A, D, I, N, G),
-  HIGHLIGHT = seq(H, I, G, H, L, I, G, H, T),
-  HIGH_VALUE = seq(H, I, G, H, MINUSCHAR, V, A, L, U, E),
-  HIGH_VALUES = seq(H, I, G, H, MINUSCHAR, V, A, L, U, E, S),
-  I_O = seq(I, MINUSCHAR, O),
-  I_O_CONTROL = seq(I, MINUSCHAR, O, MINUSCHAR, C, O, N, T, R, O, L),
-  ID = seq(I, D),
-  IDENTIFICATION = seq(I, D, E, N, T, I, F, I, C, A, T, I, O, N),
-  IF = seq(I, F),
-  IMPLICIT = seq(I, M, P, L, I, C, I, T),
-  IMPORT = seq(I, M, P, O, R, T),
-  IN = seq(I, N),
-  INDEX = seq(I, N, D, E, X),
-  INDEXED = seq(I, N, D, E, X, E, D),
-  INDICATE = seq(I, N, D, I, C, A, T, E),
-  INITIAL = seq(I, N, I, T, I, A, L),
-  INITIALIZE = seq(I, N, I, T, I, A, L, I, Z, E),
-  INITIATE = seq(I, N, I, T, I, A, T, E),
-  INPUT = seq(I, N, P, U, T),
-  INPUT_OUTPUT = seq(I, N, P, U, T, MINUSCHAR, O, U, T, P, U, T),
-  INSPECT = seq(I, N, S, P, E, C, T),
-  INSTALLATION = seq(I, N, S, T, A, L, L, A, T, I, O, N),
-  INTEGER = seq(I, N, T, E, G, E, R),
-  INTO = seq(I, N, T, O),
-  INVALID = seq(I, N, V, A, L, I, D),
-  INVOKE = seq(I, N, V, O, K, E),
-  IS = seq(I, S),
-  JUST = seq(J, U, S, T),
-  JUSTIFIED = seq(J, U, S, T, I, F, I, E, D),
-  KANJI = seq(K, A, N, J, I),
-  KEPT = seq(K, E, P, T),
-  KEY = seq(K, E, Y),
-  KEYBOARD = seq(K, E, Y, B, O, A, R, D),
-  LABEL = seq(L, A, B, E, L),
-  LANGUAGE = seq(L, A, N, G, U, A, G, E),
-  LAST = seq(L, A, S, T),
-  LB = seq(L, B),
-  LD = seq(L, D),
-  LEADING = seq(L, E, A, D, I, N, G),
-  LEFT = seq(L, E, F, T),
-  LEFTLINE = seq(L, E, F, T, L, I, N, E),
-  LENGTH = seq(L, E, N, G, T, H),
-  LENGTH_CHECK = seq(L, E, N, G, T, H, MINUSCHAR, C, H, E, C, K),
-  LESS = seq(L, E, S, S),
-  LIBACCESS = seq(L, I, B, A, C, C, E, S, S),
-  LIBPARAMETER = seq(L, I, B, P, A, R, A, M, E, T, E, R),
-  LIBRARY = seq(L, I, B, R, A, R, Y),
-  LIMIT = seq(L, I, M, I, T),
-  LIMITS = seq(L, I, M, I, T, S),
-  LINAGE = seq(L, I, N, A, G, E),
-  LINAGE_COUNTER = seq(L, I, N, A, G, E, MINUSCHAR, C, O, U, N, T, E, R),
-  LINE = seq(L, I, N, E),
-  LINES = seq(L, I, N, E, S),
-  LINE_COUNTER = seq(L, I, N, E, MINUSCHAR, C, O, U, N, T, E, R),
-  LINKAGE = seq(L, I, N, K, A, G, E),
-  LIST = seq(L, I, S, T),
-  LOCAL = seq(L, O, C, A, L),
-  LOCAL_STORAGE = seq(L, O, C, A, L, MINUSCHAR, S, T, O, R, A, G, E),
-  LOCK = seq(L, O, C, K),
-  LONG_DATE = seq(L, O, N, G, MINUSCHAR, D, A, T, E),
-  LONG_TIME = seq(L, O, N, G, MINUSCHAR, T, I, M, E),
-  LOWER = seq(L, O, W, E, R),
-  LOWLIGHT = seq(L, O, W, L, I, G, H, T),
-  LOW_VALUE = seq(L, O, W, MINUSCHAR, V, A, L, U, E),
-  LOW_VALUES = seq(L, O, W, MINUSCHAR, V, A, L, U, E, S),
-  MEMORY = seq(M, E, M, O, R, Y),
-  MERGE = seq(M, E, R, G, E),
-  MESSAGE = seq(M, E, S, S, A, G, E),
-  MMDDYYYY = seq(M, M, D, D, Y, Y, Y, Y),
-  MODE = seq(M, O, D, E),
-  MODULES = seq(M, O, D, U, L, E, S),
-  MORE_LABELS = seq(M, O, R, E, MINUSCHAR, L, A, B, E, L, S),
-  MOVE = seq(M, O, V, E),
-  MULTIPLE = seq(M, U, L, T, I, P, L, E),
-  MULTIPLY = seq(M, U, L, T, I, P, L, Y),
-  NAMED = seq(N, A, M, E, D),
-  NATIONAL = seq(N, A, T, I, O, N, A, L),
-  NATIONAL_EDITED = seq(N, A, T, I, O, N, A, L, MINUSCHAR, E, D, I, T, E, D),
-  NATIVE = seq(N, A, T, I, V, E),
-  NEGATIVE = seq(N, E, G, A, T, I, V, E),
-  NETWORK = seq(N, E, T, W, O, R, K),
-  NEXT = seq(N, E, X, T),
-  NO = seq(N, O),
-  NO_ECHO = seq(N, O, MINUSCHAR, E, C, H, O),
-  NOT = seq(N, O, T),
-  NULL = seq(N, U, L, L),
-  NULLS = seq(N, U, L, L, S),
-  NUMBER = seq(N, U, M, B, E, R),
-  NUMERIC = seq(N, U, M, E, R, I, C),
-  NUMERIC_DATE = seq(N, U, M, E, R, I, C, MINUSCHAR, D, A, T, E),
-  NUMERIC_EDITED = seq(N, U, M, E, R, I, C, MINUSCHAR, E, D, I, T, E, D),
-  NUMERIC_TIME = seq(N, U, M, E, R, I, C, MINUSCHAR, T, I, M, E),
-  OBJECT_COMPUTER = seq(O, B, J, E, C, T, MINUSCHAR, C, O, M, P, U, T, E, R),
-  OCCURS = seq(O, C, C, U, R, S),
-  ODT = seq(O, D, T),
-  OF = seq(O, F),
-  OFF = seq(O, F, F),
-  OMITTED = seq(O, M, I, T, T, E, D),
-  ON = seq(O, N),
-  OPEN = seq(O, P, E, N),
-  OPTIONAL = seq(O, P, T, I, O, N, A, L),
-  OR = seq(O, R),
-  ORDER = seq(O, R, D, E, R),
-  ORDERLY = seq(O, R, D, E, R, L, Y),
-  ORGANIZATION = seq(O, R, G, A, N, I, Z, A, T, I, O, N),
-  OTHER = seq(O, T, H, E, R),
-  OUTPUT = seq(O, U, T, P, U, T),
-  OVERFLOW = seq(O, V, E, R, F, L, O, W),
-  OVERLINE = seq(O, V, E, R, L, I, N, E),
-  OWN = seq(O, W, N),
-  PACKED_DECIMAL = seq(P, A, C, K, E, D, MINUSCHAR, D, E, C, I, M, A, L),
-  PADDING = seq(P, A, D, D, I, N, G),
-  PAGE = seq(P, A, G, E),
-  PAGE_COUNTER = seq(P, A, G, E, MINUSCHAR, C, O, U, N, T, E, R),
-  PASSWORD = seq(P, A, S, S, W, O, R, D),
-  PERFORM = seq(P, E, R, F, O, R, M),
-  PF = seq(P, F),
-  PH = seq(P, H),
-  PIC = seq(P, I, C),
-  PICTURE = seq(P, I, C, T, U, R, E),
-  PLUS = seq(P, L, U, S),
-  POINTER = seq(P, O, I, N, T, E, R),
-  POSITION = seq(P, O, S, I, T, I, O, N),
-  POSITIVE = seq(P, O, S, I, T, I, V, E),
-  PORT = seq(P, O, R, T),
-  PRINTER = seq(P, R, I, N, T, E, R),
-  PRINTING = seq(P, R, I, N, T, I, N, G),
-  PRIVATE = seq(P, R, I, V, A, T, E),
-  PROCEDURE = seq(P, R, O, C, E, D, U, R, E),
-  PROCEDURE_POINTER = seq(P, R, O, C, E, D, U, R, E, MINUSCHAR, P, O, I, N, T, E, R),
-  PROCEDURES = seq(P, R, O, C, E, D, U, R, E, S),
-  PROCEED = seq(P, R, O, C, E, E, D),
-  PROCESS = seq(P, R, O, C, E, S, S),
-  PROGRAM = seq(P, R, O, G, R, A, M),
-  PROGRAM_ID = seq(P, R, O, G, R, A, M, MINUSCHAR, I, D),
-  PROGRAM_LIBRARY = seq(P, R, O, G, R, A, M, MINUSCHAR, L, I, B, R, A, R, Y),
-  PROMPT = seq(P, R, O, M, P, T),
-  PURGE = seq(P, U, R, G, E),
-  QUEUE = seq(Q, U, E, U, E),
-  QUOTE = seq(Q, U, O, T, E),
-  QUOTES = seq(Q, U, O, T, E, S),
-  RANDOM = seq(R, A, N, D, O, M),
-  READER = seq(R, E, A, D, E, R),
-  REMOTE = seq(R, E, M, O, T, E),
-  RD = seq(R, D),
-  REAL = seq(R, E, A, L),
-  READ = seq(R, E, A, D),
-  RECEIVE = seq(R, E, C, E, I, V, E),
-  RECEIVED = seq(R, E, C, E, I, V, E, D),
-  RECORD = seq(R, E, C, O, R, D),
-  RECORDING = seq(R, E, C, O, R, D, I, N, G),
-  RECORDS = seq(R, E, C, O, R, D, S),
-  RECURSIVE = seq(R, E, C, U, R, S, I, V, E),
-  REDEFINES = seq(R, E, D, E, F, I, N, E, S),
-  REEL = seq(R, E, E, L),
-  REF = seq(R, E, F),
-  REFERENCE = seq(R, E, F, E, R, E, N, C, E),
-  REFERENCES = seq(R, E, F, E, R, E, N, C, E, S),
-  RELATIVE = seq(R, E, L, A, T, I, V, E),
-  RELEASE = seq(R, E, L, E, A, S, E),
-  REMAINDER = seq(R, E, M, A, I, N, D, E, R),
-  REMARKS = seq(R, E, M, A, R, K, S),
-  REMOVAL = seq(R, E, M, O, V, A, L),
-  REMOVE = seq(R, E, M, O, V, E),
-  RENAMES = seq(R, E, N, A, M, E, S),
-  REPLACE = seq(R, E, P, L, A, C, E),
-  REPLACING = seq(R, E, P, L, A, C, I, N, G),
-  REPORT = seq(R, E, P, O, R, T),
-  REPORTING = seq(R, E, P, O, R, T, I, N, G),
-  REPORTS = seq(R, E, P, O, R, T, S),
-  REQUIRED = seq(R, E, Q, U, I, R, E, D),
-  RERUN = seq(R, E, R, U, N),
-  RESERVE = seq(R, E, S, E, R, V, E),
-  REVERSE_VIDEO = seq(R, E, S, E, R, V, E, MINUSCHAR, V, I, D, E, O),
-  RESET = seq(R, E, S, E, T),
-  RETURN = seq(R, E, T, U, R, N),
-  RETURN_CODE = seq(R, E, T, U, R, N, MINUSCHAR, C, O, D, E),
-  RETURNING = seq(R, E, T, U, R, N, I, N, G),
-  REVERSED = seq(R, E, V, E, R, S, E, D),
-  REWIND = seq(R, E, W, I, N, D),
-  REWRITE = seq(R, E, W, R, I, T, E),
-  RF = seq(R, F),
-  RH = seq(R, H),
-  RIGHT = seq(R, I, G, H, T),
-  ROUNDED = seq(R, O, U, N, D, E, D),
-  RUN = seq(R, U, N),
-  SAME = seq(S, A, M, E),
-  SAVE = seq(S, A, V, E),
-  SCREEN = seq(S, C, R, E, E, N),
-  SD = seq(S, D),
-  SEARCH = seq(S, E, A, R, C, H),
-  SECTION = seq(S, E, C, T, I, O, N),
-  SECURE = seq(S, E, C, U, R, E),
-  SECURITY = seq(S, E, C, U, R, I, T, Y),
-  SEGMENT = seq(S, E, G, M, E, N, T),
-  SEGMENT_LIMIT = seq(S, E, G, M, E, N, T, MINUSCHAR, L, I, M, I, T),
-  SELECT = seq(S, E, L, E, C, T),
-  SEND = seq(S, E, N, D),
-  SENTENCE = seq(S, E, N, T, E, N, C, E),
-  SEPARATE = seq(S, E, P, A, R, A, T, E),
-  SEQUENCE = seq(S, E, Q, U, E, N, C, E),
-  SEQUENTIAL = seq(S, E, Q, U, E, N, T, I, A, L),
-  SET = seq(S, E, T),
-  SHARED = seq(S, H, A, R, E, D),
-  SHAREDBYALL = seq(S, H, A, R, E, D, B, Y, A, L, L),
-  SHAREDBYRUNUNIT = seq(S, H, A, R, E, D, B, Y, R, U, N, U, N, I, T),
-  SHARING = seq(S, H, A, R, I, N, G),
-  SHIFT_IN = seq(S, H, I, F, T, MINUSCHAR, I, N),
-  SHIFT_OUT = seq(S, H, I, F, T, MINUSCHAR, O, U, T),
-  SHORT_DATE = seq(S, H, O, R, T, MINUSCHAR, D, A, T, E),
-  SIGN = seq(S, I, G, N),
-  SIZE = seq(S, I, Z, E),
-  SORT = seq(S, O, R, T),
-  SORT_CONTROL = seq(S, O, R, T, MINUSCHAR, C, O, N, T, R, O, L),
-  SORT_CORE_SIZE = seq(S, O, R, T, MINUSCHAR, C, O, R, E, MINUSCHAR, S, I, Z, E),
-  SORT_FILE_SIZE = seq(S, O, R, T, MINUSCHAR, F, I, L, E, MINUSCHAR, S, I, Z, E),
-  SORT_MERGE = seq(S, O, R, T, MINUSCHAR, M, E, R, G, E),
-  SORT_MESSAGE = seq(S, O, R, T, MINUSCHAR, M, E, S, S, A, G, E),
-  SORT_MODE_SIZE = seq(S, O, R, T, MINUSCHAR, M, O, D, E, MINUSCHAR, S, I, Z, E),
-  SORT_RETURN = seq(S, O, R, T, MINUSCHAR, R, E, T, U, R, N),
-  SOURCE = seq(S, O, U, R, C, E),
-  SOURCE_COMPUTER = seq(S, O, U, R, C, E, MINUSCHAR, C, O, M, P, U, T, E, R),
-  SPACE = seq(S, P, A, C, E),
-  SPACES = seq(S, P, A, C, E, S),
-  SPECIAL_NAMES = seq(S, P, E, C, I, A, L, MINUSCHAR, N, A, M, E, S),
-  SQL = seq(S, Q, L),
-  STANDARD = seq(S, T, A, N, D, A, R, D),
-  STANDARD_1 = seq(S, T, A, N, D, A, R, D, MINUSCHAR, '1'),
-  STANDARD_2 = seq(S, T, A, N, D, A, R, D, MINUSCHAR, '2'),
-  START = seq(S, T, A, R, T),
-  STATUS = seq(S, T, A, T, U, S),
-  STOP = seq(S, T, O, P),
-  STRING = seq(S, T, R, I, N, G),
-  SUB_QUEUE_1 = seq(S, U, B, MINUSCHAR, Q, U, E, U, E, MINUSCHAR, '1'),
-  SUB_QUEUE_2 = seq(S, U, B, MINUSCHAR, Q, U, E, U, E, MINUSCHAR, '2'),
-  SUB_QUEUE_3 = seq(S, U, B, MINUSCHAR, Q, U, E, U, E, MINUSCHAR, '3'),
-  SUBTRACT = seq(S, U, B, T, R, A, C, T),
-  SUM = seq(S, U, M),
-  SUPPRESS = seq(S, U, P, P, R, E, S, S),
-  SYMBOL = seq(S, Y, M, B, O, L),
-  SYMBOLIC = seq(S, Y, M, B, O, L, I, C),
-  SYNC = seq(S, Y, N, C),
-  SYNCHRONIZED = seq(S, Y, N, C, H, R, O, N, I, Z, E, D),
-  TABLE = seq(T, A, B, L, E),
-  TALLY = seq(T, A, L, L, Y),
-  TALLYING = seq(T, A, L, L, Y, I, N, G),
-  TASK = seq(T, A, S, K),
-  TAPE = seq(T, A, P, E),
-  TERMINAL = seq(T, E, R, M, I, N, A, L),
-  TERMINATE = seq(T, E, R, M, I, N, A, T, E),
-  TEST = seq(T, E, S, T),
-  TEXT = seq(T, E, X, T),
-  THAN = seq(T, H, A, N),
-  THEN = seq(T, H, E, N),
-  THREAD = seq(T, H, R, E, A, D),
-  THREAD_LOCAL = seq(T, H, R, E, A, D, MINUSCHAR, L, O, C, A, L),
-  THROUGH = seq(T, H, R, O, U, G, H),
-  THRU = seq(T, H, R, U),
-  TIME = seq(T, I, M, E),
-  TIMER = seq(T, I, M, E, R),
-  TIMES = seq(T, I, M, E, S),
-  TITLE = seq(T, I, T, L, E),
-  TO = seq(T, O),
-  TODAYS_DATE = seq(T, O, D, A, Y, S, MINUSCHAR, D, A, T, E),
-  TODAYS_NAME = seq(T, O, D, A, Y, S, MINUSCHAR, N, A, M, E),
-  TOP = seq(T, O, P),
-  TRAILING = seq(T, R, A, I, L, I, N, G),
-  TRUE = seq(T, R, U, E),
-  TRUNCATED = seq(T, R, U, N, C, A, T, E, D),
-  TYPE = seq(T, Y, P, E),
-  TYPEDEF = seq(T, Y, P, E, D, E, F),
-  UNDERLINE = seq(U, N, D, E, R, L, I, N, E),
-  UNIT = seq(U, N, I, T),
-  UNSTRING = seq(U, N, S, T, R, I, N, G),
-  UNTIL = seq(U, N, T, I, L),
-  UP = seq(U, P),
-  UPON = seq(U, P, O, N),
-  USAGE = seq(U, S, A, G, E),
-  USE = seq(U, S, E),
-  USING = seq(U, S, I, N, G),
-  VALUE = seq(V, A, L, U, E),
-  VALUES = seq(V, A, L, U, E, S),
-  VARYING = seq(V, A, R, Y, I, N, G),
-  VIRTUAL = seq(V, I, R, T, U, A, L),
-  WAIT = seq(W, A, I, T),
-  WHEN = seq(W, H, E, N),
-  WHEN_COMPILED = seq(W, H, E, N, MINUSCHAR, C, O, M, P, I, L, E, D),
-  WITH = seq(W, I, T, H),
-  WORDS = seq(W, O, R, D, S),
-  WORKING_STORAGE = seq(W, O, R, K, I, N, G, MINUSCHAR, S, T, O, R, A, G, E),
-  WRITE = seq(W, R, I, T, E),
-  YEAR = seq(Y, E, A, R),
-  YYYYMMDD = seq(Y, Y, Y, Y, M, M, D, D),
-  YYYYDDD = seq(Y, Y, Y, Y, D, D, D),
-  ZERO = seq(Z, E, R, O),
-  ZERO_FILL = seq(Z, E, R, O, MINUSCHAR, F, I, L, L),
-  ZEROS = seq(Z, E, R, O, S),
-  ZEROES = seq(Z, E, R, O, E, S),
+  ABORT = token(seq(A, B, O, R, T)),
+  ACCEPT = token(seq(A, C, C, E, P, T)),
+  ACCESS = token(seq(A, C, C, E, S, S)),
+  ADD = token(seq(A, D, D)),
+  ADDRESS = token(seq(A, D, D, R, E, S, S)),
+  ADVANCING = token(seq(A, D, V, A, N, C, I, N, G)),
+  AFTER = token(seq(A, F, T, E, R)),
+  ALIGNED = token(seq(A, L, I, G, N, E, D)),
+  ALL = token(seq(A, L, L)),
+  ALPHABET = token(seq(A, L, P, H, A, B, E, T)),
+  ALPHABETIC = token(seq(A, L, P, H, A, B, E, T, I, C)),
+  ALPHABETIC_LOWER = token(seq(A, L, P, H, A, B, E, T, I, C, MINUSCHAR, L, O, W, E, R)),
+  ALPHABETIC_UPPER = token(seq(A, L, P, H, A, B, E, T, I, C, MINUSCHAR, U, P, P, E, R)),
+  ALPHANUMERIC = token(seq(A, L, P, H, A, N, U, M, E, R, I, C)),
+  ALPHANUMERIC_EDITED = token(seq(A, L, P, H, A, N, U, M, E, R, I, C, MINUSCHAR, E, D, I, T, E, D)),
+  ALSO = token(seq(A, L, S, O)),
+  ALTER = token(seq(A, L, T, E, R)),
+  ALTERNATE = token(seq(A, L, T, E, R, N, A, T, E)),
+  AND = token(seq(A, N, D)),
+  ANY = token(seq(A, N, Y)),
+  ARE = token(seq(A, R, E)),
+  AREA = token(seq(A, R, E, A)),
+  AREAS = token(seq(A, R, E, A, S)),
+  AS = token(seq(A, S)),
+  ASCENDING = token(seq(A, S, C, E, N, D, I, N, G)),
+  ASCII = token(seq(A, S, C, I, I)),
+  ASSIGN = token(seq(A, S, S, I, G, N)),
+  ASSOCIATED_DATA = token(seq(A, S, S, O, C, I, A, T, E, D, MINUSCHAR, D, A, T, A)),
+  ASSOCIATED_DATA_LENGTH = token(seq(A, S, S, O, C, I, A, T, E, D, MINUSCHAR, D, A, T, A, MINUSCHAR, L, E, N, G, T, H)),
+  AT = token(seq(A, T)),
+  ATTRIBUTE = token(seq(A, T, T, R, I, B, U, T, E)),
+  AUTHOR = token(seq(A, U, T, H, O, R)),
+  AUTO = token(seq(A, U, T, O)),
+  AUTO_SKIP = token(seq(A, U, T, O, MINUSCHAR, S, K, I, P)),
+  BACKGROUND_COLOR = token(seq(B, A, C, K, G, R, O, U, N, D, MINUSCHAR, C, O, L, O, R)),
+  BACKGROUND_COLOUR = token(seq(B, A, C, K, G, R, O, U, N, D, MINUSCHAR, C, O, L, O, U, R)),
+  BASIS = token(seq(B, A, S, I, S)),
+  BEEP = token(seq(B, E, E, P)),
+  BEFORE = token(seq(B, E, F, O, R, E)),
+  BEGINNING = token(seq(B, E, G, I, N, N, I, N, G)),
+  BELL = token(seq(B, E, L, L)),
+  BINARY = token(seq(B, I, N, A, R, Y)),
+  BIT = token(seq(B, I, T)),
+  BLANK = token(seq(B, L, A, N, K)),
+  BLINK = token(seq(B, L, I, N, K)),
+  BLOB = token(seq(B, L, O, B)),
+  BLOCK = token(seq(B, L, O, C, K)),
+  BOUNDS = token(seq(B, O, U, N, D, S)),
+  BOTTOM = token(seq(B, O, T, T, O, M)),
+  BY = token(seq(B, Y)),
+  BYFUNCTION = token(seq(B, Y, F, U, N, C, T, I, O, N)),
+  BYTITLE = token(seq(B, Y, T, I, T, L, E)),
+  CALL = token(seq(C, A, L, L)),
+  CANCEL = token(seq(C, A, N, C, E, L)),
+  CAPABLE = token(seq(C, A, P, A, B, L, E)),
+  CCSVERSION = token(seq(C, C, S, V, E, R, S, I, O, N)),
+  CD = token(seq(C, D)),
+  CF = token(seq(C, F)),
+  CH = token(seq(C, H)),
+  CHAINING = token(seq(C, H, A, I, N, I, N, G)),
+  CHANGED = token(seq(C, H, A, N, G, E, D)),
+  CHANNEL = token(seq(C, H, A, N, N, E, L)),
+  CHARACTER = token(seq(C, H, A, R, A, C, T, E, R)),
+  CHARACTERS = token(seq(C, H, A, R, A, C, T, E, R, S)),
+  CLASS = token(seq(C, L, A, S, S)),
+  CLASS_ID = token(seq(C, L, A, S, S, MINUSCHAR, I, D)),
+  CLOB = token(seq(C, L, O, B)),
+  CLOCK_UNITS = token(seq(C, L, O, C, K, MINUSCHAR, U, N, I, T, S)),
+  CLOSE = token(seq(C, L, O, S, E)),
+  CLOSE_DISPOSITION = token(seq(C, L, O, S, E, MINUSCHAR, D, I, S, P, O, S, I, T, I, O, N)),
+  COBOL = token(seq(C, O, B, O, L)),
+  CODE = token(seq(C, O, D, E)),
+  CODE_SET = token(seq(C, O, D, E, MINUSCHAR, S, E, T)),
+  COLLATING = token(seq(C, O, L, L, A, T, I, N, G)),
+  COL = token(seq(C, O, L)),
+  COLUMN = token(seq(C, O, L, U, M, N)),
+  COM_REG = token(seq(C, O, M, MINUSCHAR, R, E, G)),
+  COMMA = token(seq(C, O, M, M, A)),
+  COMMITMENT = token(seq(C, O, M, M, I, T, M, E, N, T)),
+  COMMON = token(seq(C, O, M, M, O, N)),
+  COMMUNICATION = token(seq(C, O, M, M, U, N, I, C, A, T, I, O, N)),
+  COMP = token(seq(C, O, M, P)),
+  COMP_1 = token(seq(C, O, M, P, MINUSCHAR, '1')),
+  COMP_2 = token(seq(C, O, M, P, MINUSCHAR, '2')),
+  COMP_3 = token(seq(C, O, M, P, MINUSCHAR, '3')),
+  COMP_4 = token(seq(C, O, M, P, MINUSCHAR, '4')),
+  COMP_5 = token(seq(C, O, M, P, MINUSCHAR, '5')),
+  COMPUTATIONAL = token(seq(C, O, M, P, U, T, A, T, I, O, N, A, L)),
+  COMPUTATIONAL_1 = token(seq(C, O, M, P, U, T, A, T, I, O, N, A, L, MINUSCHAR, '1')),
+  COMPUTATIONAL_2 = token(seq(C, O, M, P, U, T, A, T, I, O, N, A, L, MINUSCHAR, '2')),
+  COMPUTATIONAL_3 = token(seq(C, O, M, P, U, T, A, T, I, O, N, A, L, MINUSCHAR, '3')),
+  COMPUTATIONAL_4 = token(seq(C, O, M, P, U, T, A, T, I, O, N, A, L, MINUSCHAR, '4')),
+  COMPUTATIONAL_5 = token(seq(C, O, M, P, U, T, A, T, I, O, N, A, L, MINUSCHAR, '5')),
+  COMPUTE = token(seq(C, O, M, P, U, T, E)),
+  CONFIGURATION = token(seq(C, O, N, F, I, G, U, R, A, T, I, O, N)),
+  CONTAINS = token(seq(C, O, N, T, A, I, N, S)),
+  CONTENT = token(seq(C, O, N, T, E, N, T)),
+  CONTINUE = token(seq(C, O, N, T, I, N, U, E)),
+  CONTROL = token(seq(C, O, N, T, R, O, L)),
+  CONTROL_POINT = token(seq(C, O, N, T, R, O, L, MINUSCHAR, P, O, I, N, T)),
+  CONTROLS = token(seq(C, O, N, T, R, O, L, S)),
+  CONVENTION = token(seq(C, O, N, V, E, N, T, I, O, N)),
+  CONVERTING = token(seq(C, O, N, V, E, R, T, I, N, G)),
+  COPY = token(seq(C, O, P, Y)),
+  CORR = token(seq(C, O, R, R)),
+  CORRESPONDING = token(seq(C, O, R, R, E, S, P, O, N, D, I, N, G)),
+  COUNT = token(seq(C, O, U, N, T)),
+  CRUNCH = token(seq(C, R, U, N, C, H)),
+  CURRENCY = token(seq(C, U, R, R, E, N, C, Y)),
+  CURSOR = token(seq(C, U, R, S, O, R)),
+  DATA = token(seq(D, A, T, A)),
+  DATA_BASE = token(seq(D, A, T, A, MINUSCHAR, B, A, S, E)),
+  DATE = token(seq(D, A, T, E)),
+  DATE_COMPILED = token(seq(D, A, T, E, MINUSCHAR, C, O, M, P, I, L, E, D)),
+  DATE_WRITTEN = token(seq(D, A, T, E, MINUSCHAR, W, R, I, T, T, E, N)),
+  DAY = token(seq(D, A, Y)),
+  DAY_OF_WEEK = token(seq(D, A, Y, MINUSCHAR, O, F, MINUSCHAR, W, E, E, K)),
+  DBCS = token(seq(D, B, C, S)),
+  DBCLOB = token(seq(D, B, C, L, O, B)),
+  DE = token(seq(D, E)),
+  DEBUG_CONTENTS = token(seq(D, E, B, U, G, MINUSCHAR, C, O, N, T, E, N, T, S)),
+  DEBUG_ITEM = token(seq(D, E, B, U, G, MINUSCHAR, I, T, E, M)),
+  DEBUG_LINE = token(seq(D, E, B, U, G, MINUSCHAR, L, I, N, E)),
+  DEBUG_NAME = token(seq(D, E, B, U, G, MINUSCHAR, N, A, M, E)),
+  DEBUG_SUB_1 = token(seq(D, E, B, U, G, MINUSCHAR, S, U, B, MINUSCHAR, '1')),
+  DEBUG_SUB_2 = token(seq(D, E, B, U, G, MINUSCHAR, S, U, B, MINUSCHAR, '2')),
+  DEBUG_SUB_3 = token(seq(D, E, B, U, G, MINUSCHAR, S, U, B, MINUSCHAR, '3')),
+  DEBUGGING = token(seq(D, E, B, U, G, G, I, N, G)),
+  DECIMAL_POINT = token(seq(D, E, C, I, M, A, L, MINUSCHAR, P, O, I, N, T)),
+  DECLARATIVES = token(seq(D, E, C, L, A, R, A, T, I, V, E, S)),
+  DEFAULT = token(seq(D, E, F, A, U, L, T)),
+  DEFAULT_DISPLAY = token(seq(D, E, F, A, U, L, T, MINUSCHAR, D, I, S, P, L, A, Y)),
+  DEFINITION = token(seq(D, E, F, I, N, I, T, I, O, N)),
+  DELETE = token(seq(D, E, L, E, T, E)),
+  DELIMITED = token(seq(D, E, L, I, M, I, T, E, D)),
+  DELIMITER = token(seq(D, E, L, I, M, I, T, E, R)),
+  DEPENDING = token(seq(D, E, P, E, N, D, I, N, G)),
+  DESCENDING = token(seq(D, E, S, C, E, N, D, I, N, G)),
+  DESTINATION = token(seq(D, E, S, T, I, N, A, T, I, O, N)),
+  DETAIL = token(seq(D, E, T, A, I, L)),
+  DFHRESP = token(seq(D, F, H, R, E, S, P)),
+  DFHVALUE = token(seq(D, F, H, V, A, L, U, E)),
+  DISABLE = token(seq(D, I, S, A, B, L, E)),
+  DISK = token(seq(D, I, S, K)),
+  DISPLAY = token(seq(D, I, S, P, L, A, Y)),
+  DISPLAY_1 = token(seq(D, I, S, P, L, A, Y, MINUSCHAR, '1')),
+  DIVIDE = token(seq(D, I, V, I, D, E)),
+  DIVISION = token(seq(D, I, V, I, S, I, O, N)),
+  DONTCARE = token(seq(D, O, N, T, C, A, R, E)),
+  DOUBLE = token(seq(D, O, U, B, L, E)),
+  DOWN = token(seq(D, O, W, N)),
+  DUPLICATES = token(seq(D, U, P, L, I, C, A, T, E, S)),
+  DYNAMIC = token(seq(D, Y, N, A, M, I, C)),
+  EBCDIC = token(seq(E, B, C, D, I, C)),
+  EGCS = token(seq(E, G, C, S)),// E X T E N S I O N
+  EGI = token(seq(E, G, I)),
+  ELSE = token(seq(E, L, S, E)),
+  EMI = token(seq(E, M, I)),
+  EMPTY_CHECK = token(seq(E, M, P, T, Y, MINUSCHAR, C, H, E, C, K)),
+  ENABLE = token(seq(E, N, A, B, L, E)),
+  END = token(seq(E, N, D)),
+  END_ACCEPT = token(seq(E, N, D, MINUSCHAR, A, C, C, E, P, T)),
+  END_ADD = token(seq(E, N, D, MINUSCHAR, A, D, D)),
+  END_CALL = token(seq(E, N, D, MINUSCHAR, C, A, L, L)),
+  END_COMPUTE = token(seq(E, N, D, MINUSCHAR, C, O, M, P, U, T, E)),
+  END_DELETE = token(seq(E, N, D, MINUSCHAR, D, E, L, E, T, E)),
+  END_DISPLAY = token(seq(E, N, D, MINUSCHAR, D, I, S, P, L, A, Y)),
+  END_DIVIDE = token(seq(E, N, D, MINUSCHAR, D, I, V, I, D, E)),
+  END_EVALUATE = token(seq(E, N, D, MINUSCHAR, E, V, A, L, U, A, T, E)),
+  END_IF = token(seq(E, N, D, MINUSCHAR, I, F)),
+  END_MULTIPLY = token(seq(E, N, D, MINUSCHAR, M, U, L, T, I, P, L, Y)),
+  END_OF_PAGE = token(seq(E, N, D, MINUSCHAR, O, F, MINUSCHAR, P, A, G, E)),
+  END_PERFORM = token(seq(E, N, D, MINUSCHAR, P, E, R, F, O, R, M)),
+  END_READ = token(seq(E, N, D, MINUSCHAR, R, E, A, D)),
+  END_RECEIVE = token(seq(E, N, D, MINUSCHAR, R, E, C, E, I, V, E)),
+  END_REMARKS = token(seq(E, N, D, MINUSCHAR, R, E, M, A, R, K, S)),
+  END_RETURN = token(seq(E, N, D, MINUSCHAR, R, E, T, U, R, N)),
+  END_REWRITE = token(seq(E, N, D, MINUSCHAR, R, E, W, R, I, T, E)),
+  END_SEARCH = token(seq(E, N, D, MINUSCHAR, S, E, A, R, C, H)),
+  END_START = token(seq(E, N, D, MINUSCHAR, S, T, A, R, T)),
+  END_STRING = token(seq(E, N, D, MINUSCHAR, S, T, R, I, N, G)),
+  END_SUBTRACT = token(seq(E, N, D, MINUSCHAR, S, U, B, T, R, A, C, T)),
+  END_UNSTRING = token(seq(E, N, D, MINUSCHAR, U, N, S, T, R, I, N, G)),
+  END_WRITE = token(seq(E, N, D, MINUSCHAR, W, R, I, T, E)),
+  ENDING = token(seq(E, N, D, I, N, F)),
+  ENTER = token(seq(E, N, T, E, R)),
+  ENTRY = token(seq(E, N, T, R, Y)),
+  ENTRY_PROCEDURE = token(seq(E, N, T, R, Y, MINUSCHAR, P, R, O, C, E, D, U, R, E)),
+  ENVIRONMENT = token(seq(E, N, V, I, R, O, N, M, E, N, T)),
+  EOP = token(seq(E, O, P)),
+  EQUAL = token(seq(E, Q, U, A, L)),
+  ERASE = token(seq(E, R, A, S, E)),
+  ERROR = token(seq(E, R, R, O, R)),
+  EOL = token(seq(E, O, L)),
+  EOS = token(seq(E, O, S)),
+  ESCAPE = token(seq(E, S, C, A, P, E)),
+  ESI = token(seq(E, S, I)),
+  EVALUATE = token(seq(E, V, A, L, U, A, T, E)),
+  EVENT = token(seq(E, V, E, N, T)),
+  EVERY = token(seq(E, V, E, R, Y)),
+  EXCEPTION = token(seq(E, X, C, E, P, T, I, O, N)),
+  EXCLUSIVE = token(seq(E, X, C, L, U, S, I, V, E)),
+  EXHIBIT = token(seq(E, X, H, I, B, I, T)),
+  EXIT = token(seq(E, X, I, T)),
+  EXPORT = token(seq(E, X, P, O, R, T)),
+  EXTEND = token(seq(E, X, T, E, N, D)),
+  EXTENDED = token(seq(E, X, T, E, N, D, E, D)),
+  EXTERNAL = token(seq(E, X, T, E, R, N, A, L)),
+  FALSE = token(seq(F, A, L, S, E)),
+  FD = token(seq(F, D)),
+  FILE = token(seq(F, I, L, E)),
+  FILE_CONTROL = token(seq(F, I, L, E, MINUSCHAR, C, O, N, T, R, O, L)),
+  FILLER = token(seq(F, I, L, L, E, R)),
+  FINAL = token(seq(F, I, N, A, L)),
+  FIRST = token(seq(F, I, R, S, T)),
+  FOOTING = token(seq(F, O, O, T, I, N, G)),
+  FOR = token(seq(F, O, R)),
+  FOREGROUND_COLOR = token(seq(F, O, R, E, G, R, O, U, N, D, MINUSCHAR, C, O, L, O, R)),
+  FOREGROUND_COLOUR = token(seq(F, O, R, E, G, R, O, U, N, D, MINUSCHAR, C, O, L, O, U, R)),
+  FROM = token(seq(F, R, O, M)),
+  FULL = token(seq(F, U, L, L)),
+  FUNCTION = token(seq(F, U, N, C, T, I, O, N)),
+  FUNCTIONNAME = token(seq(F, U, N, C, T, I, O, N, N, A, M, E)),
+  FUNCTION_POINTER = token(seq(F, U, N, C, T, I, O, N, MINUSCHAR, P, O, I, N, T, E, R)),
+  GENERATE = token(seq(G, E, N, E, R, A, T, E)),
+  GOBACK = token(seq(G, O, B, A, C, K)),
+  GIVING = token(seq(G, I, V, I, N, G)),
+  GLOBAL = token(seq(G, L, O, B, A, L)),
+  GO = token(seq(G, O)),
+  GREATER = token(seq(G, R, E, A, T, E, R)),
+  GRID = token(seq(G, R, I, D)),
+  GROUP = token(seq(G, R, O, U, P)),
+  HEADING = token(seq(H, E, A, D, I, N, G)),
+  HIGHLIGHT = token(seq(H, I, G, H, L, I, G, H, T)),
+  HIGH_VALUE = token(seq(H, I, G, H, MINUSCHAR, V, A, L, U, E)),
+  HIGH_VALUES = token(seq(H, I, G, H, MINUSCHAR, V, A, L, U, E, S)),
+  I_O = token(seq(I, MINUSCHAR, O)),
+  I_O_CONTROL = token(seq(I, MINUSCHAR, O, MINUSCHAR, C, O, N, T, R, O, L)),
+  ID = token(seq(I, D)),
+  IDENTIFICATION = token(seq(I, D, E, N, T, I, F, I, C, A, T, I, O, N)),
+  IF = token(seq(I, F)),
+  IMPLICIT = token(seq(I, M, P, L, I, C, I, T)),
+  IMPORT = token(seq(I, M, P, O, R, T)),
+  IN = token(seq(I, N)),
+  INDEX = token(seq(I, N, D, E, X)),
+  INDEXED = token(seq(I, N, D, E, X, E, D)),
+  INDICATE = token(seq(I, N, D, I, C, A, T, E)),
+  INITIAL = token(seq(I, N, I, T, I, A, L)),
+  INITIALIZE = token(seq(I, N, I, T, I, A, L, I, Z, E)),
+  INITIATE = token(seq(I, N, I, T, I, A, T, E)),
+  INPUT = token(seq(I, N, P, U, T)),
+  INPUT_OUTPUT = token(seq(I, N, P, U, T, MINUSCHAR, O, U, T, P, U, T)),
+  INSPECT = token(seq(I, N, S, P, E, C, T)),
+  INSTALLATION = token(seq(I, N, S, T, A, L, L, A, T, I, O, N)),
+  INTEGER = token(seq(I, N, T, E, G, E, R)),
+  INTO = token(seq(I, N, T, O)),
+  INVALID = token(seq(I, N, V, A, L, I, D)),
+  INVOKE = token(seq(I, N, V, O, K, E)),
+  IS = token(seq(I, S)),
+  JUST = token(seq(J, U, S, T)),
+  JUSTIFIED = token(seq(J, U, S, T, I, F, I, E, D)),
+  KANJI = token(seq(K, A, N, J, I)),
+  KEPT = token(seq(K, E, P, T)),
+  KEY = token(seq(K, E, Y)),
+  KEYBOARD = token(seq(K, E, Y, B, O, A, R, D)),
+  LABEL = token(seq(L, A, B, E, L)),
+  LANGUAGE = token(seq(L, A, N, G, U, A, G, E)),
+  LAST = token(seq(L, A, S, T)),
+  LB = token(seq(L, B)),
+  LD = token(seq(L, D)),
+  LEADING = token(seq(L, E, A, D, I, N, G)),
+  LEFT = token(seq(L, E, F, T)),
+  LEFTLINE = token(seq(L, E, F, T, L, I, N, E)),
+  LENGTH = token(seq(L, E, N, G, T, H)),
+  LENGTH_CHECK = token(seq(L, E, N, G, T, H, MINUSCHAR, C, H, E, C, K)),
+  LESS = token(seq(L, E, S, S)),
+  LIBACCESS = token(seq(L, I, B, A, C, C, E, S, S)),
+  LIBPARAMETER = token(seq(L, I, B, P, A, R, A, M, E, T, E, R)),
+  LIBRARY = token(seq(L, I, B, R, A, R, Y)),
+  LIMIT = token(seq(L, I, M, I, T)),
+  LIMITS = token(seq(L, I, M, I, T, S)),
+  LINAGE = token(seq(L, I, N, A, G, E)),
+  LINAGE_COUNTER = token(seq(L, I, N, A, G, E, MINUSCHAR, C, O, U, N, T, E, R)),
+  LINE = token(seq(L, I, N, E)),
+  LINES = token(seq(L, I, N, E, S)),
+  LINE_COUNTER = token(seq(L, I, N, E, MINUSCHAR, C, O, U, N, T, E, R)),
+  LINKAGE = token(seq(L, I, N, K, A, G, E)),
+  LIST = token(seq(L, I, S, T)),
+  LOCAL = token(seq(L, O, C, A, L)),
+  LOCAL_STORAGE = token(seq(L, O, C, A, L, MINUSCHAR, S, T, O, R, A, G, E)),
+  LOCK = token(seq(L, O, C, K)),
+  LONG_DATE = token(seq(L, O, N, G, MINUSCHAR, D, A, T, E)),
+  LONG_TIME = token(seq(L, O, N, G, MINUSCHAR, T, I, M, E)),
+  LOWER = token(seq(L, O, W, E, R)),
+  LOWLIGHT = token(seq(L, O, W, L, I, G, H, T)),
+  LOW_VALUE = token(seq(L, O, W, MINUSCHAR, V, A, L, U, E)),
+  LOW_VALUES = token(seq(L, O, W, MINUSCHAR, V, A, L, U, E, S)),
+  MEMORY = token(seq(M, E, M, O, R, Y)),
+  MERGE = token(seq(M, E, R, G, E)),
+  MESSAGE = token(seq(M, E, S, S, A, G, E)),
+  MMDDYYYY = token(seq(M, M, D, D, Y, Y, Y, Y)),
+  MODE = token(seq(M, O, D, E)),
+  MODULES = token(seq(M, O, D, U, L, E, S)),
+  MORE_LABELS = token(seq(M, O, R, E, MINUSCHAR, L, A, B, E, L, S)),
+  MOVE = token(seq(M, O, V, E)),
+  MULTIPLE = token(seq(M, U, L, T, I, P, L, E)),
+  MULTIPLY = token(seq(M, U, L, T, I, P, L, Y)),
+  NAMED = token(seq(N, A, M, E, D)),
+  NATIONAL = token(seq(N, A, T, I, O, N, A, L)),
+  NATIONAL_EDITED = token(seq(N, A, T, I, O, N, A, L, MINUSCHAR, E, D, I, T, E, D)),
+  NATIVE = token(seq(N, A, T, I, V, E)),
+  NEGATIVE = token(seq(N, E, G, A, T, I, V, E)),
+  NETWORK = token(seq(N, E, T, W, O, R, K)),
+  NEXT = token(seq(N, E, X, T)),
+  NO = token(seq(N, O)),
+  NO_ECHO = token(seq(N, O, MINUSCHAR, E, C, H, O)),
+  NOT = token(seq(N, O, T)),
+  NULL = token(seq(N, U, L, L)),
+  NULLS = token(seq(N, U, L, L, S)),
+  NUMBER = token(seq(N, U, M, B, E, R)),
+  NUMERIC = token(seq(N, U, M, E, R, I, C)),
+  NUMERIC_DATE = token(seq(N, U, M, E, R, I, C, MINUSCHAR, D, A, T, E)),
+  NUMERIC_EDITED = token(seq(N, U, M, E, R, I, C, MINUSCHAR, E, D, I, T, E, D)),
+  NUMERIC_TIME = token(seq(N, U, M, E, R, I, C, MINUSCHAR, T, I, M, E)),
+  OBJECT_COMPUTER = token(seq(O, B, J, E, C, T, MINUSCHAR, C, O, M, P, U, T, E, R)),
+  OCCURS = token(seq(O, C, C, U, R, S)),
+  ODT = token(seq(O, D, T)),
+  OF = token(seq(O, F)),
+  OFF = token(seq(O, F, F)),
+  OMITTED = token(seq(O, M, I, T, T, E, D)),
+  ON = token(seq(O, N)),
+  OPEN = token(seq(O, P, E, N)),
+  OPTIONAL = token(seq(O, P, T, I, O, N, A, L)),
+  OR = token(seq(O, R)),
+  ORDER = token(seq(O, R, D, E, R)),
+  ORDERLY = token(seq(O, R, D, E, R, L, Y)),
+  ORGANIZATION = token(seq(O, R, G, A, N, I, Z, A, T, I, O, N)),
+  OTHER = token(seq(O, T, H, E, R)),
+  OUTPUT = token(seq(O, U, T, P, U, T)),
+  OVERFLOW = token(seq(O, V, E, R, F, L, O, W)),
+  OVERLINE = token(seq(O, V, E, R, L, I, N, E)),
+  OWN = token(seq(O, W, N)),
+  PACKED_DECIMAL = token(seq(P, A, C, K, E, D, MINUSCHAR, D, E, C, I, M, A, L)),
+  PADDING = token(seq(P, A, D, D, I, N, G)),
+  PAGE = token(seq(P, A, G, E)),
+  PAGE_COUNTER = token(seq(P, A, G, E, MINUSCHAR, C, O, U, N, T, E, R)),
+  PASSWORD = token(seq(P, A, S, S, W, O, R, D)),
+  PERFORM = token(seq(P, E, R, F, O, R, M)),
+  PF = token(seq(P, F)),
+  PH = token(seq(P, H)),
+  PIC = token(seq(P, I, C)),
+  PICTURE = token(seq(P, I, C, T, U, R, E)),
+  PLUS = token(seq(P, L, U, S)),
+  POINTER = token(seq(P, O, I, N, T, E, R)),
+  POSITION = token(seq(P, O, S, I, T, I, O, N)),
+  POSITIVE = token(seq(P, O, S, I, T, I, V, E)),
+  PORT = token(seq(P, O, R, T)),
+  PRINTER = token(seq(P, R, I, N, T, E, R)),
+  PRINTING = token(seq(P, R, I, N, T, I, N, G)),
+  PRIVATE = token(seq(P, R, I, V, A, T, E)),
+  PROCEDURE = token(seq(P, R, O, C, E, D, U, R, E)),
+  PROCEDURE_POINTER = token(seq(P, R, O, C, E, D, U, R, E, MINUSCHAR, P, O, I, N, T, E, R)),
+  PROCEDURES = token(seq(P, R, O, C, E, D, U, R, E, S)),
+  PROCEED = token(seq(P, R, O, C, E, E, D)),
+  PROCESS = token(seq(P, R, O, C, E, S, S)),
+  PROGRAM = token(seq(P, R, O, G, R, A, M)),
+  PROGRAM_ID = token(seq(P, R, O, G, R, A, M, MINUSCHAR, I, D)),
+  PROGRAM_LIBRARY = token(seq(P, R, O, G, R, A, M, MINUSCHAR, L, I, B, R, A, R, Y)),
+  PROMPT = token(seq(P, R, O, M, P, T)),
+  PURGE = token(seq(P, U, R, G, E)),
+  QUEUE = token(seq(Q, U, E, U, E)),
+  QUOTE = token(seq(Q, U, O, T, E)),
+  QUOTES = token(seq(Q, U, O, T, E, S)),
+  RANDOM = token(seq(R, A, N, D, O, M)),
+  READER = token(seq(R, E, A, D, E, R)),
+  REMOTE = token(seq(R, E, M, O, T, E)),
+  RD = token(seq(R, D)),
+  REAL = token(seq(R, E, A, L)),
+  READ = token(seq(R, E, A, D)),
+  RECEIVE = token(seq(R, E, C, E, I, V, E)),
+  RECEIVED = token(seq(R, E, C, E, I, V, E, D)),
+  RECORD = token(seq(R, E, C, O, R, D)),
+  RECORDING = token(seq(R, E, C, O, R, D, I, N, G)),
+  RECORDS = token(seq(R, E, C, O, R, D, S)),
+  RECURSIVE = token(seq(R, E, C, U, R, S, I, V, E)),
+  REDEFINES = token(seq(R, E, D, E, F, I, N, E, S)),
+  REEL = token(seq(R, E, E, L)),
+  REF = token(seq(R, E, F)),
+  REFERENCE = token(seq(R, E, F, E, R, E, N, C, E)),
+  REFERENCES = token(seq(R, E, F, E, R, E, N, C, E, S)),
+  RELATIVE = token(seq(R, E, L, A, T, I, V, E)),
+  RELEASE = token(seq(R, E, L, E, A, S, E)),
+  REMAINDER = token(seq(R, E, M, A, I, N, D, E, R)),
+  REMARKS = token(seq(R, E, M, A, R, K, S)),
+  REMOVAL = token(seq(R, E, M, O, V, A, L)),
+  REMOVE = token(seq(R, E, M, O, V, E)),
+  RENAMES = token(seq(R, E, N, A, M, E, S)),
+  REPLACE = token(seq(R, E, P, L, A, C, E)),
+  REPLACING = token(seq(R, E, P, L, A, C, I, N, G)),
+  REPORT = token(seq(R, E, P, O, R, T)),
+  REPORTING = token(seq(R, E, P, O, R, T, I, N, G)),
+  REPORTS = token(seq(R, E, P, O, R, T, S)),
+  REQUIRED = token(seq(R, E, Q, U, I, R, E, D)),
+  RERUN = token(seq(R, E, R, U, N)),
+  RESERVE = token(seq(R, E, S, E, R, V, E)),
+  REVERSE_VIDEO = token(seq(R, E, S, E, R, V, E, MINUSCHAR, V, I, D, E, O)),
+  RESET = token(seq(R, E, S, E, T)),
+  RETURN = token(seq(R, E, T, U, R, N)),
+  RETURN_CODE = token(seq(R, E, T, U, R, N, MINUSCHAR, C, O, D, E)),
+  RETURNING = token(seq(R, E, T, U, R, N, I, N, G)),
+  REVERSED = token(seq(R, E, V, E, R, S, E, D)),
+  REWIND = token(seq(R, E, W, I, N, D)),
+  REWRITE = token(seq(R, E, W, R, I, T, E)),
+  RF = token(seq(R, F)),
+  RH = token(seq(R, H)),
+  RIGHT = token(seq(R, I, G, H, T)),
+  ROUNDED = token(seq(R, O, U, N, D, E, D)),
+  RUN = token(seq(R, U, N)),
+  SAME = token(seq(S, A, M, E)),
+  SAVE = token(seq(S, A, V, E)),
+  SCREEN = token(seq(S, C, R, E, E, N)),
+  SD = token(seq(S, D)),
+  SEARCH = token(seq(S, E, A, R, C, H)),
+  SECTION = token(seq(S, E, C, T, I, O, N)),
+  SECURE = token(seq(S, E, C, U, R, E)),
+  SECURITY = token(seq(S, E, C, U, R, I, T, Y)),
+  SEGMENT = token(seq(S, E, G, M, E, N, T)),
+  SEGMENT_LIMIT = token(seq(S, E, G, M, E, N, T, MINUSCHAR, L, I, M, I, T)),
+  SELECT = token(seq(S, E, L, E, C, T)),
+  SEND = token(seq(S, E, N, D)),
+  SENTENCE = token(seq(S, E, N, T, E, N, C, E)),
+  SEPARATE = token(seq(S, E, P, A, R, A, T, E)),
+  SEQUENCE = token(seq(S, E, Q, U, E, N, C, E)),
+  SEQUENTIAL = token(seq(S, E, Q, U, E, N, T, I, A, L)),
+  SET = token(seq(S, E, T)),
+  SHARED = token(seq(S, H, A, R, E, D)),
+  SHAREDBYALL = token(seq(S, H, A, R, E, D, B, Y, A, L, L)),
+  SHAREDBYRUNUNIT = token(seq(S, H, A, R, E, D, B, Y, R, U, N, U, N, I, T)),
+  SHARING = token(seq(S, H, A, R, I, N, G)),
+  SHIFT_IN = token(seq(S, H, I, F, T, MINUSCHAR, I, N)),
+  SHIFT_OUT = token(seq(S, H, I, F, T, MINUSCHAR, O, U, T)),
+  SHORT_DATE = token(seq(S, H, O, R, T, MINUSCHAR, D, A, T, E)),
+  SIGN = token(seq(S, I, G, N)),
+  SIZE = token(seq(S, I, Z, E)),
+  SORT = token(seq(S, O, R, T)),
+  SORT_CONTROL = token(seq(S, O, R, T, MINUSCHAR, C, O, N, T, R, O, L)),
+  SORT_CORE_SIZE = token(seq(S, O, R, T, MINUSCHAR, C, O, R, E, MINUSCHAR, S, I, Z, E)),
+  SORT_FILE_SIZE = token(seq(S, O, R, T, MINUSCHAR, F, I, L, E, MINUSCHAR, S, I, Z, E)),
+  SORT_MERGE = token(seq(S, O, R, T, MINUSCHAR, M, E, R, G, E)),
+  SORT_MESSAGE = token(seq(S, O, R, T, MINUSCHAR, M, E, S, S, A, G, E)),
+  SORT_MODE_SIZE = token(seq(S, O, R, T, MINUSCHAR, M, O, D, E, MINUSCHAR, S, I, Z, E)),
+  SORT_RETURN = token(seq(S, O, R, T, MINUSCHAR, R, E, T, U, R, N)),
+  SOURCE = token(seq(S, O, U, R, C, E)),
+  SOURCE_COMPUTER = token(seq(S, O, U, R, C, E, MINUSCHAR, C, O, M, P, U, T, E, R)),
+  SPACE = token(seq(S, P, A, C, E)),
+  SPACES = token(seq(S, P, A, C, E, S)),
+  SPECIAL_NAMES = token(seq(S, P, E, C, I, A, L, MINUSCHAR, N, A, M, E, S)),
+  SQL = token(seq(S, Q, L)),
+  STANDARD = token(seq(S, T, A, N, D, A, R, D)),
+  STANDARD_1 = token(seq(S, T, A, N, D, A, R, D, MINUSCHAR, '1')),
+  STANDARD_2 = token(seq(S, T, A, N, D, A, R, D, MINUSCHAR, '2')),
+  START = token(seq(S, T, A, R, T)),
+  STATUS = token(seq(S, T, A, T, U, S)),
+  STOP = token(seq(S, T, O, P)),
+  STRING = token(seq(S, T, R, I, N, G)),
+  SUB_QUEUE_1 = token(seq(S, U, B, MINUSCHAR, Q, U, E, U, E, MINUSCHAR, '1')),
+  SUB_QUEUE_2 = token(seq(S, U, B, MINUSCHAR, Q, U, E, U, E, MINUSCHAR, '2')),
+  SUB_QUEUE_3 = token(seq(S, U, B, MINUSCHAR, Q, U, E, U, E, MINUSCHAR, '3')),
+  SUBTRACT = token(seq(S, U, B, T, R, A, C, T)),
+  SUM = token(seq(S, U, M)),
+  SUPPRESS = token(seq(S, U, P, P, R, E, S, S)),
+  SYMBOL = token(seq(S, Y, M, B, O, L)),
+  SYMBOLIC = token(seq(S, Y, M, B, O, L, I, C)),
+  SYNC = token(seq(S, Y, N, C)),
+  SYNCHRONIZED = token(seq(S, Y, N, C, H, R, O, N, I, Z, E, D)),
+  TABLE = token(seq(T, A, B, L, E)),
+  TALLY = token(seq(T, A, L, L, Y)),
+  TALLYING = token(seq(T, A, L, L, Y, I, N, G)),
+  TASK = token(seq(T, A, S, K)),
+  TAPE = token(seq(T, A, P, E)),
+  TERMINAL = token(seq(T, E, R, M, I, N, A, L)),
+  TERMINATE = token(seq(T, E, R, M, I, N, A, T, E)),
+  TEST = token(seq(T, E, S, T)),
+  TEXT = token(seq(T, E, X, T)),
+  THAN = token(seq(T, H, A, N)),
+  THEN = token(seq(T, H, E, N)),
+  THREAD = token(seq(T, H, R, E, A, D)),
+  THREAD_LOCAL = token(seq(T, H, R, E, A, D, MINUSCHAR, L, O, C, A, L)),
+  THROUGH = token(seq(T, H, R, O, U, G, H)),
+  THRU = token(seq(T, H, R, U)),
+  TIME = token(seq(T, I, M, E)),
+  TIMER = token(seq(T, I, M, E, R)),
+  TIMES = token(seq(T, I, M, E, S)),
+  TITLE = token(seq(T, I, T, L, E)),
+  TO = token(seq(T, O)),
+  TODAYS_DATE = token(seq(T, O, D, A, Y, S, MINUSCHAR, D, A, T, E)),
+  TODAYS_NAME = token(seq(T, O, D, A, Y, S, MINUSCHAR, N, A, M, E)),
+  TOP = token(seq(T, O, P)),
+  TRAILING = token(seq(T, R, A, I, L, I, N, G)),
+  TRUE = token(seq(T, R, U, E)),
+  TRUNCATED = token(seq(T, R, U, N, C, A, T, E, D)),
+  TYPE = token(seq(T, Y, P, E)),
+  TYPEDEF = token(seq(T, Y, P, E, D, E, F)),
+  UNDERLINE = token(seq(U, N, D, E, R, L, I, N, E)),
+  UNIT = token(seq(U, N, I, T)),
+  UNSTRING = token(seq(U, N, S, T, R, I, N, G)),
+  UNTIL = token(seq(U, N, T, I, L)),
+  UP = token(seq(U, P)),
+  UPON = token(seq(U, P, O, N)),
+  USAGE = token(seq(U, S, A, G, E)),
+  USE = token(seq(U, S, E)),
+  USING = token(seq(U, S, I, N, G)),
+  VALUE = token(seq(V, A, L, U, E)),
+  VALUES = token(seq(V, A, L, U, E, S)),
+  VARYING = token(seq(V, A, R, Y, I, N, G)),
+  VIRTUAL = token(seq(V, I, R, T, U, A, L)),
+  WAIT = token(seq(W, A, I, T)),
+  WHEN = token(seq(W, H, E, N)),
+  WHEN_COMPILED = token(seq(W, H, E, N, MINUSCHAR, C, O, M, P, I, L, E, D)),
+  WITH = token(seq(W, I, T, H)),
+  WORDS = token(seq(W, O, R, D, S)),
+  WORKING_STORAGE = token(seq(W, O, R, K, I, N, G, MINUSCHAR, S, T, O, R, A, G, E)),
+  WRITE = token(seq(W, R, I, T, E)),
+  YEAR = token(seq(Y, E, A, R)),
+  YYYYMMDD = token(seq(Y, Y, Y, Y, M, M, D, D)),
+  YYYYDDD = token(seq(Y, Y, Y, Y, D, D, D)),
+  ZERO = token(seq(Z, E, R, O)),
+  ZERO_FILL = token(seq(Z, E, R, O, MINUSCHAR, F, I, L, L)),
+  ZEROS = token(seq(Z, E, R, O, S)),
+  ZEROES = token(seq(Z, E, R, O, E, S)),
 
   // literals
-  HEXNUMBER = choice(seq(X, '"', /[0-9A-F]+/, '"'), seq(X, '\'', /[0-9A-F]+/, '\'')),
-  NULLTERMINATED = choice(seq(Z, '"', /(~["\n\r] | '""' | '\'')*/, '"'), seq(Z, '\'', /(~['\n\r] | '\'\'' | '"')*/, '\'')),
-  STRINGLITERAL = choice(seq('"', /(~["\n\r] | '""' | '\'')*/, '"'), seq('\'', /(~['\n\r] | '\'\'' | '"')*/, '\'')),
-  DBCSLITERAL = choice(seq(choice(G, N), '"', /(~["\n\r] | '""' | '\'')*/, '"'), seq(choice(G, N), '\'', /(~['\n\r] | '\'\'' | '"')*/, '\'')),
-  INTEGERLITERAL = seq(optional(choice(PLUSCHAR, MINUSCHAR)), /[0-9]+/),
-  NUMERICLITERAL = seq(optional(choice(PLUSCHAR, MINUSCHAR)), /[0-9]*/, choice(DOT, COMMACHAR), /[0-9]+/, optional(seq(E, optional(choice(PLUSCHAR, MINUSCHAR)), /[0-9]+/))),
-  IDENTIFIER = seq(/[a-zA-Z0-9]+/, repeat(seq(/[-_]+/, /[a-zA-Z0-9]+/))),
-  NONNUMERICLITERAL = choice(STRINGLITERAL, DBCSLITERAL, HEXNUMBER, NULLTERMINATED),
+  HEXNUMBER = token(choice(seq(X, '"', /[0-9A-F]+/, '"'), seq(X, '\'', /[0-9A-F]+/, '\''))),
+  NULLTERMINATED = token(choice(seq(Z, '"', /(~["\n\r] | '""' | '\'')*/, '"'), seq(Z, '\'', /(~['\n\r] | '\'\'' | '"')*/, '\''))),
+  STRINGLITERAL = token(choice(seq('"', /(~["\n\r] | '""' | '\'')*/, '"'), seq('\'', /(~['\n\r] | '\'\'' | '"')*/, '\''))),
+  DBCSLITERAL = token(choice(seq(choice(G, N), '"', /(~["\n\r] | '""' | '\'')*/, '"'), seq(choice(G, N), '\'', /(~['\n\r] | '\'\'' | '"')*/, '\''))),
+  INTEGERLITERAL = token(seq(optional(choice(PLUSCHAR, MINUSCHAR)), /[0-9]+/)),
+  NUMERICLITERAL = token(seq(optional(choice(PLUSCHAR, MINUSCHAR)), /[0-9]*/, choice(DOT, COMMACHAR), /[0-9]+/, optional(seq(E, optional(choice(PLUSCHAR, MINUSCHAR)), /[0-9]+/)))),
+
+  IDENTIFIER = token(seq(/[a-zA-Z0-9]+/, repeat(seq(/[-_]+/, /[a-zA-Z0-9]+/)))),
+
+  NONNUMERICLITERAL = token(choice(STRINGLITERAL, DBCSLITERAL, HEXNUMBER, NULLTERMINATED)),
 
   LEVEL_NUMBER_66 = '66',
   LEVEL_NUMBER_77 = '77',
@@ -612,14 +614,49 @@ const
 
 module.exports = grammar({
   name: "cobol",
+
+  extras: $ => [
+    $.commentEntry,
+  ],
+
+  word: $ => $.cobolWord,
+
+  conflicts: $ => [
+    [$.identifier, $.tableCall],
+    [$.identifier, $.tableCall, $.argument],
+    [$.numericLiteral, $.figurativeConstant],
+    [$.conditionNameReference, $.qualifiedDataNameFormat1],
+    [$.paragraph, $.sentence],
+    [$.qualifiedInData, $.conditionNameReference],
+    [$.moveToSendingArea, $.figurativeConstant],
+    [$.subscript, $.figurativeConstant],
+    [$.subscript, $.tableCall],
+    [$.qualifiedDataNameFormat1, $.inData],
+    [$.addToGiving, $.addTo],
+    [$.divideIntoGivingStatement, $.divideInto],
+    [$.evaluateCondition, $.literal],
+    [$.ifThen, $.nextSentenceStatement],
+    [$.unstringDelimitedByPhrase, $.figurativeConstant],
+    [$.reportGroupDescriptionEntryFormat2, $.reportGroupDescriptionEntryFormat3],
+    [$.pictureString],
+    [$.callByReference, $.specialRegister],
+    [$.ifElse, $.nextSentenceStatement],
+    [$.searchWhen, $.nextSentenceStatement],
+    [$.unstringOrAllPhrase, $.figurativeConstant],
+    [$.evaluateValue, $.relationSignCondition],
+    [$.evaluateValue, $.classCondition],
+    [$.callByValue, $.specialRegister],
+    [$.relationArithmeticComparison, $.abbreviation],
+    [$.callByContent, $.specialRegister],
+  ],
   rules: {
     source_file: $ => $.compilationUnit,
 
-    compilationUnit: $ => repeat($.programUnit),
+    compilationUnit: $ => repeat1($.programUnit),
 
-    programUnit: $ => seq(
-      $.identificationDivision, optional($.environmentDivision), optional($.dataDivision), optional($.procedureDivision), repeat($.programUnit)
-      , optional($.endProgramStatement)),
+    programUnit: $ => prec.left(seq(
+      $.identificationDivision, optional($.environmentDivision), optional($.dataDivision), optional($.procedureDivision), repeat($.programUnit), optional($.endProgramStatement),
+    )),
 
     endProgramStatement: $ => seq(END, PROGRAM, $.programName, DOT_FS),
 
@@ -682,8 +719,9 @@ module.exports = grammar({
 
     // -- configuration section ----------------------------------
 
-    configurationSection: $ => seq(
-      CONFIGURATION, SECTION, DOT_FS, repeat($.configurationSectionParagraph)),
+    configurationSection: $ => prec.left(seq(
+      CONFIGURATION, SECTION, DOT_FS, repeat($.configurationSectionParagraph)
+    )),
 
     // - configuration section $.paragraph ----------------------------------
 
@@ -776,7 +814,7 @@ module.exports = grammar({
 
     alphabetThrough: $ => seq(choice(THROUGH, THRU), $.literal),
 
-    alphabetAlso: $ => seq(ALSO, repeat1($.literal)),
+    alphabetAlso: $ => prec.left(seq(ALSO, repeat1($.literal))),
 
     alphabetClauseFormat2: $ => seq(
       ALPHABET, $.alphabetName, optional(FOR), NATIONAL, optional(IS), choice(
@@ -786,8 +824,9 @@ module.exports = grammar({
 
     channelClause: $ => seq(CHANNEL, $.integerLiteral, optional(IS), $.mnemonicName),
 
-    classClause: $ => seq(
-      CLASS, $.className, optional(seq(optional(FOR), choice(ALPHANUMERIC, NATIONAL))), optional(IS), repeat1($.classClauseThrough)),
+    classClause: $ => prec.left(seq(
+      CLASS, $.className, optional(seq(optional(FOR), choice(ALPHANUMERIC, NATIONAL))), optional(IS), repeat1($.classClauseThrough),
+    )),
 
     classClauseThrough: $ => seq(
       $.classClauseFrom, optional(seq(choice(THROUGH, THRU), $.classClauseTo))),
@@ -812,10 +851,10 @@ module.exports = grammar({
         SEPARATE, optional(CHARACTER)
       ))),
 
-    environmentSwitchNameClause: $ => choice(
+    environmentSwitchNameClause: $ => prec.left(choice(
       seq($.environmentName, optional(IS), $.mnemonicName, optional($.environmentSwitchNameSpecialNamesStatusPhrase)),
       $.environmentSwitchNameSpecialNamesStatusPhrase,
-    ),
+    )),
 
     environmentSwitchNameSpecialNamesStatusPhrase: $ => choice(
       seq(ON, optional(STATUS), optional(IS), $.condition, seq(OFF, optional(STATUS), optional(IS), $.condition)),
@@ -825,10 +864,11 @@ module.exports = grammar({
 
     reserveNetworkClause: $ => seq(RESERVE, optional(WORDS), optional(LIST), optional(IS), NETWORK, optional(CAPABLE)),
 
-    symbolicCharactersClause: $ => seq(
+    symbolicCharactersClause: $ => prec.left(seq(
       SYMBOLIC, optional(CHARACTERS), optional(seq(optional(FOR), choice(ALPHANUMERIC, NATIONAL))), repeat1($.symbolicCharacters), optional(seq(
         IN, $.alphabetName
-      ))),
+      )),
+    )),
 
     symbolicCharacters: $ => seq(
       repeat1($.symbolicCharacter), optional(choice(IS, ARE)), repeat1($.integerLiteral)),
@@ -846,8 +886,9 @@ module.exports = grammar({
 
     // - file control $.paragraph ----------------------------------
 
-    fileControlParagraph: $ => seq(
-      optional(FILE_CONTROL), repeat(seq(optional(DOT_FS), $.fileControlEntry)), DOT_FS),
+    fileControlParagraph: $ => prec.left(seq(
+      optional(FILE_CONTROL), repeat(seq(optional(DOT_FS), $.fileControlEntry)), DOT_FS,
+    )),
 
     fileControlEntry: $ => seq($.selectClause, repeat($.fileControlClause)),
 
@@ -881,8 +922,9 @@ module.exports = grammar({
         $.literal
       )),
 
-    reserveClause: $ => seq(
-      RESERVE, choice(NO, $.integerLiteral), optional(ALTERNATE), optional(choice(AREA, AREAS))),
+    reserveClause: $ => prec.left(seq(
+      RESERVE, choice(NO, $.integerLiteral), optional(ALTERNATE), optional(choice(AREA, AREAS)),
+    )),
 
     organizationClause: $ => seq(optional(seq(ORGANIZATION, optional(IS))), optional(choice(
       LINE,
@@ -900,15 +942,17 @@ module.exports = grammar({
     accessModeClause: $ => seq(
       ACCESS, optional(MODE), optional(IS), choice(SEQUENTIAL, RANDOM, DYNAMIC, EXCLUSIVE)),
 
-    recordKeyClause: $ => seq(
+    recordKeyClause: $ => prec.left(seq(
       RECORD, optional(KEY), optional(IS), $.qualifiedDataName, optional($.passwordClause), optional(seq(
         optional(WITH), DUPLICATES
-      ))),
+      )),
+    )),
 
-    alternateRecordKeyClause: $ => seq(
+    alternateRecordKeyClause: $ => prec.left(seq(
       ALTERNATE, RECORD, optional(KEY), optional(IS), $.qualifiedDataName, optional($.passwordClause), optional(seq(
         optional(WITH), DUPLICATES
-      ))),
+      )),
+    )),
 
     passwordClause: $ => seq(PASSWORD, optional(IS), $.dataName),
 
@@ -919,10 +963,11 @@ module.exports = grammar({
 
     // - io control $.paragraph ----------------------------------
 
-    ioControlParagraph: $ => seq(
+    ioControlParagraph: $ => prec.left(seq(
       I_O_CONTROL, DOT_FS, optional(seq($.fileName, DOT_FS)), optional(seq(
         repeat($.ioControlClause), DOT_FS
-      ))),
+      )),
+    )),
 
     ioControlClause: $ => choice(
       $.rerunClause,
@@ -973,9 +1018,11 @@ module.exports = grammar({
 
     fileSection: $ => seq(FILE, SECTION, DOT_FS, repeat($.fileDescriptionEntry)),
 
-    fileDescriptionEntry: $ => seq(choice(FD, SD), $.fileName, repeat(seq(
-      optional(DOT_FS), $.fileDescriptionEntryClause
-    )), DOT_FS, repeat($.dataDescriptionEntry)),
+    fileDescriptionEntry: $ => prec.left(seq(
+      choice(FD, SD), $.fileName, repeat(seq(
+        optional(DOT_FS), $.fileDescriptionEntryClause
+      )), DOT_FS, repeat($.dataDescriptionEntry),
+    )),
 
     fileDescriptionEntryClause: $ => choice(
       $.externalClause,
@@ -1383,10 +1430,11 @@ module.exports = grammar({
 
     reportGroupSourceClause: $ => seq(SOURCE, optional(IS), $.identifier),
 
-    reportGroupSumClause: $ => seq(
+    reportGroupSumClause: $ => prec.left(seq(
       SUM, $.identifier, repeat(seq(optional(COMMACHAR), $.identifier)), optional(seq(
         UPON, $.dataName, repeat(seq(optional(COMMACHAR), $.dataName)),
-      ))),
+      )),
+    )),
 
     reportGroupTypeClause: $ => seq(
       TYPE, optional(IS), choice(
@@ -1529,7 +1577,7 @@ module.exports = grammar({
     dataDescriptionEntryFormat3: $ => seq(
       LEVEL_NUMBER_88, $.conditionName, $.dataValueClause, DOT_FS),
 
-    dataDescriptionEntryExecSql: $ => seq(repeat1(EXECSQLLINE), optional(DOT_FS)),
+    dataDescriptionEntryExecSql: $ => prec.left(seq(repeat1(EXECSQLLINE), optional(DOT_FS))),
 
     dataAlignedClause: $ => ALIGNED,
 
@@ -1537,7 +1585,7 @@ module.exports = grammar({
 
     dataCommonOwnLocalClause: $ => choice(COMMON, OWN, LOCAL),
 
-    dataExternalClause: $ => seq(optional(IS), EXTERNAL, optional(seq(BY, $.literal))),
+    dataExternalClause: $ => prec.left(seq(optional(IS), EXTERNAL, optional(seq(BY, $.literal)))),
 
     dataGlobalClause: $ => seq(optional(IS), GLOBAL),
 
@@ -1555,15 +1603,15 @@ module.exports = grammar({
 
     dataOccursDepending: $ => seq(DEPENDING, optional(ON), $.qualifiedDataName),
 
-    dataOccursSort: $ => seq(choice(ASCENDING, DESCENDING), optional(KEY), optional(IS), repeat1($.qualifiedDataName)),
+    dataOccursSort: $ => prec.left(seq(choice(ASCENDING, DESCENDING), optional(KEY), optional(IS), repeat1($.qualifiedDataName))),
 
-    dataOccursIndexed: $ => seq(INDEXED, optional(BY), optional(LOCAL), repeat1($.indexName)),
+    dataOccursIndexed: $ => prec.left(seq(INDEXED, optional(BY), optional(LOCAL), repeat1($.indexName))),
 
     dataPictureClause: $ => seq(choice(PICTURE, PIC), optional(IS), $.pictureString),
 
     pictureString: $ => repeat1(seq(repeat1($.pictureChars), optional($.pictureCardinality))),
 
-    pictureChars: $ => choice(
+    pictureChars: $ => prec.left(choice(
       DOLLARCHAR,
       $.identifier,
       NUMERICLITERAL,
@@ -1579,7 +1627,8 @@ module.exports = grammar({
       MINUSCHAR,
       LESSTHANCHAR,
       MORETHANCHAR,
-      $.integerLiteral),
+      $.integerLiteral,
+    )),
 
     pictureCardinality: $ => seq(LPARENCHAR, $.integerLiteral, RPARENCHAR),
 
@@ -1651,9 +1700,9 @@ module.exports = grammar({
     dataUsingClause: $ => seq(
       USING, choice(LANGUAGE, CONVENTION), optional(OF), choice($.cobolWord, $.dataName)),
 
-    dataValueClause: $ => seq(optional(seq(choice(VALUE, VALUES), optional(choice(IS, ARE)))), $.dataValueInterval, repeat(seq(
+    dataValueClause: $ => prec.left(seq(optional(seq(choice(VALUE, VALUES), optional(choice(IS, ARE)))), $.dataValueInterval, repeat(seq(
       optional(COMMACHAR), $.dataValueInterval
-    ))),
+    )))),
 
     dataValueInterval: $ => seq($.dataValueIntervalFrom, optional($.dataValueIntervalTo)),
 
@@ -1677,13 +1726,13 @@ module.exports = grammar({
       $.procedureDivisionByReferencePhrase,
       $.procedureDivisionByValuePhrase),
 
-    procedureDivisionByReferencePhrase: $ => seq(optional(seq(optional(BY), REFERENCE)), repeat1($.procedureDivisionByReference)),
+    procedureDivisionByReferencePhrase: $ => prec.left(seq(optional(seq(optional(BY), REFERENCE)), repeat1($.procedureDivisionByReference))),
 
-    procedureDivisionByReference: $ => choice(choice(optional(OPTIONAL), choice($.identifier, $.fileName)),
-      ANY),
+    procedureDivisionByReference: $ => choice(seq(optional(OPTIONAL), choice($.identifier, $.fileName)), ANY),
 
-    procedureDivisionByValuePhrase: $ => seq(
-      optional(BY), VALUE, repeat1($.procedureDivisionByValue)),
+    procedureDivisionByValuePhrase: $ => prec.left(seq(
+      optional(BY), VALUE, repeat1($.procedureDivisionByValue)
+    )),
 
     procedureDivisionByValue: $ => choice($.identifier, $.literal, ANY),
 
@@ -1701,9 +1750,9 @@ module.exports = grammar({
 
     procedureSection: $ => seq($.procedureSectionHeader, DOT_FS, $.paragraphs),
 
-    paragraphs: $ => seq(repeat($.sentence), repeat($.paragraph)),
+    paragraphs: $ => prec.left(repeat1(choice($.sentence, $.paragraph))),
 
-    paragraph: $ => seq($.paragraphName, optional(DOT_FS), choice($.alteredGoTo, repeat($.sentence))),
+    paragraph: $ => prec.left(seq($.paragraphName, optional(DOT_FS), choice($.alteredGoTo, repeat($.sentence)))),
 
     sentence: $ => seq(repeat($.statement), DOT_FS),
 
@@ -1761,14 +1810,14 @@ module.exports = grammar({
     ),
 
     // accept $.statement
-    acceptStatement: $ => seq(
+    acceptStatement: $ => prec.left(seq(
       ACCEPT, $.identifier, optional(choice(
         $.acceptFromDateStatement,
         $.acceptFromEscapeKeyStatement,
         $.acceptFromMnemonicStatement,
         $.acceptMessageCountStatement
       )), optional($.onExceptionClause), optional($.notOnExceptionClause), optional(END_ACCEPT),
-    ),
+    )),
     acceptFromDateStatement: $ => seq(
       FROM, choice(
         seq(DATE, optional(YYYYMMDD)),
@@ -1788,13 +1837,13 @@ module.exports = grammar({
     acceptMessageCountStatement: $ => seq(optional(MESSAGE), COUNT),
 
     // add $.statement
-    addStatement: $ => seq(
+    addStatement: $ => prec.left(seq(
       ADD, choice(
         $.addToStatement,
         $.addToGivingStatement,
         $.addCorrespondingStatement
       ), optional($.onSizeErrorPhrase), optional($.notOnSizeErrorPhrase), optional(END_ADD),
-    ),
+    )),
     addToStatement: $ => seq(repeat1($.addFrom), TO, repeat1($.addTo)),
     addToGivingStatement: $ => seq(
       repeat1($.addFrom), optional(seq(TO, repeat1($.addToGiving))), GIVING, repeat1($.addGiving),
@@ -1813,11 +1862,11 @@ module.exports = grammar({
     alterProceedTo: $ => seq($.procedureName, TO, optional(seq(PROCEED, TO)), $.procedureName),
 
     // call $.statement
-    callStatement: $ => seq(
+    callStatement: $ => prec.left(seq(
       CALL, choice($.identifier, $.literal), optional($.callUsingPhrase), optional($.callGivingPhrase), optional($.onOverflowPhrase),
       optional($.onExceptionClause), optional($.notOnExceptionClause), optional(END_CALL),
-    ),
-    callUsingPhrase: $ => seq(USING, repeat1($.callUsingParameter)),
+    )),
+    callUsingPhrase: $ => prec.left(seq(USING, repeat1($.callUsingParameter))),
     callUsingParameter: $ => seq(
       $.callByReferencePhrase,
       $.callByValuePhrase,
@@ -1836,7 +1885,7 @@ module.exports = grammar({
     ),
     callByValuePhrase: $ => seq(optional(BY), VALUE, repeat1($.callByValue)),
     callByValue: $ => seq(optional(seq(choice(seq(ADDRESS, OF), LENGTH), optional(OF))), choice($.identifier, $.literal)),
-    callByContentPhrase: $ => seq(optional(BY), CONTENT, repeat1($.callByContent)),
+    callByContentPhrase: $ => prec.left(seq(optional(BY), CONTENT, repeat1($.callByContent))),
     callByContent: $ => choice(
       seq(optional(seq(choice(seq(ADDRESS, OF), LENGTH), optional(OF))), $.identifier),
       $.literal,
@@ -1854,16 +1903,17 @@ module.exports = grammar({
 
     // close $.statement
     closeStatement: $ => seq(CLOSE, repeat1($.closeFile)),
-    closeFile: $ => seq(
+    closeFile: $ => prec.left(seq(
       $.fileName, optional(choice(
         $.closeReelUnitStatement,
         $.closeRelativeStatement,
         $.closePortFileIOStatement
-      ))),
-    closeReelUnitStatement: $ => seq(choice(REEL, UNIT), optional(seq(optional(FOR), REMOVAL)), optional(seq(
+      )),
+    )),
+    closeReelUnitStatement: $ => token(seq(choice(REEL, UNIT), optional(seq(optional(FOR), REMOVAL)), optional(seq(
       optional(WITH), choice(seq(NO, REWIND), LOCK)
-    ))),
-    closeRelativeStatement: $ => seq(optional(WITH), choice(seq(NO, REWIND), LOCK)),
+    )))),
+    closeRelativeStatement: $ => token(seq(optional(WITH), choice(seq(NO, REWIND), LOCK))),
     closePortFileIOStatement: $ => seq(choice(seq(optional(WITH), NO, WAIT), seq(WITH, WAIT)), optional(seq(
       USING, repeat1($.closePortFileIOUsing)
     ))),
@@ -1872,25 +1922,28 @@ module.exports = grammar({
       $.closePortFileIOUsingAssociatedData,
       $.closePortFileIOUsingAssociatedDataLength,
     ),
-    closePortFileIOUsingCloseDisposition: $ => seq(
-      CLOSE_DISPOSITION, optional(OF), choice(ABORT, ORDERLY)),
+    closePortFileIOUsingCloseDisposition: $ => token(seq(
+      CLOSE_DISPOSITION, optional(OF), choice(ABORT, ORDERLY),
+    )),
     closePortFileIOUsingAssociatedData: $ => seq(
       ASSOCIATED_DATA, choice($.identifier, $.integerLiteral)),
     closePortFileIOUsingAssociatedDataLength: $ => seq(
       ASSOCIATED_DATA_LENGTH, optional(OF), choice($.identifier, $.integerLiteral)),
 
     // compute $.statement
-    computeStatement: $ => seq(
+    computeStatement: $ => prec.left(seq(
       COMPUTE, repeat1($.computeStore), choice(EQUALCHAR, EQUAL), $.arithmeticExpression, optional($.onSizeErrorPhrase),
-      optional($.notOnSizeErrorPhrase), optional(END_COMPUTE)),
+      optional($.notOnSizeErrorPhrase), optional(END_COMPUTE),
+    )),
     computeStore: $ => seq($.identifier, optional(ROUNDED)),
 
     // continue $.statement
-    continueStatement: $ => seq(CONTINUE),
+    continueStatement: $ => CONTINUE,
 
     // delete $.statement
-    deleteStatement: $ => seq(
-      DELETE, $.fileName, optional(RECORD), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase), optional(END_DELETE)),
+    deleteStatement: $ => prec.left(seq(
+      DELETE, $.fileName, optional(RECORD), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase), optional(END_DELETE),
+    )),
 
     // disable $.statement
     disableStatement: $ => seq(
@@ -1900,21 +1953,22 @@ module.exports = grammar({
       )),
 
     // display $.statement
-    displayStatement: $ => seq(
-      DISPLAY, repeat1($.displayOperand), optional($.displayAt), optional($.displayUpon), optional($.displayWith), optional($.onExceptionClause)
-      , optional($.notOnExceptionClause), optional(END_DISPLAY)),
+    displayStatement: $ => prec.left(seq(
+      DISPLAY, repeat1($.displayOperand), optional($.displayAt), optional($.displayUpon), optional($.displayWith), optional($.onExceptionClause), optional($.notOnExceptionClause), optional(END_DISPLAY),
+    )),
     displayOperand: $ => choice($.identifier, $.literal),
     displayAt: $ => seq(AT, choice($.identifier, $.literal)),
     displayUpon: $ => seq(UPON, choice($.mnemonicName, $.environmentName)),
     displayWith: $ => seq(optional(WITH), NO, ADVANCING),
 
     // divide $.statement
-    divideStatement: $ => seq(
+    divideStatement: $ => prec.left(seq(
       DIVIDE, choice($.identifier, $.literal), choice(
         $.divideIntoStatement,
         $.divideIntoGivingStatement,
         $.divideByGivingStatement
-      ), optional($.divideRemainder), optional($.onSizeErrorPhrase), optional($.notOnSizeErrorPhrase), optional(END_DIVIDE)),
+      ), optional($.divideRemainder), optional($.onSizeErrorPhrase), optional($.notOnSizeErrorPhrase), optional(END_DIVIDE),
+    )),
     divideIntoStatement: $ => seq(INTO, repeat1($.divideInto)),
     divideIntoGivingStatement: $ => seq(
       INTO, choice($.identifier, $.literal), optional($.divideGivingPhrase)),
@@ -1936,16 +1990,17 @@ module.exports = grammar({
     entryStatement: $ => seq(ENTRY, $.literal, optional(seq(USING, repeat1($.identifier)))),
 
     // evaluate $.statement
-    evaluateStatement: $ => seq(
+    evaluateStatement: $ => prec.left(seq(
       EVALUATE, $.evaluateSelect, repeat($.evaluateAlsoSelect), repeat($.evaluateWhenPhrase), optional($.evaluateWhenOther), optional(END_EVALUATE)
-    ),
-    evaluateSelect: $ => choice(
+    )),
+    evaluateSelect: $ => prec.left(choice(
       $.identifier,
       $.literal,
       $.arithmeticExpression,
-      $.condition),
+      $.condition,
+    )),
     evaluateAlsoSelect: $ => seq(ALSO, $.evaluateSelect),
-    evaluateWhenPhrase: $ => seq(repeat1($.evaluateWhen), repeat($.statement)),
+    evaluateWhenPhrase: $ => prec.left(seq(repeat1($.evaluateWhen), repeat($.statement))),
     evaluateWhen: $ => seq(WHEN, $.evaluateCondition, repeat($.evaluateAlsoCondition)),
     evaluateCondition: $ => choice(
       ANY,
@@ -1954,17 +2009,17 @@ module.exports = grammar({
       $.booleanLiteral),
     evaluateThrough: $ => seq(choice(THROUGH, THRU), $.evaluateValue),
     evaluateAlsoCondition: $ => seq(ALSO, $.evaluateCondition),
-    evaluateWhenOther: $ => seq(WHEN, OTHER, repeat($.statement)),
+    evaluateWhenOther: $ => prec.left(seq(WHEN, OTHER, repeat($.statement))),
     evaluateValue: $ => choice($.identifier, $.literal, $.arithmeticExpression),
 
     // exec cics $.statement
-    execCicsStatement: $ => repeat1(EXECCICSLINE),
+    execCicsStatement: $ => prec.left(repeat1(EXECCICSLINE)),
 
     // exec sql $.statement
-    execSqlStatement: $ => repeat1(EXECSQLLINE),
+    execSqlStatement: $ => prec.left(repeat1(EXECSQLLINE)),
 
     // exec sql ims $.statement
-    execSqlImsStatement: $ => repeat1(EXECSQLIMSLINE),
+    execSqlImsStatement: $ => prec.left(repeat1(EXECSQLIMSLINE)),
 
     // exhibit $.statement
     exhibitStatement: $ => seq(EXHIBIT, optional(NAMED), optional(CHANGED), repeat1($.exhibitOperand)),
@@ -1990,9 +2045,9 @@ module.exports = grammar({
     ),
 
     // if $.statement
-    ifStatement: $ => seq(IF, $.condition, $.ifThen, optional($.ifElse), optional(END_IF)),
-    ifThen: $ => seq(optional(THEN), choice(seq(NEXT, SENTENCE), repeat($.statement))),
-    ifElse: $ => seq(ELSE, choice(seq(NEXT, SENTENCE), repeat($.statement))),
+    ifStatement: $ => prec.left(seq(IF, $.condition, $.ifThen, optional($.ifElse), optional(END_IF))),
+    ifThen: $ => prec.left(seq(optional(THEN), choice(seq(NEXT, SENTENCE), repeat1($.statement)))),
+    ifElse: $ => prec.left(seq(ELSE, choice(seq(NEXT, SENTENCE), repeat($.statement)))),
 
     // initialize $.statement
     initializeStatement: $ => seq(
@@ -2035,8 +2090,8 @@ module.exports = grammar({
       $.identifier, FOR, repeat1(choice($.inspectCharacters, $.inspectAllLeadings))),
     inspectCharacters: $ => seq(choice(CHARACTER, CHARACTERS), repeat($.inspectBeforeAfter)),
     inspectReplacingCharacters: $ => seq(choice(CHARACTER, CHARACTERS), $.inspectBy, repeat($.inspectBeforeAfter)),
-    inspectAllLeadings: $ => seq(choice(ALL, LEADING), repeat1($.inspectAllLeading)),
-    inspectReplacingAllLeadings: $ => seq(choice(ALL, LEADING, FIRST), repeat1($.inspectReplacingAllLeading)),
+    inspectAllLeadings: $ => prec.left(seq(choice(ALL, LEADING), repeat1($.inspectAllLeading))),
+    inspectReplacingAllLeadings: $ => prec.left(seq(choice(ALL, LEADING, FIRST), repeat1($.inspectReplacingAllLeading))),
     inspectAllLeading: $ => seq(choice($.identifier, $.literal), repeat($.inspectBeforeAfter)),
     inspectReplacingAllLeading: $ => seq(choice($.identifier, $.literal), $.inspectBy, repeat($.inspectBeforeAfter)),
     inspectBy: $ => seq(BY, choice($.identifier, $.literal)),
@@ -2047,9 +2102,10 @@ module.exports = grammar({
     )),
 
     // merge $.statement
-    mergeStatement: $ => seq(
+    mergeStatement: $ => prec.left(seq(
       MERGE, $.fileName, repeat1($.mergeOnKeyClause), optional($.mergeCollatingSequencePhrase), repeat($.mergeUsing),
-      optional($.mergeOutputProcedurePhrase), repeat($.mergeGivingPhrase)),
+      optional($.mergeOutputProcedurePhrase), repeat($.mergeGivingPhrase),
+    )),
     mergeOnKeyClause: $ => seq(
       optional(ON), choice(ASCENDING, DESCENDING), optional(KEY), repeat1($.qualifiedDataName)),
     mergeCollatingSequencePhrase: $ => seq(
@@ -2061,7 +2117,7 @@ module.exports = grammar({
       OUTPUT, PROCEDURE, optional(IS), $.procedureName, optional($.mergeOutputThrough)),
     mergeOutputThrough: $ => seq(choice(THROUGH, THRU), $.procedureName),
     mergeGivingPhrase: $ => seq(GIVING, repeat1($.mergeGiving)),
-    mergeGiving: $ => seq(
+    mergeGiving: $ => prec.left(seq(
       $.fileName, optional(choice(
         LOCK,
         SAVE,
@@ -2069,7 +2125,8 @@ module.exports = grammar({
         CRUNCH,
         RELEASE,
         seq(WITH, REMOVE, CRUNCH),
-      ))),
+      )),
+    )),
 
     // move $.statement
     moveStatement: $ => seq(
@@ -2080,11 +2137,12 @@ module.exports = grammar({
     moveCorrespondingToSendingArea: $ => $.identifier,
 
     // multiply $.statement
-    multiplyStatement: $ => seq(
+    multiplyStatement: $ => prec.left(seq(
       MULTIPLY, choice($.identifier, $.literal), BY, choice(
         $.multiplyRegular,
         $.multiplyGiving
-      ), optional($.onSizeErrorPhrase), optional($.notOnSizeErrorPhrase), optional(END_MULTIPLY)),
+      ), optional($.onSizeErrorPhrase), optional($.notOnSizeErrorPhrase), optional(END_MULTIPLY),
+    )),
     multiplyRegular: $ => repeat1($.multiplyRegularOperand),
     multiplyRegularOperand: $ => seq($.identifier, optional(ROUNDED)),
     multiplyGiving: $ => seq(
@@ -2114,8 +2172,9 @@ module.exports = grammar({
     performStatement: $ => seq(
       PERFORM, choice($.performInlineStatement, $.performProcedureStatement)),
     performInlineStatement: $ => seq(optional($.performType), repeat($.statement), END_PERFORM),
-    performProcedureStatement: $ => seq(
-      $.procedureName, optional(seq(choice(THROUGH, THRU), $.procedureName)), optional($.performType)),
+    performProcedureStatement: $ => prec.left(seq(
+      $.procedureName, optional(seq(choice(THROUGH, THRU), $.procedureName)), optional($.performType),
+    )),
     performType: $ => choice($.performTimes, $.performUntil, $.performVarying),
     performTimes: $ => seq(choice($.identifier, $.integerLiteral), TIMES),
     performUntil: $ => seq(optional($.performTestClause), UNTIL, $.condition),
@@ -2134,16 +2193,17 @@ module.exports = grammar({
     purgeStatement: $ => seq(PURGE, repeat1($.cdName)),
 
     // read $.statement
-    readStatement: $ => seq(
+    readStatement: $ => prec.left(seq(
       READ, $.fileName, optional(NEXT), optional(RECORD), optional($.readInto), optional($.readWith), optional($.readKey), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase),
-      optional($.atEndPhrase), optional($.notAtEndPhrase), optional(END_READ)),
+      optional($.atEndPhrase), optional($.notAtEndPhrase), optional(END_READ))),
     readInto: $ => seq(INTO, $.identifier),
     readWith: $ => seq(optional(WITH), choice(seq(choice(KEPT, NO), LOCK), WAIT)),
     readKey: $ => seq(KEY, optional(IS), $.qualifiedDataName),
 
     // receive $.statement
-    receiveStatement: $ => seq(
-      RECEIVE, choice($.receiveFromStatement, $.receiveIntoStatement), optional($.onExceptionClause), optional($.notOnExceptionClause), optional(END_RECEIVE)),
+    receiveStatement: $ => prec.left(seq(
+      RECEIVE, choice($.receiveFromStatement, $.receiveIntoStatement), optional($.onExceptionClause), optional($.notOnExceptionClause), optional(END_RECEIVE),
+    )),
     receiveFromStatement: $ => seq(
       $.dataName, FROM, $.receiveFrom, repeat(choice(
         $.receiveBefore,
@@ -2155,8 +2215,8 @@ module.exports = grammar({
     receiveFrom: $ => choice(seq(THREAD, $.dataName), seq(LAST, THREAD), seq(ANY, THREAD)),
     receiveIntoStatement: $ => seq(
       $.cdName, choice(MESSAGE, SEGMENT), optional(INTO), $.identifier, optional($.receiveNoData), optional($.receiveWithData)),
-    receiveNoData: $ => seq(NO, DATA, repeat($.statement)),
-    receiveWithData: $ => seq(WITH, DATA, repeat($.statement)),
+    receiveNoData: $ => prec.left(seq(NO, DATA, repeat($.statement))),
+    receiveWithData: $ => prec.left(seq(WITH, DATA, repeat($.statement))),
     receiveBefore: $ => seq(BEFORE, optional(TIME), choice($.numericLiteral, $.identifier)),
     receiveWith: $ => seq(optional(WITH), NO, WAIT),
     receiveThread: $ => seq(THREAD, optional(IN), $.dataName),
@@ -2167,25 +2227,29 @@ module.exports = grammar({
     releaseStatement: $ => seq(RELEASE, $.recordName, optional(seq(FROM, $.qualifiedDataName))),
 
     // return $.statement
-    returnStatement: $ => seq(
-      RETURN, $.fileName, optional(RECORD), optional($.returnInto), $.atEndPhrase, optional($.notAtEndPhrase), optional(END_RETURN)),
+    returnStatement: $ => prec.left(seq(
+      RETURN, $.fileName, optional(RECORD), optional($.returnInto), $.atEndPhrase, optional($.notAtEndPhrase), optional(END_RETURN),
+    )),
     returnInto: $ => seq(INTO, $.qualifiedDataName),
 
     // rewrite $.statement
-    rewriteStatement: $ => seq(
-      REWRITE, $.recordName, optional($.rewriteFrom), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase), optional(END_REWRITE)),
+    rewriteStatement: $ => prec.left(seq(
+      REWRITE, $.recordName, optional($.rewriteFrom), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase), optional(END_REWRITE),
+    )),
     rewriteFrom: $ => seq(FROM, $.identifier),
 
     // search $.statement
-    searchStatement: $ => seq(
-      SEARCH, optional(ALL), $.qualifiedDataName, optional($.searchVarying), optional($.atEndPhrase), repeat1($.searchWhen), optional(END_SEARCH)),
+    searchStatement: $ => prec.left(seq(
+      SEARCH, optional(ALL), $.qualifiedDataName, optional($.searchVarying), optional($.atEndPhrase), repeat1($.searchWhen), optional(END_SEARCH),
+    )),
     searchVarying: $ => seq(VARYING, $.qualifiedDataName),
-    searchWhen: $ => seq(WHEN, $.condition, choice(seq(NEXT, SENTENCE), repeat($.statement))),
+    searchWhen: $ => prec.left(seq(WHEN, $.condition, choice(seq(NEXT, SENTENCE), repeat($.statement)))),
 
     // send $.statement
-    sendStatement: $ => seq(
-      SEND, choice($.sendStatementSync, $.sendStatementAsync), optional($.onExceptionClause), optional($.notOnExceptionClause)),
-    sendStatementSync: $ => seq(choice($.identifier, $.literal), optional($.sendFromPhrase), optional($.sendWithPhrase), optional($.sendReplacingPhrase), optional($.sendAdvancingPhrase)),
+    sendStatement: $ => prec.left(seq(
+      SEND, choice($.sendStatementSync, $.sendStatementAsync), optional($.onExceptionClause), optional($.notOnExceptionClause),
+    )),
+    sendStatementSync: $ => prec.left(seq(choice($.identifier, $.literal), optional($.sendFromPhrase), optional($.sendWithPhrase), optional($.sendReplacingPhrase), optional($.sendAdvancingPhrase))),
     sendStatementAsync: $ => seq(TO, choice(TOP, BOTTOM), $.identifier),
     sendFromPhrase: $ => seq(FROM, $.identifier),
     sendWithPhrase: $ => seq(WITH, choice(EGI, EMI, ESI, $.identifier)),
@@ -2201,7 +2265,7 @@ module.exports = grammar({
 
     // set $.statement
     setStatement: $ => seq(SET, choice(repeat1($.setToStatement), $.setUpDownByStatement)),
-    setToStatement: $ => seq(repeat1($.setTo), TO, repeat1($.setToValue)),
+    setToStatement: $ => prec.left(seq(repeat1($.setTo), TO, repeat1($.setToValue))),
     setUpDownByStatement: $ => seq(repeat1($.setTo), choice(seq(UP, BY), seq(DOWN, BY)), $.setByValue),
     setTo: $ => $.identifier,
     setToValue: $ => choice(
@@ -2213,9 +2277,10 @@ module.exports = grammar({
     setByValue: $ => choice($.identifier, $.literal),
 
     // sort $.statement
-    sortStatement: $ => seq(
-      SORT, $.fileName, repeat1($.sortOnKeyClause), optional($.sortDuplicatesPhrase), optional($.sortCollatingSequencePhrase)
-      , optional($.sortInputProcedurePhrase), repeat($.sortUsing), optional($.sortOutputProcedurePhrase), repeat($.sortGivingPhrase)),
+    sortStatement: $ => prec.left(seq(
+      SORT, $.fileName, repeat1($.sortOnKeyClause), optional($.sortDuplicatesPhrase), optional($.sortCollatingSequencePhrase),
+      optional($.sortInputProcedurePhrase), repeat($.sortUsing), optional($.sortOutputProcedurePhrase), repeat($.sortGivingPhrase),
+    )),
     sortOnKeyClause: $ => seq(
       optional(ON), choice(ASCENDING, DESCENDING), optional(KEY), repeat1($.qualifiedDataName)),
     sortDuplicatesPhrase: $ => seq(optional(WITH), DUPLICATES, optional(IN), optional(ORDER)),
@@ -2231,7 +2296,7 @@ module.exports = grammar({
       OUTPUT, PROCEDURE, optional(IS), $.procedureName, optional($.sortOutputThrough)),
     sortOutputThrough: $ => seq(choice(THROUGH, THRU), $.procedureName),
     sortGivingPhrase: $ => seq(GIVING, repeat1($.sortGiving)),
-    sortGiving: $ => seq(
+    sortGiving: $ => prec.left(seq(
       $.fileName, optional(choice(
         LOCK,
         SAVE,
@@ -2239,11 +2304,13 @@ module.exports = grammar({
         CRUNCH,
         RELEASE,
         seq(WITH, REMOVE, CRUNCH)
-      ))),
+      )),
+    )),
 
     // start $.statement
-    startStatement: $ => seq(
-      START, $.fileName, optional($.startKey), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase), optional(END_START)),
+    startStatement: $ => prec.left(seq(
+      START, $.fileName, optional($.startKey), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase), optional(END_START),
+    )),
     startKey: $ => seq(
       KEY, optional(IS), choice(
         seq(EQUAL, optional(TO)),
@@ -2262,10 +2329,10 @@ module.exports = grammar({
       RUN, choice(GIVING, RETURNING), choice($.identifier, $.integerLiteral)),
 
     // string statement
-    stringStatement: $ => seq(
+    stringStatement: $ => prec.left(seq(
       STRING, repeat1($.stringSendingPhrase), $.stringIntoPhrase, optional($.stringWithPointerPhrase), optional($.onOverflowPhrase),
       optional($.notOnOverflowPhrase), optional(END_STRING),
-    ),
+    )),
     stringSendingPhrase: $ => seq(
       $.stringSending, repeat(seq(optional(COMMACHAR), $.stringSending)), choice(
         $.stringDelimitedByPhrase,
@@ -2281,13 +2348,13 @@ module.exports = grammar({
     stringWithPointerPhrase: $ => seq(optional(WITH), POINTER, $.qualifiedDataName),
 
     // subtract statement
-    subtractStatement: $ => seq(
+    subtractStatement: $ => prec.left(seq(
       SUBTRACT, choice(
         $.subtractFromStatement,
         $.subtractFromGivingStatement,
         $.subtractCorrespondingStatement
       ), optional($.onSizeErrorPhrase), optional($.notOnSizeErrorPhrase), optional(END_SUBTRACT),
-    ),
+    )),
     subtractFromStatement: $ => seq(
       repeat1($.subtractSubtrahend), FROM, repeat1($.subtractMinuend),
     ),
@@ -2307,10 +2374,10 @@ module.exports = grammar({
     terminateStatement: $ => seq(TERMINATE, $.reportName),
 
     // unstring statement
-    unstringStatement: $ => seq(
+    unstringStatement: $ => prec.left(seq(
       UNSTRING, $.unstringSendingPhrase, $.unstringIntoPhrase, optional($.unstringWithPointerPhrase),
       optional($.unstringTallyingPhrase), optional($.onOverflowPhrase), optional($.notOnOverflowPhrase), optional(END_UNSTRING),
-    ),
+    )),
     unstringSendingPhrase: $ => seq(
       $.identifier, optional(seq($.unstringDelimitedByPhrase, repeat($.unstringOrAllPhrase))),
     ),
@@ -2340,10 +2407,10 @@ module.exports = grammar({
     ),
 
     // write statement
-    writeStatement: $ => seq(
+    writeStatement: $ => prec.left(seq(
       WRITE, $.recordName, optional($.writeFromPhrase), optional($.writeAdvancingPhrase), optional($.writeAtEndOfPagePhrase),
       optional($.writeNotAtEndOfPagePhrase), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase), optional(END_WRITE),
-    ),
+    )),
     writeFromPhrase: $ => seq(FROM, choice($.identifier, $.literal)),
     writeAdvancingPhrase: $ => seq(choice(BEFORE, AFTER), optional(ADVANCING), choice(
       $.writeAdvancingPage,
@@ -2353,27 +2420,27 @@ module.exports = grammar({
     writeAdvancingPage: $ => PAGE,
     writeAdvancingLines: $ => seq(choice($.identifier, $.literal), optional(choice(LINE, LINES))),
     writeAdvancingMnemonic: $ => $.mnemonicName,
-    writeAtEndOfPagePhrase: $ => seq(optional(AT), choice(END_OF_PAGE, EOP), repeat($.statement)),
-    writeNotAtEndOfPagePhrase: $ => seq(
+    writeAtEndOfPagePhrase: $ => prec.left(seq(optional(AT), choice(END_OF_PAGE, EOP), repeat($.statement))),
+    writeNotAtEndOfPagePhrase: $ => prec.left(seq(
       NOT, optional(AT), choice(END_OF_PAGE, EOP), repeat($.statement),
-    ),
+    )),
 
     // statement phrases ----------------------------------
-    atEndPhrase: $ => seq(optional(AT), END, repeat($.statement)),
-    notAtEndPhrase: $ => seq(NOT, optional(AT), END, repeat($.statement)),
-    invalidKeyPhrase: $ => seq(INVALID, optional(KEY), repeat($.statement)),
-    notInvalidKeyPhrase: $ => seq(NOT, INVALID, optional(KEY), repeat($.statement)),
-    onOverflowPhrase: $ => seq(optional(ON), OVERFLOW, repeat($.statement)),
-    notOnOverflowPhrase: $ => seq(NOT, optional(ON), OVERFLOW, repeat($.statement)),
-    onSizeErrorPhrase: $ => seq(optional(ON), SIZE, ERROR, repeat($.statement)),
-    notOnSizeErrorPhrase: $ => seq(NOT, optional(ON), SIZE, ERROR, repeat($.statement)),
+    atEndPhrase: $ => prec.left(seq(optional(AT), END, repeat($.statement))),
+    notAtEndPhrase: $ => prec.left(seq(NOT, optional(AT), END, repeat($.statement))),
+    invalidKeyPhrase: $ => prec.left(seq(INVALID, optional(KEY), repeat($.statement))),
+    notInvalidKeyPhrase: $ => prec.left(seq(NOT, INVALID, optional(KEY), repeat($.statement))),
+    onOverflowPhrase: $ => prec.left(seq(optional(ON), OVERFLOW, repeat($.statement))),
+    notOnOverflowPhrase: $ => prec.left(seq(NOT, optional(ON), OVERFLOW, repeat($.statement))),
+    onSizeErrorPhrase: $ => prec.left(seq(optional(ON), SIZE, ERROR, repeat($.statement))),
+    notOnSizeErrorPhrase: $ => prec.left(seq(NOT, optional(ON), SIZE, ERROR, repeat($.statement))),
 
     // statement clauses ----------------------------------
-    onExceptionClause: $ => seq(optional(ON), EXCEPTION, repeat($.statement)),
-    notOnExceptionClause: $ => seq(NOT, optional(ON), EXCEPTION, repeat($.statement)),
+    onExceptionClause: $ => prec.left(seq(optional(ON), EXCEPTION, repeat($.statement))),
+    notOnExceptionClause: $ => prec.left(seq(NOT, optional(ON), EXCEPTION, repeat($.statement))),
 
     // arithmetic expression ----------------------------------
-    arithmeticExpression: $ => seq($.multDivs, repeat($.plusMinus)),
+    arithmeticExpression: $ => prec.left(seq($.multDivs, repeat($.plusMinus))),
     plusMinus: $ => seq(choice(PLUSCHAR, MINUSCHAR), $.multDivs),
     multDivs: $ => seq($.powers, repeat($.multDiv)),
     multDiv: $ => seq(choice(ASTERISKCHAR, SLASHCHAR), $.powers),
@@ -2386,7 +2453,7 @@ module.exports = grammar({
     ),
     // condition ----------------------------------
     condition: $ => seq($.combinableCondition, repeat($.andOrCondition)),
-    andOrCondition: $ => seq(choice(AND, OR), choice($.combinableCondition, repeat1($.abbreviation))),
+    andOrCondition: $ => prec.left(seq(choice(AND, OR), choice($.combinableCondition, repeat1($.abbreviation)))),
     combinableCondition: $ => seq(optional(NOT), $.simpleCondition),
     simpleCondition: $ => choice(
       seq(LPARENCHAR, $.condition, RPARENCHAR),
@@ -2434,7 +2501,7 @@ module.exports = grammar({
     relationCombinedCondition: $ =>
       seq($.arithmeticExpression, repeat1(seq(choice(AND, OR), $.arithmeticExpression))),
 
-    relationalOperator: $ => seq(
+    relationalOperator: $ => token(seq(
       optional(choice(IS, ARE)),
       choice(
         seq(optional(NOT), choice(
@@ -2451,47 +2518,48 @@ module.exports = grammar({
         seq(LESS, optional(THAN), OR, EQUAL, optional(TO)),
         LESSTHANOREQUAL,
       ),
-    ),
-    abbreviation: $ =>
+    )),
+    abbreviation: $ => prec.left(
       seq(optional(NOT), optional($.relationalOperator), choice(
         $.arithmeticExpression,
         seq(LPARENCHAR, $.arithmeticExpression, $.abbreviation, RPARENCHAR),
       )),
+    ),
 
     // identifier ----------------------------------
     identifier: $ => choice($.qualifiedDataName, $.tableCall, $.functionCall, $.specialRegister),
-    tableCall: $ => seq(
+    tableCall: $ => prec.left(seq(
       $.qualifiedDataName,
       repeat(
         seq(LPARENCHAR, $.subscript, repeat(seq(optional(COMMACHAR), $.subscript)), RPARENCHAR),
       ),
       optional($.referenceModifier),
-    ),
-    functionCall: $ => seq(
+    )),
+    functionCall: $ => prec.left(seq(
       FUNCTION,
       $.functionName,
       repeat(
         seq(LPARENCHAR, $.argument, repeat(seq(optional(COMMACHAR), $.argument)), RPARENCHAR),
       ),
       optional($.referenceModifier),
-    ),
+    )),
     referenceModifier: $ => seq(LPARENCHAR, $.characterPosition, COLONCHAR, optional($.length), RPARENCHAR),
     characterPosition: $ => $.arithmeticExpression,
     length: $ => $.arithmeticExpression,
-    subscript: $ => choice(
+    subscript: $ => prec.left(choice(
       ALL,
       $.integerLiteral,
       seq($.qualifiedDataName, optional($.integerLiteral)),
       seq($.indexName, optional($.integerLiteral)),
       $.arithmeticExpression
-    ),
-    argument: $ => choice(
+    )),
+    argument: $ => prec.left(choice(
       $.literal,
       $.identifier,
       seq($.qualifiedDataName, optional($.integerLiteral)),
       seq($.indexName, optional($.integerLiteral)),
       $.arithmeticExpression,
-    ),
+    )),
     // qualified data name ----------------------------------
     qualifiedDataName: $ => choice(
       $.qualifiedDataNameFormat1,
@@ -2499,7 +2567,7 @@ module.exports = grammar({
       $.qualifiedDataNameFormat3,
       $.qualifiedDataNameFormat4
     ),
-    qualifiedDataNameFormat1: $ => seq(
+    qualifiedDataNameFormat1: $ => prec.left(seq(
       choice($.dataName, $.conditionName),
       optional(
         choice(
@@ -2507,8 +2575,8 @@ module.exports = grammar({
           $.inFile
         ),
       ),
-    ),
-    qualifiedDataNameFormat2: $ => seq($.paragraphName, $.inSection),
+    )),
+    qualifiedDataNameFormat2: $ => prec(6, seq($.paragraphName, $.inSection)),
     qualifiedDataNameFormat3: $ => seq($.textName, $.inLibrary),
     qualifiedDataNameFormat4: $ => seq(LINAGE_COUNTER, $.inFile),
     qualifiedInData: $ => choice($.inData, $.inTable),
@@ -2526,32 +2594,32 @@ module.exports = grammar({
     cdName: $ => $.cobolWord,
     className: $ => $.cobolWord,
     computerName: $ => $.systemName,
-    conditionName: $ => $.cobolWord,
-    dataName: $ => $.cobolWord,
+    conditionName: $ => prec(1, $.cobolWord),
+    dataName: $ => prec(2, $.cobolWord),
     dataDescName: $ => choice(FILLER, CURSOR, $.dataName),
     environmentName: $ => $.systemName,
-    fileName: $ => $.cobolWord,
+    fileName: $ => prec(8, $.cobolWord),
     functionName: $ => choice(INTEGER, LENGTH, RANDOM, SUM, WHEN_COMPILED, $.cobolWord),
-    indexName: $ => $.cobolWord,
+    indexName: $ => prec(4, $.cobolWord),
     languageName: $ => $.systemName,
-    libraryName: $ => $.cobolWord,
+    libraryName: $ => prec(7, $.cobolWord),
     localName: $ => $.cobolWord,
-    mnemonicName: $ => $.cobolWord,
-    paragraphName: $ => choice($.cobolWord, $.integerLiteral),
+    mnemonicName: $ => prec(3, $.cobolWord),
+    paragraphName: $ => prec(10, choice($.cobolWord, $.integerLiteral)),
     procedureName: $ => choice(seq($.paragraphName, optional($.inSection)), $.sectionName),
-    programName: $ => choice(NONNUMERICLITERAL, $.cobolWord),
+    programName: $ => prec(9, choice(NONNUMERICLITERAL, $.cobolWord)),
     recordName: $ => $.qualifiedDataName,
-    reportName: $ => $.qualifiedDataName,
+    reportName: $ => prec(6, $.qualifiedDataName),
     routineName: $ => $.cobolWord,
     screenName: $ => $.cobolWord,
     sectionName: $ => choice($.cobolWord, $.integerLiteral),
     systemName: $ => $.cobolWord,
     symbolicCharacter: $ => $.cobolWord,
-    textName: $ => $.cobolWord,
+    textName: $ => prec(-1, $.cobolWord),
     // literal ----------------------------------
-    cobolWord: $ => choice(IDENTIFIER, ABORT, AS, ASCII, ASSOCIATED_DATA, ASSOCIATED_DATA_LENGTH, ATTRIBUTE, AUTO, AUTO_SKIP, BACKGROUND_COLOR, BACKGROUND_COLOUR, BEEP, BELL, BINARY, BIT, BLINK, BLOB, BOUNDS, CAPABLE, CCSVERSION, CHANGED, CHANNEL, CLOB, CLOSE_DISPOSITION, COBOL, COMMITMENT, CONTROL_POINT, CONVENTION, CRUNCH, CURSOR, DBCLOB, DEFAULT, DEFAULT_DISPLAY, DEFINITION, DFHRESP, DFHVALUE, DISK, DONTCARE, DOUBLE, EBCDIC, EMPTY_CHECK, ENTER, ENTRY_PROCEDURE, EOL, EOS, ERASE, ESCAPE, EVENT, EXCLUSIVE, EXPORT, EXTENDED, FOREGROUND_COLOR, FOREGROUND_COLOUR, FULL, FUNCTIONNAME, FUNCTION_POINTER, GRID, HIGHLIGHT, IMPLICIT, IMPORT, INTEGER, KEPT, KEYBOARD, LANGUAGE, LB, LD, LEFTLINE, LENGTH_CHECK, LIBACCESS, LIBPARAMETER, LIBRARY, LIST, LOCAL, LONG_DATE, LONG_TIME, LOWER, LOWLIGHT, MMDDYYYY, NAMED, NATIONAL, NATIONAL_EDITED, NETWORK, NO_ECHO, NUMERIC_DATE, NUMERIC_TIME, ODT, ORDERLY, OVERLINE, OWN, PASSWORD, PORT, PRINTER, PRIVATE, PROCESS, PROGRAM, PROMPT, READER, REAL, RECEIVED, RECURSIVE, REF, REMOTE, REMOVE, REQUIRED, REVERSE_VIDEO, SAVE, SECURE, SHARED, SHAREDBYALL, SHAREDBYRUNUNIT, SHARING, SHORT_DATE, SQL, SYMBOL, TASK, THREAD, THREAD_LOCAL, TIMER, TODAYS_DATE, TODAYS_NAME, TRUNCATED, TYPEDEF, UNDERLINE, VIRTUAL, WAIT, YEAR, YYYYMMDD, YYYYDDD, ZERO_FILL),
-    booleanLiteral: $ => choice(TRUE, FALSE),
-    integerLiteral: $ => choice(INTEGERLITERAL, LEVEL_NUMBER_66, LEVEL_NUMBER_77, LEVEL_NUMBER_88),
+    cobolWord: $ => token(choice(IDENTIFIER, ABORT, AS, ASCII, ASSOCIATED_DATA, ASSOCIATED_DATA_LENGTH, ATTRIBUTE, AUTO, AUTO_SKIP, BACKGROUND_COLOR, BACKGROUND_COLOUR, BEEP, BELL, BINARY, BIT, BLINK, BLOB, BOUNDS, CAPABLE, CCSVERSION, CHANGED, CHANNEL, CLOB, CLOSE_DISPOSITION, COBOL, COMMITMENT, CONTROL_POINT, CONVENTION, CRUNCH, CURSOR, DBCLOB, DEFAULT, DEFAULT_DISPLAY, DEFINITION, DFHRESP, DFHVALUE, DISK, DONTCARE, DOUBLE, EBCDIC, EMPTY_CHECK, ENTER, ENTRY_PROCEDURE, EOL, EOS, ERASE, ESCAPE, EVENT, EXCLUSIVE, EXPORT, EXTENDED, FOREGROUND_COLOR, FOREGROUND_COLOUR, FULL, FUNCTIONNAME, FUNCTION_POINTER, GRID, HIGHLIGHT, IMPLICIT, IMPORT, INTEGER, KEPT, KEYBOARD, LANGUAGE, LB, LD, LEFTLINE, LENGTH_CHECK, LIBACCESS, LIBPARAMETER, LIBRARY, LIST, LOCAL, LONG_DATE, LONG_TIME, LOWER, LOWLIGHT, MMDDYYYY, NAMED, NATIONAL, NATIONAL_EDITED, NETWORK, NO_ECHO, NUMERIC_DATE, NUMERIC_TIME, ODT, ORDERLY, OVERLINE, OWN, PASSWORD, PORT, PRINTER, PRIVATE, PROCESS, PROGRAM, PROMPT, READER, REAL, RECEIVED, RECURSIVE, REF, REMOTE, REMOVE, REQUIRED, REVERSE_VIDEO, SAVE, SECURE, SHARED, SHAREDBYALL, SHAREDBYRUNUNIT, SHARING, SHORT_DATE, SQL, SYMBOL, TASK, THREAD, THREAD_LOCAL, TIMER, TODAYS_DATE, TODAYS_NAME, TRUNCATED, TYPEDEF, UNDERLINE, VIRTUAL, WAIT, YEAR, YYYYMMDD, YYYYDDD, ZERO_FILL)),
+    booleanLiteral: $ => token(choice(TRUE, FALSE)),
+    integerLiteral: $ => token(choice(INTEGERLITERAL, LEVEL_NUMBER_66, LEVEL_NUMBER_77, LEVEL_NUMBER_88)),
     numericLiteral: $ => choice(NUMERICLITERAL, ZERO, $.integerLiteral),
     literal: $ => choice(NONNUMERICLITERAL, $.figurativeConstant, $.numericLiteral, $.booleanLiteral, $.cicsDfhRespLiteral, $.cicsDfhValueLiteral),
     cicsDfhRespLiteral: $ => seq(DFHRESP, LPARENCHAR, choice($.cobolWord, $.literal), RPARENCHAR),

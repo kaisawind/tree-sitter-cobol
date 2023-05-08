@@ -20,6 +20,7 @@
     "tree-sitter-cli": "^0.20.8"
   },
   "scripts": {
+    "generate": "tree-sitter generate --log",
     "build": "tree-sitter generate && node-gyp build",
     "test": "tree-sitter test && script/parse-examples",
     "parse": "tree-sitter parse",

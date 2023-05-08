@@ -1,27 +1,1204 @@
 [
   {
-    "type": "source_file",
+    "type": "abbreviation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "abbreviation",
+          "named": true
+        },
+        {
+          "type": "arithmeticExpression",
+          "named": true
+        },
+        {
+          "type": "relationalOperator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "andOrCondition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "abbreviation",
+          "named": true
+        },
+        {
+          "type": "combinableCondition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmeticExpression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indexName",
+          "named": true
+        },
+        {
+          "type": "integerLiteral",
+          "named": true
+        },
+        {
+          "type": "literal",
+          "named": true
+        },
+        {
+          "type": "qualifiedDataName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arithmeticExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "multDivs",
+          "named": true
+        },
+        {
+          "type": "plusMinus",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "basis",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmeticExpression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "characterPosition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmeticExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cicsDfhRespLiteral",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        },
+        {
+          "type": "literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cicsDfhValueLiteral",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        },
+        {
+          "type": "literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "classCondition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "className",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "className",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "combinableCondition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "simpleCondition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "commentEntry",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "andOrCondition",
+          "named": true
+        },
+        {
+          "type": "combinableCondition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "conditionName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "conditionNameReference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "conditionName",
+          "named": true
+        },
+        {
+          "type": "conditionNameSubscriptReference",
+          "named": true
+        },
+        {
+          "type": "inData",
+          "named": true
+        },
+        {
+          "type": "inFile",
+          "named": true
+        },
+        {
+          "type": "inMnemonic",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "conditionNameSubscriptReference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "subscript",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dataName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "figurativeConstant",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fileName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "functionCall",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argument",
+          "named": true
+        },
+        {
+          "type": "functionName",
+          "named": true
+        },
+        {
+          "type": "referenceModifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "functionName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "functionCall",
+          "named": true
+        },
+        {
+          "type": "qualifiedDataName",
+          "named": true
+        },
+        {
+          "type": "specialRegister",
+          "named": true
+        },
+        {
+          "type": "tableCall",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inData",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dataName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inFile",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "fileName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inLibrary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "libraryName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inMnemonic",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "mnemonicName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inSection",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "sectionName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inTable",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "tableCall",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "indexName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "length",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmeticExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "libraryName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "booleanLiteral",
+          "named": true
+        },
+        {
+          "type": "cicsDfhRespLiteral",
+          "named": true
+        },
+        {
+          "type": "cicsDfhValueLiteral",
+          "named": true
+        },
+        {
+          "type": "figurativeConstant",
+          "named": true
+        },
+        {
+          "type": "numericLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "mnemonicName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "multDiv",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "powers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "multDivs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "multDiv",
+          "named": true
+        },
+        {
+          "type": "powers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "numericLiteral",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "integerLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "paragraphName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        },
+        {
+          "type": "integerLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "plusMinus",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "multDivs",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "power",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "basis",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "powers",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "basis",
+          "named": true
+        },
+        {
+          "type": "power",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "programName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "qualifiedDataName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "qualifiedDataNameFormat1",
+          "named": true
+        },
+        {
+          "type": "qualifiedDataNameFormat2",
+          "named": true
+        },
+        {
+          "type": "qualifiedDataNameFormat3",
+          "named": true
+        },
+        {
+          "type": "qualifiedDataNameFormat4",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "qualifiedDataNameFormat1",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "conditionName",
+          "named": true
+        },
+        {
+          "type": "dataName",
+          "named": true
+        },
+        {
+          "type": "inFile",
+          "named": true
+        },
+        {
+          "type": "qualifiedInData",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "qualifiedDataNameFormat2",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "inSection",
+          "named": true
+        },
+        {
+          "type": "paragraphName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "qualifiedDataNameFormat3",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "inLibrary",
+          "named": true
+        },
+        {
+          "type": "textName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "qualifiedDataNameFormat4",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "inFile",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "qualifiedInData",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "inData",
+          "named": true
+        },
+        {
+          "type": "inTable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "referenceModifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "characterPosition",
+          "named": true
+        },
+        {
+          "type": "length",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "relationArithmeticComparison",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmeticExpression",
+          "named": true
+        },
+        {
+          "type": "relationalOperator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "relationCombinedComparison",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmeticExpression",
+          "named": true
+        },
+        {
+          "type": "relationCombinedCondition",
+          "named": true
+        },
+        {
+          "type": "relationalOperator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "relationCombinedCondition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmeticExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "relationCondition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "relationArithmeticComparison",
+          "named": true
+        },
+        {
+          "type": "relationCombinedComparison",
+          "named": true
+        },
+        {
+          "type": "relationSignCondition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "relationSignCondition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmeticExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "relationalOperator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "sectionName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        },
+        {
+          "type": "integerLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "simpleCondition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "classCondition",
+          "named": true
+        },
+        {
+          "type": "condition",
+          "named": true
+        },
+        {
+          "type": "conditionNameReference",
+          "named": true
+        },
+        {
+          "type": "relationCondition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "commentEntry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "specialRegister",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "subscript",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "arithmeticExpression",
+          "named": true
+        },
+        {
+          "type": "indexName",
+          "named": true
+        },
+        {
+          "type": "integerLiteral",
+          "named": true
+        },
+        {
+          "type": "qualifiedDataName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "systemName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tableCall",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "qualifiedDataName",
+          "named": true
+        },
+        {
+          "type": "referenceModifier",
+          "named": true
+        },
+        {
+          "type": "subscript",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "textName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cobolWord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "**",
+    "named": false
+  },
+  {
+    "type": "*>CE",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
   },
   {
     "type": "-",
     "named": false
   },
   {
-    "type": "A",
+    "type": ".",
     "named": false
   },
   {
-    "type": "B",
+    "type": "/",
     "named": false
   },
   {
-    "type": "C",
+    "type": "<",
     "named": false
   },
   {
-    "type": "D",
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "<>",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
     "named": false
   },
   {
@@ -29,31 +1206,7 @@
     "named": false
   },
   {
-    "type": "F",
-    "named": false
-  },
-  {
     "type": "G",
-    "named": false
-  },
-  {
-    "type": "H",
-    "named": false
-  },
-  {
-    "type": "I",
-    "named": false
-  },
-  {
-    "type": "K",
-    "named": false
-  },
-  {
-    "type": "L",
-    "named": false
-  },
-  {
-    "type": "M",
     "named": false
   },
   {
@@ -61,47 +1214,7 @@
     "named": false
   },
   {
-    "type": "O",
-    "named": false
-  },
-  {
-    "type": "P",
-    "named": false
-  },
-  {
-    "type": "Q",
-    "named": false
-  },
-  {
-    "type": "R",
-    "named": false
-  },
-  {
-    "type": "S",
-    "named": false
-  },
-  {
-    "type": "T",
-    "named": false
-  },
-  {
-    "type": "U",
-    "named": false
-  },
-  {
-    "type": "V",
-    "named": false
-  },
-  {
-    "type": "W",
-    "named": false
-  },
-  {
     "type": "X",
-    "named": false
-  },
-  {
-    "type": "Y",
     "named": false
   },
   {
@@ -109,27 +1222,15 @@
     "named": false
   },
   {
-    "type": "a",
-    "named": false
+    "type": "booleanLiteral",
+    "named": true
   },
   {
-    "type": "b",
-    "named": false
-  },
-  {
-    "type": "c",
-    "named": false
-  },
-  {
-    "type": "d",
-    "named": false
+    "type": "cobolWord",
+    "named": true
   },
   {
     "type": "e",
-    "named": false
-  },
-  {
-    "type": "f",
     "named": false
   },
   {
@@ -137,75 +1238,15 @@
     "named": false
   },
   {
-    "type": "h",
-    "named": false
-  },
-  {
-    "type": "hello",
-    "named": false
-  },
-  {
-    "type": "i",
-    "named": false
-  },
-  {
-    "type": "k",
-    "named": false
-  },
-  {
-    "type": "l",
-    "named": false
-  },
-  {
-    "type": "m",
-    "named": false
+    "type": "integerLiteral",
+    "named": true
   },
   {
     "type": "n",
     "named": false
   },
   {
-    "type": "o",
-    "named": false
-  },
-  {
-    "type": "p",
-    "named": false
-  },
-  {
-    "type": "q",
-    "named": false
-  },
-  {
-    "type": "r",
-    "named": false
-  },
-  {
-    "type": "s",
-    "named": false
-  },
-  {
-    "type": "t",
-    "named": false
-  },
-  {
-    "type": "u",
-    "named": false
-  },
-  {
-    "type": "v",
-    "named": false
-  },
-  {
-    "type": "w",
-    "named": false
-  },
-  {
     "type": "x",
-    "named": false
-  },
-  {
-    "type": "y",
     "named": false
   },
   {
