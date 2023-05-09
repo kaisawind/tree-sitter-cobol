@@ -776,7 +776,7 @@ module.exports = grammar({
 
     segmentLimitClause: $ => seq(SEGMENT_LIMIT, optional(IS), $.integerLiteral),
 
-    characterSetClause: $ => seq(CHARACTER, SET, DOT_FS),
+    characterSetClause: $ => token(seq(CHARACTER, SET, DOT_FS)),
 
     // - special names $.paragraph ----------------------------------
 
@@ -838,18 +838,18 @@ module.exports = grammar({
     currencySignClause: $ => seq(
       CURRENCY, optional(SIGN), optional(IS), $.literal, optional(seq(optional(WITH), PICTURE, SYMBOL, $.literal))),
 
-    decimalPointClause: $ => seq(DECIMAL_POINT, optional(IS), COMMA),
+    decimalPointClause: $ => token(seq(DECIMAL_POINT, optional(IS), COMMA)),
 
-    defaultComputationalSignClause: $ => seq(
+    defaultComputationalSignClause: $ => token(seq(
       DEFAULT, optional(choice(COMPUTATIONAL, COMP)), optional(seq(SIGN, optional(IS))), optional(choice(
         LEADING,
         TRAILING
-      )), seq(SEPARATE, optional(CHARACTER))),
+      )), seq(SEPARATE, optional(CHARACTER)))),
 
-    defaultDisplaySignClause: $ => seq(
+    defaultDisplaySignClause: $ => token(seq(
       DEFAULT_DISPLAY, optional(seq(SIGN, optional(IS))), choice(LEADING, TRAILING), optional(seq(
         SEPARATE, optional(CHARACTER)
-      ))),
+      )))),
 
     environmentSwitchNameClause: $ => prec.left(choice(
       seq($.environmentName, optional(IS), $.mnemonicName, optional($.environmentSwitchNameSpecialNamesStatusPhrase)),
@@ -862,7 +862,7 @@ module.exports = grammar({
 
     odtClause: $ => seq(ODT, optional(IS), $.mnemonicName),
 
-    reserveNetworkClause: $ => seq(RESERVE, optional(WORDS), optional(LIST), optional(IS), NETWORK, optional(CAPABLE)),
+    reserveNetworkClause: $ => token(seq(RESERVE, optional(WORDS), optional(LIST), optional(IS), NETWORK, optional(CAPABLE))),
 
     symbolicCharactersClause: $ => prec.left(seq(
       SYMBOLIC, optional(CHARACTERS), optional(seq(optional(FOR), choice(ALPHANUMERIC, NATIONAL))), repeat1($.symbolicCharacters), optional(seq(
@@ -926,12 +926,12 @@ module.exports = grammar({
       RESERVE, choice(NO, $.integerLiteral), optional(ALTERNATE), optional(choice(AREA, AREAS)),
     )),
 
-    organizationClause: $ => seq(optional(seq(ORGANIZATION, optional(IS))), optional(choice(
+    organizationClause: $ => token(seq(optional(seq(ORGANIZATION, optional(IS))), optional(choice(
       LINE,
       seq(RECORD, BINARY),
       RECORD,
       BINARY
-    )), choice(SEQUENTIAL, RELATIVE, INDEXED)),
+    )), choice(SEQUENTIAL, RELATIVE, INDEXED))),
 
     paddingCharacterClause: $ => seq(
       PADDING, optional(CHARACTER), optional(IS), choice($.qualifiedDataName, $.literal)),
@@ -939,8 +939,8 @@ module.exports = grammar({
     recordDelimiterClause: $ => seq(
       RECORD, DELIMITER, optional(IS), choice(STANDARD_1, IMPLICIT, $.assignmentName)),
 
-    accessModeClause: $ => seq(
-      ACCESS, optional(MODE), optional(IS), choice(SEQUENTIAL, RANDOM, DYNAMIC, EXCLUSIVE)),
+    accessModeClause: $ => token(seq(
+      ACCESS, optional(MODE), optional(IS), choice(SEQUENTIAL, RANDOM, DYNAMIC, EXCLUSIVE))),
 
     recordKeyClause: $ => prec.left(seq(
       RECORD, optional(KEY), optional(IS), $.qualifiedDataName, optional($.passwordClause), optional(seq(
@@ -1038,9 +1038,9 @@ module.exports = grammar({
       $.recordingModeClause,
     ),
 
-    externalClause: $ => seq(optional(IS), EXTERNAL),
+    externalClause: $ => token(seq(optional(IS), EXTERNAL)),
 
-    globalClause: $ => seq(optional(IS), GLOBAL),
+    globalClause: $ => token(seq(optional(IS), GLOBAL)),
 
     blockContainsClause: $ => seq(
       BLOCK, optional(CONTAINS), $.integerLiteral, optional($.blockContainsTo), optional(choice(
@@ -1250,21 +1250,21 @@ module.exports = grammar({
         $.screenDescriptionZeroFillClause
       )), DOT_FS),
 
-    screenDescriptionBlankClause: $ => seq(BLANK, choice(SCREEN, LINE)),
+    screenDescriptionBlankClause: $ => token(seq(BLANK, choice(SCREEN, LINE))),
 
-    screenDescriptionBellClause: $ => choice(BELL, BEEP),
+    screenDescriptionBellClause: $ => token(choice(BELL, BEEP)),
 
-    screenDescriptionBlinkClause: $ => BLINK,
+    screenDescriptionBlinkClause: $ => token(BLINK),
 
-    screenDescriptionEraseClause: $ => seq(ERASE, choice(EOL, EOS)),
+    screenDescriptionEraseClause: $ => token(seq(ERASE, choice(EOL, EOS))),
 
-    screenDescriptionLightClause: $ => choice(HIGHLIGHT, LOWLIGHT),
+    screenDescriptionLightClause: $ => token(choice(HIGHLIGHT, LOWLIGHT)),
 
-    screenDescriptionGridClause: $ => choice(GRID, LEFTLINE, OVERLINE),
+    screenDescriptionGridClause: $ => token(choice(GRID, LEFTLINE, OVERLINE)),
 
-    screenDescriptionReverseVideoClause: $ => REVERSE_VIDEO,
+    screenDescriptionReverseVideoClause: $ => token(REVERSE_VIDEO),
 
-    screenDescriptionUnderlineClause: $ => UNDERLINE,
+    screenDescriptionUnderlineClause: $ => token(UNDERLINE),
 
     screenDescriptionSizeClause: $ => seq(
       SIZE, optional(IS), choice($.identifier, $.integerLiteral)),
@@ -1302,21 +1302,21 @@ module.exports = grammar({
 
     screenDescriptionUsingClause: $ => seq(USING, $.identifier),
 
-    screenDescriptionUsageClause: $ => seq((USAGE, optional(IS)), choice(DISPLAY, DISPLAY_1)),
+    screenDescriptionUsageClause: $ => token(seq((USAGE, optional(IS)), choice(DISPLAY, DISPLAY_1))),
 
-    screenDescriptionBlankWhenZeroClause: $ => seq(BLANK, optional(WHEN), ZERO),
+    screenDescriptionBlankWhenZeroClause: $ => token(seq(BLANK, optional(WHEN), ZERO)),
 
-    screenDescriptionJustifiedClause: $ => seq(choice(JUSTIFIED, JUST), optional(RIGHT)),
+    screenDescriptionJustifiedClause: $ => token(seq(choice(JUSTIFIED, JUST), optional(RIGHT))),
 
-    screenDescriptionSignClause: $ => seq(optional(seq(SIGN, optional(IS))), choice(LEADING, TRAILING), optional(seq(
+    screenDescriptionSignClause: $ => token(seq(optional(seq(SIGN, optional(IS))), choice(LEADING, TRAILING), optional(seq(
       SEPARATE, optional(CHARACTER)
-    ))),
+    )))),
 
-    screenDescriptionAutoClause: $ => choice(AUTO, AUTO_SKIP),
+    screenDescriptionAutoClause: $ => token(choice(AUTO, AUTO_SKIP)),
 
-    screenDescriptionSecureClause: $ => choice(SECURE, NO_ECHO),
+    screenDescriptionSecureClause: $ => token(choice(SECURE, NO_ECHO)),
 
-    screenDescriptionRequiredClause: $ => choice(REQUIRED, EMPTY_CHECK),
+    screenDescriptionRequiredClause: $ => token(choice(REQUIRED, EMPTY_CHECK)),
 
     screenDescriptionPromptClause: $ => seq(
       PROMPT, optional(CHARACTER), optional(IS), choice($.identifier, $.literal), optional($.screenDescriptionPromptOccursClause)),
@@ -1324,9 +1324,9 @@ module.exports = grammar({
     screenDescriptionPromptOccursClause: $ => seq(
       OCCURS, $.integerLiteral, optional(TIMES)),
 
-    screenDescriptionFullClause: $ => choice(FULL, LENGTH_CHECK),
+    screenDescriptionFullClause: $ => token(choice(FULL, LENGTH_CHECK)),
 
-    screenDescriptionZeroFillClause: $ => ZERO_FILL,
+    screenDescriptionZeroFillClause: $ => token(ZERO_FILL),
 
     // -- report section ----------------------------------
 
@@ -1340,7 +1340,7 @@ module.exports = grammar({
         $.reportDescriptionPageLimitClause, optional($.reportDescriptionHeadingClause), optional($.reportDescriptionFirstDetailClause), optional($.reportDescriptionLastDetailClause), optional($.reportDescriptionFootingClause)
       )), DOT_FS),
 
-    reportDescriptionGlobalClause: $ => seq(optional(IS), GLOBAL),
+    reportDescriptionGlobalClause: $ => token(seq(optional(IS), GLOBAL)),
 
     reportDescriptionPageLimitClause: $ => seq(
       PAGE,
@@ -1391,14 +1391,14 @@ module.exports = grammar({
         $.reportGroupIndicateClause
       )), DOT_FS),
 
-    reportGroupBlankWhenZeroClause: $ => seq(BLANK, optional(WHEN), ZERO),
+    reportGroupBlankWhenZeroClause: $ => token(seq(BLANK, optional(WHEN), ZERO)),
 
     reportGroupColumnNumberClause: $ => seq(
       COLUMN, optional(NUMBER), optional(IS), $.integerLiteral),
 
-    reportGroupIndicateClause: $ => seq(GROUP, optional(INDICATE)),
+    reportGroupIndicateClause: $ => token(seq(GROUP, optional(INDICATE))),
 
-    reportGroupJustifiedClause: $ => seq(choice(JUSTIFIED, JUST), optional(RIGHT)),
+    reportGroupJustifiedClause: $ => token(seq(choice(JUSTIFIED, JUST), optional(RIGHT))),
 
     reportGroupLineNumberClause: $ => seq(
       optional(LINE), optional(NUMBER), optional(IS), choice(
@@ -1419,14 +1419,14 @@ module.exports = grammar({
 
     reportGroupNextGroupPlus: $ => seq(PLUS, $.integerLiteral),
 
-    reportGroupNextGroupNextPage: $ => seq(NEXT, PAGE),
+    reportGroupNextGroupNextPage: $ => token(seq(NEXT, PAGE)),
 
     reportGroupPictureClause: $ => seq(choice(PICTURE, PIC), optional(IS), $.pictureString),
 
     reportGroupResetClause: $ => seq(RESET, optional(ON), choice(FINAL, $.dataName)),
 
-    reportGroupSignClause: $ => seq(
-      SIGN, optional(IS), choice(LEADING, TRAILING), SEPARATE, optional(CHARACTER)),
+    reportGroupSignClause: $ => token(seq(
+      SIGN, optional(IS), choice(LEADING, TRAILING), SEPARATE, optional(CHARACTER))),
 
     reportGroupSourceClause: $ => seq(SOURCE, optional(IS), $.identifier),
 
@@ -1447,27 +1447,27 @@ module.exports = grammar({
         $.reportGroupTypeReportFooting
       )),
 
-    reportGroupTypeReportHeading: $ => choice(seq(REPORT, HEADING), RH),
+    reportGroupTypeReportHeading: $ => token(choice(seq(REPORT, HEADING), RH)),
 
-    reportGroupTypePageHeading: $ => choice(seq(PAGE, HEADING), PH),
+    reportGroupTypePageHeading: $ => token(choice(seq(PAGE, HEADING), PH)),
 
     reportGroupTypeControlHeading: $ => seq(choice(seq(CONTROL, HEADING), CH), choice(
       FINAL,
       $.dataName
     )),
 
-    reportGroupTypeDetail: $ => choice(DETAIL, DE),
+    reportGroupTypeDetail: $ => token(choice(DETAIL, DE)),
 
     reportGroupTypeControlFooting: $ => seq(choice(seq(CONTROL, FOOTING), CF), choice(
       FINAL,
       $.dataName
     )),
 
-    reportGroupUsageClause: $ => seq(optional(seq(USAGE, optional(IS))), choice(DISPLAY, DISPLAY_1)),
+    reportGroupUsageClause: $ => token(seq(optional(seq(USAGE, optional(IS))), choice(DISPLAY, DISPLAY_1))),
 
-    reportGroupTypePageFooting: $ => choice(seq(PAGE, FOOTING), PF),
+    reportGroupTypePageFooting: $ => token(choice(seq(PAGE, FOOTING), PF)),
 
-    reportGroupTypeReportFooting: $ => choice(seq(REPORT, FOOTING), RF),
+    reportGroupTypeReportFooting: $ => token(choice(seq(REPORT, FOOTING), RF)),
 
     reportGroupValueClause: $ => seq(VALUE, optional(IS), $.literal),
 
@@ -1489,7 +1489,7 @@ module.exports = grammar({
         $.libraryEntryProcedureClauseFormat2,
       ))),
 
-    libraryAttributeClauseFormat1: $ => seq(
+    libraryAttributeClauseFormat1: $ => token(seq(
       ATTRIBUTE, optional(seq(
         SHARING, optional(IS), choice(
           DONTCARE,
@@ -1497,7 +1497,7 @@ module.exports = grammar({
           SHAREDBYRUNUNIT,
           SHAREDBYALL
         ),
-      ))),
+      )))),
 
     libraryAttributeClauseFormat2: $ => seq(
       ATTRIBUTE, optional($.libraryAttributeFunction), optional(seq(
@@ -1531,9 +1531,9 @@ module.exports = grammar({
 
     libraryEntryProcedureWithName: $ => choice($.localName, $.fileName),
 
-    libraryIsCommonClause: $ => seq(optional(IS), COMMON),
+    libraryIsCommonClause: $ => token(seq(optional(IS), COMMON)),
 
-    libraryIsGlobalClause: $ => seq(optional(IS), GLOBAL),
+    libraryIsGlobalClause: $ => token(seq(optional(IS), GLOBAL)),
 
     // data description entry ----------------------------------
 
@@ -1577,21 +1577,21 @@ module.exports = grammar({
     dataDescriptionEntryFormat3: $ => seq(
       LEVEL_NUMBER_88, $.conditionName, $.dataValueClause, DOT_FS),
 
-    dataDescriptionEntryExecSql: $ => prec.left(seq(repeat1(EXECSQLLINE), optional(DOT_FS))),
+    dataDescriptionEntryExecSql: $ => prec.left(token(seq(repeat1(EXECSQLLINE), optional(DOT_FS)))),
 
-    dataAlignedClause: $ => ALIGNED,
+    dataAlignedClause: $ => token(ALIGNED),
 
-    dataBlankWhenZeroClause: $ => seq(BLANK, optional(WHEN), choice(ZERO, ZEROS, ZEROES)),
+    dataBlankWhenZeroClause: $ => token(seq(BLANK, optional(WHEN), choice(ZERO, ZEROS, ZEROES))),
 
-    dataCommonOwnLocalClause: $ => choice(COMMON, OWN, LOCAL),
+    dataCommonOwnLocalClause: $ => token(choice(COMMON, OWN, LOCAL)),
 
     dataExternalClause: $ => prec.left(seq(optional(IS), EXTERNAL, optional(seq(BY, $.literal)))),
 
-    dataGlobalClause: $ => seq(optional(IS), GLOBAL),
+    dataGlobalClause: $ => token(seq(optional(IS), GLOBAL)),
 
-    dataIntegerStringClause: $ => choice(INTEGER, STRING),
+    dataIntegerStringClause: $ => token(choice(INTEGER, STRING)),
 
-    dataJustifiedClause: $ => seq(choice(JUSTIFIED, JUST), optional(RIGHT)),
+    dataJustifiedClause: $ => token(seq(choice(JUSTIFIED, JUST), optional(RIGHT))),
 
     dataOccursClause: $ => seq(
       OCCURS, choice($.identifier, $.integerLiteral), optional($.dataOccursTo), optional(TIMES), optional($.dataOccursDepending), repeat(choice(
@@ -1632,9 +1632,9 @@ module.exports = grammar({
 
     pictureCardinality: $ => seq(LPARENCHAR, $.integerLiteral, RPARENCHAR),
 
-    dataReceivedByClause: $ => seq(optional(RECEIVED), optional(BY), choice(CONTENT, REFERENCE, REF)),
+    dataReceivedByClause: $ => token(seq(optional(RECEIVED), optional(BY), choice(CONTENT, REFERENCE, REF))),
 
-    dataRecordAreaClause: $ => seq(RECORD, AREA),
+    dataRecordAreaClause: $ => token(seq(RECORD, AREA)),
 
     dataRedefinesClause: $ => seq(REDEFINES, $.dataName),
 
@@ -1643,13 +1643,13 @@ module.exports = grammar({
         choice(THROUGH, THRU), $.qualifiedDataName
       ))),
 
-    dataSignClause: $ => seq(optional(seq(SIGN, optional(IS))), choice(LEADING, TRAILING), optional(seq(
+    dataSignClause: $ => token(seq(optional(seq(SIGN, optional(IS))), choice(LEADING, TRAILING), optional(seq(
       SEPARATE, optional(CHARACTER)
-    ))),
+    )))),
 
-    dataSynchronizedClause: $ => seq(choice(SYNCHRONIZED, SYNC), optional(choice(LEFT, RIGHT))),
+    dataSynchronizedClause: $ => token(seq(choice(SYNCHRONIZED, SYNC), optional(choice(LEFT, RIGHT)))),
 
-    dataThreadLocalClause: $ => seq(optional(IS), THREAD_LOCAL),
+    dataThreadLocalClause: $ => token(seq(optional(IS), THREAD_LOCAL)),
 
     dataTypeClause: $ => seq(
       TYPE, optional(IS), choice(
@@ -1661,9 +1661,9 @@ module.exports = grammar({
         seq(choice(CLOB, BLOB, DBCLOB), LPARENCHAR, $.integerLiteral, RPARENCHAR)
       )),
 
-    dataTypeDefClause: $ => seq(optional(IS), TYPEDEF),
+    dataTypeDefClause: $ => token(seq(optional(IS), TYPEDEF)),
 
-    dataUsageClause: $ => seq(optional(seq(USAGE, optional(IS))), choice(
+    dataUsageClause: $ => token(seq(optional(seq(USAGE, optional(IS))), choice(
       seq(BINARY, optional(choice(TRUNCATED, EXTENDED))),
       BIT,
       COMP,
@@ -1695,7 +1695,7 @@ module.exports = grammar({
       REAL,
       SQL,
       TASK
-    )),
+    ))),
 
     dataUsingClause: $ => seq(
       USING, choice(LANGUAGE, CONVENTION), optional(OF), choice($.cobolWord, $.dataName)),
@@ -1938,7 +1938,7 @@ module.exports = grammar({
     computeStore: $ => seq($.identifier, optional(ROUNDED)),
 
     // continue $.statement
-    continueStatement: $ => CONTINUE,
+    continueStatement: $ => token(CONTINUE),
 
     // delete $.statement
     deleteStatement: $ => prec.left(seq(
@@ -1959,7 +1959,7 @@ module.exports = grammar({
     displayOperand: $ => choice($.identifier, $.literal),
     displayAt: $ => seq(AT, choice($.identifier, $.literal)),
     displayUpon: $ => seq(UPON, choice($.mnemonicName, $.environmentName)),
-    displayWith: $ => seq(optional(WITH), NO, ADVANCING),
+    displayWith: $ => token(seq(optional(WITH), NO, ADVANCING)),
 
     // divide $.statement
     divideStatement: $ => prec.left(seq(
@@ -2026,13 +2026,13 @@ module.exports = grammar({
     exhibitOperand: $ => seq($.identifier, $.literal),
 
     // exit $.statement
-    exitStatement: $ => seq(EXIT, optional(PROGRAM)),
+    exitStatement: $ => token(seq(EXIT, optional(PROGRAM))),
 
     // generate $.statement
     generateStatement: $ => seq(GENERATE, $.reportName),
 
     // goback $.statement
-    gobackStatement: $ => seq(GOBACK),
+    gobackStatement: $ => token(GOBACK),
 
     // goto $.statement
     goToStatement: $ => seq(
@@ -2151,7 +2151,7 @@ module.exports = grammar({
     multiplyGivingResult: $ => seq($.identifier, optional(ROUNDED)),
 
     // next sentence
-    nextSentenceStatement: $ => seq(NEXT, SENTENCE),
+    nextSentenceStatement: $ => token(seq(NEXT, SENTENCE)),
 
     // open $.statement
     openStatement: $ => seq(
@@ -2162,9 +2162,9 @@ module.exports = grammar({
         $.openExtendStatement
       ))),
     openInputStatement: $ => seq(INPUT, repeat1($.openInput)),
-    openInput: $ => seq($.fileName, optional(choice(REVERSED, seq(optional(WITH), NO, REWIND)))),
+    openInput: $ => prec.left(seq($.fileName, optional(choice(REVERSED, seq(optional(WITH), NO, REWIND))))),
     openOutputStatement: $ => seq(OUTPUT, repeat1($.openOutput)),
-    openOutput: $ => seq($.fileName, optional(seq(optional(WITH), NO, REWIND))),
+    openOutput: $ => prec.left(seq($.fileName, optional(seq(optional(WITH), NO, REWIND)))),
     openIOStatement: $ => seq(I_O, repeat1($.fileName)),
     openExtendStatement: $ => seq(EXTEND, repeat1($.fileName)),
 
@@ -2187,7 +2187,7 @@ module.exports = grammar({
     performAfter: $ => seq(AFTER, $.performVaryingPhrase),
     performFrom: $ => seq(FROM, choice($.identifier, $.literal, $.arithmeticExpression)),
     performBy: $ => seq(BY, choice($.identifier, $.literal, $.arithmeticExpression)),
-    performTestClause: $ => seq(optional(WITH), TEST, choice(BEFORE, AFTER)),
+    performTestClause: $ => token(seq(optional(WITH), TEST, choice(BEFORE, AFTER))),
 
     // purge $.statement
     purgeStatement: $ => seq(PURGE, repeat1($.cdName)),
@@ -2197,7 +2197,7 @@ module.exports = grammar({
       READ, $.fileName, optional(NEXT), optional(RECORD), optional($.readInto), optional($.readWith), optional($.readKey), optional($.invalidKeyPhrase), optional($.notInvalidKeyPhrase),
       optional($.atEndPhrase), optional($.notAtEndPhrase), optional(END_READ))),
     readInto: $ => seq(INTO, $.identifier),
-    readWith: $ => seq(optional(WITH), choice(seq(choice(KEPT, NO), LOCK), WAIT)),
+    readWith: $ => token(seq(optional(WITH), choice(seq(choice(KEPT, NO), LOCK), WAIT))),
     readKey: $ => seq(KEY, optional(IS), $.qualifiedDataName),
 
     // receive $.statement
@@ -2218,7 +2218,7 @@ module.exports = grammar({
     receiveNoData: $ => prec.left(seq(NO, DATA, repeat($.statement))),
     receiveWithData: $ => prec.left(seq(WITH, DATA, repeat($.statement))),
     receiveBefore: $ => seq(BEFORE, optional(TIME), choice($.numericLiteral, $.identifier)),
-    receiveWith: $ => seq(optional(WITH), NO, WAIT),
+    receiveWith: $ => token(seq(optional(WITH), NO, WAIT)),
     receiveThread: $ => seq(THREAD, optional(IN), $.dataName),
     receiveSize: $ => seq(SIZE, optional(IN), choice($.numericLiteral, $.identifier)),
     receiveStatus: $ => seq(STATUS, optional(IN), $.identifier),
@@ -2253,13 +2253,13 @@ module.exports = grammar({
     sendStatementAsync: $ => seq(TO, choice(TOP, BOTTOM), $.identifier),
     sendFromPhrase: $ => seq(FROM, $.identifier),
     sendWithPhrase: $ => seq(WITH, choice(EGI, EMI, ESI, $.identifier)),
-    sendReplacingPhrase: $ => seq(REPLACING, optional(LINE)),
+    sendReplacingPhrase: $ => token(seq(REPLACING, optional(LINE))),
     sendAdvancingPhrase: $ => seq(choice(BEFORE, AFTER), optional(ADVANCING), choice(
       $.sendAdvancingPage,
       $.sendAdvancingLines,
       $.sendAdvancingMnemonic
     )),
-    sendAdvancingPage: $ => PAGE,
+    sendAdvancingPage: $ => token(PAGE),
     sendAdvancingLines: $ => seq(choice($.identifier, $.literal), optional(choice(LINE, LINES))),
     sendAdvancingMnemonic: $ => $.mnemonicName,
 
@@ -2283,7 +2283,7 @@ module.exports = grammar({
     )),
     sortOnKeyClause: $ => seq(
       optional(ON), choice(ASCENDING, DESCENDING), optional(KEY), repeat1($.qualifiedDataName)),
-    sortDuplicatesPhrase: $ => seq(optional(WITH), DUPLICATES, optional(IN), optional(ORDER)),
+    sortDuplicatesPhrase: $ => token(seq(optional(WITH), DUPLICATES, optional(IN), optional(ORDER))),
     sortCollatingSequencePhrase: $ => seq(
       optional(COLLATING), SEQUENCE, optional(IS), repeat1($.alphabetName), optional($.sortCollatingAlphanumeric), optional($.sortCollatingNational)),
     sortCollatingAlphanumeric: $ => seq(optional(FOR), ALPHANUMERIC, IS, $.alphabetName),
@@ -2417,7 +2417,7 @@ module.exports = grammar({
       $.writeAdvancingLines,
       $.writeAdvancingMnemonic
     )),
-    writeAdvancingPage: $ => PAGE,
+    writeAdvancingPage: $ => token(PAGE),
     writeAdvancingLines: $ => seq(choice($.identifier, $.literal), optional(choice(LINE, LINES))),
     writeAdvancingMnemonic: $ => $.mnemonicName,
     writeAtEndOfPagePhrase: $ => prec.left(seq(optional(AT), choice(END_OF_PAGE, EOP), repeat($.statement))),
